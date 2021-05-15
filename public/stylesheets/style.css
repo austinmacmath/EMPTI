@@ -43,11 +43,34 @@ span.right-justify {
 }
 
 div.reply-body {
-  height: 100px;
-  width: 200;
+  height: 300px;
+  width: 500px;
   border-style: solid;
   border-width: 1px;
   border-radius: 6px;
   border-color: #959595;
   box-shadow: -1px 1px 2px 0 grey;
+}
+
+div.recipient {
+  position: absolute;
+  padding: 15px;
+  color: #838383;
+  text-decoration: underline;
+}
+
+textarea {
+  resize: none;
+  border-width: 0;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+button.send {
+  border: none;
+  border-radius: 3px;
+  background-color: #40A3FF;
+  color: white;
 }
