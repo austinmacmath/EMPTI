@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div.message-body
+      p welcome to #{title}!!!
+      p this is the message body
+      div.subject Re: Good Catching Up
+      div.metadata 
+        span.left-justify #[strong John Smith] < johnsmith@email.com > 
+        span.right-justify 6:30 AM (5 hours ago)
+        br
+        | to austinmac
+      div.message
+        | Hi Austin,
+        br
+        br
+        | Great seeing you yesterday! Please tell me more about the projects you're working on. I'd love to contribute. 
+        br
+        br
+        | Best,
+        br
+        | John
+    div.response-body
+      p this is the response body
+      div.reply-body
+        | wheeee
