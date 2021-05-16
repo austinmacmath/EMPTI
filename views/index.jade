@@ -4,30 +4,26 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div.message-body
-      p welcome to #{title}!!!
-      p this is the message body
-      div.subject Re: Good Catching Up
+      div.subject Re: #{subject} 
       div.metadata 
-        span.left-justify #[strong John Smith] < johnsmith@email.com > 
-        span.right-justify 6:30 AM (5 hours ago)
+        span.left-justify #[strong #{sender}]
+        span.right-justify 9:15 AM (#{hours} hours ago)
         br
-        | to austinmac
+        | to You 
       div.message
-        | Hi Austin,
-        br
-        br
-        | Great seeing you yesterday! Please tell me more about the projects you're working on. I'd love to contribute. 
-        br
-        br
-        | Best,
-        br
-        | John
+        pre
+          | #{salutation}
+          br
+          br
+          | #{body}
+          br
+          br
+          | #{closing}
     div.response-body
-      p this is the response body
       div.reply-body
-        div.recipient John Smith (johnsmith@email.com) 
+        div.recipient To: #{sender} 
           br
           br
-          textarea(cols='65' rows='15')
+          textarea
           br
           button.send Send
