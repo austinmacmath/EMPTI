@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/client.js')
+
+  body
+    div.message-body
+      div.subject Re: #{subject} 
+      div.metadata 
+        span.left-justify #[strong #{sender}]
+        span.right-justify 9:15 AM (#{hours} hours ago)
+        br
+        | to You 
+      div.message
+        pre
+          | #{salutation}
+          br
+          br
+          | #{body}
+          br
+          br
+          | #{closing}
+    div.response-body
+      div.reply-body
+        div.recipient To: #{sender} 
+          br
+          br
+          textarea(id='email' name='email')
+          br
+          button(class='send' id='send' tabindex='-1') Send

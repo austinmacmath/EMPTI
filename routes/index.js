@@ -11,15 +11,33 @@ var connection = mysql.createConnection({
 // catch the favicon request for now
 router.get('/favicon.ico', (req, res) => res.status(204));
 
-/* GET home page. */
-router.get('/:promptId', function(req, res, next) {
+// home page
+router.get('/', function(req, res) {
+  res.render('index')
+});
+
+// emails
+router.get('/:promptId', function(req, res) {
   var d = new Date();
   var n = d.getHours();
-  console.log(typeof(req.params.promptId));
   connection.query('SELECT * FROM synergy.email_prompts WHERE id = '.concat(req.params.promptId), function (err, row, fields) { 
     if (err) throw err;
-    res.render('index', { subject: row[0].description, sender: row[0].sender, salutation: row[0].salutation, body: row[0].body, closing: row[0].closing, hours: n-9 });
+    res.render('email', { subject: row[0].description, sender: row[0].sender, salutation: row[0].salutation, body: row[0].body, closing: row[0].closing, hours: n-9 });
   });
 });
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// send button click
+router.post('/send', function (req, res) {
+  res.sendStatus(200);
+});
+
+// tab key press
+router.post('/tab', function (req, res) {
+  res.sendStatus(200);
+})
 
 module.exports = router;
