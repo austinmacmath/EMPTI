@@ -26,10 +26,6 @@ router.get('/:promptId', function(req, res) {
   });
 });
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 // send button click
 router.post('/send', function (req, res) {
   res.sendStatus(200);
