@@ -20,15 +20,18 @@ router.get('/', function(req, res) {
 router.get('/:promptId', function(req, res) {
   var d = new Date();
   var n = d.getHours();
-  connection.query('SELECT * FROM synergy.email_prompts WHERE id = '.concat(req.params.promptId), function (err, row, fields) { 
+  connection.query('SELECT * FROM synergy.email_prompts WHERE id = ?', [req.params.promptId], function (err, row, fields) { 
     if (err) throw err;
     res.render('email', { subject: row[0].description, sender: row[0].sender, salutation: row[0].salutation, body: row[0].body, closing: row[0].closing, hours: n-9 });
   });
 });
 
 // send button click
-router.post('/send', function (req, res) {
-  res.sendStatus(200);
+router.post('/send', function (req, res, next) {
+  connection.query('INSERT INTO synergy.responses(response, submission_time) VALUES (?, now())', [req.body.message], function (err, row, fields) {
+    if (err) throw err;
+    res.render('goodbye');
+  });
 });
 
 // tab key press

@@ -15,7 +15,7 @@ This is the interface for Synergy.
 
 ## To Do
 * login/unique user
-* track tab key
+* render goodbye.jade on post 
 * figure out how to track input from textarea in realtime and process
 * hosting
 

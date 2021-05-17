@@ -3,7 +3,12 @@ console.log('Client-side code running!');
 window.onload = function() {
     var button = document.getElementById('send');
     button.addEventListener('click', function(event) {
-        fetch('/send', {method: 'POST'})
+        var response = document.getElementById('email').value;
+        fetch('/send', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message: response})
+        })
             .then(function(response) {
                 if(response.ok) {
                     console.log('Send!');
