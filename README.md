@@ -16,7 +16,7 @@ This is the interface for Synergy. Work in progress.
 6. From the MySQL CLI, run `CREATE DATABASE synergy`
 7. From the terminal, run `mysql -u root -p synergy < synergy_dump.sql`
 8. Start the application:`DEBUG=synergy-app:* npm start`
-9. Navigate to [localhost:3000](localhost:3000) in your browser for the homepage and `localhost:3000/<ID>` for the different email prompts
+9. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/<ID>` for the different email prompts
 
 ## To Do
 * login/unique user
