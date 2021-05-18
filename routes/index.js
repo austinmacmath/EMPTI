@@ -17,13 +17,18 @@ router.get('/', function(req, res) {
 });
 
 // emails
-router.get('/:promptId', function(req, res) {
+router.get('/email/:promptId', function(req, res) {
   var d = new Date();
   var n = d.getHours();
   connection.query('SELECT * FROM synergy.email_prompts WHERE id = ?', [req.params.promptId], function (err, row, fields) { 
     if (err) throw err;
     res.render('email', { subject: row[0].description, sender: row[0].sender, salutation: row[0].salutation, body: row[0].body, closing: row[0].closing, hours: n-9 });
   });
+});
+
+// goodbye
+router.get('/goodbye', function(req, res) {
+  res.render('goodbye');
 });
 
 // send button click
