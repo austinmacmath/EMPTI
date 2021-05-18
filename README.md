@@ -20,6 +20,10 @@ This is the interface for Synergy. Work in progress.
 
 ## To Do
 * login/unique user
+* check wordcount in textarea
+* log tab clicks in db
+* prevent user from backpaging and modifying answers
+    * solution: flag user once final submission and redirect page
 * render goodbye.jade on post 
 * figure out how to track input from textarea in realtime and process
 * hosting
