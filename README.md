@@ -18,12 +18,12 @@ This is the interface for Synergy. Work in progress.
 8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/email/<ID>` for the different email prompts
 
 ## To Do
-* login/unique user
+* finish flow of app after clicking send button
 * check wordcount in textarea
 * log tab clicks in db
 * prevent user from backpaging and modifying answers
     * solution: flag user once final submission and redirect page
-* render goodbye.jade on post 
 * figure out how to track input from textarea in realtime and process
 * hosting
+* user testing
 
