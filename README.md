@@ -15,7 +15,7 @@ This is the interface for Synergy. Work in progress.
 5. Change directories: `cd synergy-app`
 6. Restore the database dump: `psql synergy < synergy_dump.sql`
 7. Start the application:`DEBUG=synergy-app:* npm start`
-8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/email/<ID>` for the different email prompts
+8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/<UID>/<EMAIL ID>` for the different email prompts
 
 ## To Do
 * finish flow of app after clicking send button
