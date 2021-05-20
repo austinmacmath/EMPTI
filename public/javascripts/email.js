@@ -19,6 +19,7 @@ window.onload = function() {
             .catch(function(error) {
                 console.log(error);
             });
+        // window.location='/goodbye'
     });
 
     var email = document.getElementById('email');
@@ -35,7 +36,7 @@ window.onload = function() {
                 })
                 .catch(function(error) {
                     console.log(error);
-                })
+                });
         }
-    })
+    });
 }
