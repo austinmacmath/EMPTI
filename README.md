@@ -7,6 +7,10 @@ This is the interface for Synergy. Work in progress.
 * [Express](https://expressjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 
+## Background Information
+* [Study Information](https://docs.google.com/document/d/1pITKxX8v58MLusvwPeIaSM7F8YYrLQISV1gCkjubNV0)
+* [Design](https://docs.google.com/document/d/1poJQO2GKQ6j3X6-B_ka_6YI4fTV3rGEd9f98XrYKm0M)
+
 ## Local Start Instructions
 1. [Install](https://www.postgresql.org/download/) PostgreSQL
 2. Start a PostgreSQL instance at `localhost:5432`
