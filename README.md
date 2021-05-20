@@ -5,18 +5,17 @@ This is the interface for Synergy. Work in progress.
 * [NPM](https://www.npmjs.com/)
 * [Node.js](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
-* [MySQL](https://www.mysql.com/)
+* [PostgreSQL](https://www.postgresql.org/)
 
 ## Local Start Instructions
-1. Install MySQL
-2. Start the MySQL CLI with `user=root` and `password=password`
-3. Start a MySQL instance
+1. [Install](https://www.postgresql.org/download/) PostgreSQL
+2. Start a PostgreSQL instance at `localhost:5432`
+3. Create a database `synergy` 
 4. Clone this repo: `git@github.com:austinmacmath/synergy-app.git`
 5. Change directories: `cd synergy-app`
-6. From the MySQL CLI, run `CREATE DATABASE synergy`
-7. From the terminal, run `mysql -u root -p synergy < synergy_dump.sql`
-8. Start the application:`DEBUG=synergy-app:* npm start`
-9. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/<ID>` for the different email prompts
+6. Restore the database dump: `psql synergy < synergy_dump.sql`
+7. Start the application:`DEBUG=synergy-app:* npm start`
+8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/email/<ID>` for the different email prompts
 
 ## To Do
 * login/unique user

@@ -1,12 +1,7 @@
 var express = require('express');
-var mysql = require('mysql');
+var pgp = require('pg-promise')();
+var db = pgp('postgres://postgres:password@localhost:5432/synergy');
 var router = express.Router();
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'synergy'
-});
 
 // catch the favicon request for now
 router.get('/favicon.ico', (req, res) => res.status(204));
@@ -20,10 +15,13 @@ router.get('/', function(req, res) {
 router.get('/email/:promptId', function(req, res) {
   var d = new Date();
   var n = d.getHours();
-  connection.query('SELECT * FROM synergy.email_prompts WHERE id = ?', [req.params.promptId], function (err, row, fields) { 
-    if (err) throw err;
-    res.render('email', { subject: row[0].description, sender: row[0].sender, salutation: row[0].salutation, body: row[0].body, closing: row[0].closing, hours: n-9 });
-  });
+  db.one('SELECT * FROM email_prompts WHERE id = $1', [req.params.promptId])
+    .then(function (data) {
+      res.render('email', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9 });
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 });
 
 // goodbye
@@ -33,10 +31,14 @@ router.get('/goodbye', function(req, res) {
 
 // send button click
 router.post('/send', function (req, res, next) {
-  connection.query('INSERT INTO synergy.responses(response, submission_time) VALUES (?, now())', [req.body.message], function (err, row, fields) {
-    if (err) throw err;
-    res.render('goodbye');
-  });
+  db.one('INSERT INTO responses(response, submission_time) VALUES ($1, current_timestamp) RETURNING submission_time', [req.body.message])
+    .then(submission_time => {
+      console.log(submission_time)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+    res.sendStatus(200);
 });
 
 // tab key press
