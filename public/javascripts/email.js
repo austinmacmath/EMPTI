@@ -8,11 +8,14 @@ window.onload = function() {
             str.indexOf("/") + 1, 
             str.lastIndexOf("/")
         );
+        var email = str.substring(
+            str.lastIndexOf("/") + 1
+        );
         var response = document.getElementById('email').value;
         fetch('/send', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({message: response, uid: id})
+            body: JSON.stringify({message: response, uid: id, email_id: email})
         })
         .then(function(response) {
             if(response.ok) {
@@ -24,7 +27,7 @@ window.onload = function() {
         .catch(function(error) {
             console.log(error);
         });
-        // window.location='/goodbye'
+        window.location='/' + id + '/' + (Math.floor(Math.random() * 10) + 1);
     });
 
     var email = document.getElementById('email');

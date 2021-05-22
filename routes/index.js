@@ -28,6 +28,9 @@ router.get('/:uid/:promptId', function(req, res) {
       if(data.count == 1) {
         var d = new Date();
         var n = d.getHours();
+        if(n - 9 < 0) {
+          n += 24;
+        }
         db.one('SELECT * FROM email_prompts WHERE id = $1', [req.params.promptId])
           .then(function (data) {
             res.render('email', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9 });
@@ -51,7 +54,7 @@ router.get('/goodbye', function(req, res) {
 
 // send button click
 router.post('/send', function (req, res, next) {
-  db.one('INSERT INTO responses(response, submission_time, uid) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.message, req.body.uid])
+  db.one('INSERT INTO responses(response, submission_time, uid, email_id) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.message, req.body.uid, req.body.email_id])
     .then(uid => {
       console.log(uid)
     })
