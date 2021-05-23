@@ -6,6 +6,7 @@ This is the interface for Synergy. Work in progress.
 * [Node.js](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
+* Optional: [pgAdmin](https://www.pgadmin.org/)
 
 ## Background Information
 * [Study Information](https://docs.google.com/document/d/1pITKxX8v58MLusvwPeIaSM7F8YYrLQISV1gCkjubNV0)
@@ -21,6 +22,9 @@ This is the interface for Synergy. Work in progress.
 7. Start the application:`DEBUG=synergy-app:* npm start`
 8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/<UID>/<EMAIL ID>` for the different email prompts
 
+## Generating new UIDs
+Run `node make_id.js`. This will create a new random 20 digit string for a user. 
+
 ## To Do
 * prevent user from backpaging and modifying answers
     * solution: flag user once final submission and redirect page
@@ -31,3 +35,12 @@ This is the interface for Synergy. Work in progress.
 * hosting
 * user testing
 
+## Security Concerns
+* SQL injection
+* backpaging and corrupting data
+* submitting data after end of experiment
+* guessing someone else's uid
+* promises not handled correctly
+
+## Technical Concerns
+* latency/bandwidth
