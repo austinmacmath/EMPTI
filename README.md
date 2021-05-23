@@ -1,5 +1,5 @@
 # Synergy
-This is the interface for Synergy. Work in progress. 
+This is a Google Smart Compose/email client simulator for the Synergy project. Work in progress.
 
 ## Requirements
 * [NPM](https://www.npmjs.com/)
