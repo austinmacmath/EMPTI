@@ -17,17 +17,31 @@ window.onload = function() {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({message: response, uid: id, email_id: email})
         })
-        .then(function(response) {
-            if(response.ok) {
-                console.log('Send!');
-                return;
+        .then(response => response.json())
+        .then(result => {
+            console.log('Send!');
+            console.log(result.email_id)
+            if(result.email_id == -1) {
+                window.location='/goodbye';
+            } else {
+                window.location='/' + id + '/' + result.email_id;
             }
-            throw new Error('Send request failed.');
         })
-        .catch(function(error) {
-            console.log(error);
+        .catch(error => {
+            console.error('Error:', error);
         });
-        window.location='/' + id + '/' + (Math.floor(Math.random() * 10) + 1);
+        // .then(function(response) {
+        //     if(response.ok) {
+        //         console.log('Send!');
+        //         console.log(response.body)
+        //         window.location='/' + id + '/' + response;
+        //         return;
+        //     }
+        //     throw new Error('Send request failed.');
+        // })
+        // .catch(function(error) {
+        //     console.log(error);
+        // });
     });
 
     var email = document.getElementById('email');

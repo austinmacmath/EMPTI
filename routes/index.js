@@ -6,6 +6,11 @@ var router = express.Router();
 // catch the favicon request for now
 router.get('/favicon.ico', (req, res) => res.status(204));
 
+// goodbye
+router.get('/goodbye', function(req, res) {
+  res.render('goodbye');
+});
+
 // home page
 router.get('/:uid', function(req, res) {
   db.one("SELECT COUNT(*) FROM participants WHERE id = $1", [req.params.uid])
@@ -47,26 +52,56 @@ router.get('/:uid/:promptId', function(req, res) {
     })
 });
 
-// goodbye
-router.get('/goodbye', function(req, res) {
-  res.render('goodbye');
-});
-
 // send button click
 router.post('/send', function (req, res, next) {
+  // for a specified user, needs to increment count and get count
+  var prompt_count;
+  db.one("UPDATE participants SET prompt_count = prompt_count + 1 WHERE id = '" + req.body.uid + "'; SELECT prompt_count FROM participants WHERE id = '" + req.body.uid + "'")
+  .then(result => {
+      prompt_count = result.prompt_count;
+      return prompt_count;
+  })
+  .then(result => {
+      console.log("inside count: ", result);
+      return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
+  })
+  .then(result => {
+      console.log("RESULT: ", result);
+      res.send({"email_id": Object.values(result)[0]});
+  })
+  .catch(error => {
+    console.log(error);
+    res.send({"email_id": -1});
+  })
+  console.log("outside count: ", prompt_count);
+
   db.one('INSERT INTO responses(response, submission_time, uid, email_id) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.message, req.body.uid, req.body.email_id])
     .then(uid => {
-      console.log(uid)
+      console.log("INSERT success: ", uid)
     })
     .catch(function (error) {
       console.log(error)
     })
-    res.sendStatus(200);
 });
 
 // tab key press
 router.post('/tab', function (req, res) {
+  console.log("prompt_count: ", prompt_count);
   res.sendStatus(200);
+})
+
+// start button click
+router.post('/start', function (req, res) {
+  db.one('SELECT e0 FROM participants where id = $1', [req.body.uid])
+    .then(function (data) {
+      console.log(data.e0)
+      // res.send(data.email_order)
+      res.send({"email": data.e0})
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+    // res.sendStatus(200)
 })
 
 module.exports = router;
