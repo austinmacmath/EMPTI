@@ -63,7 +63,18 @@ ALTER SEQUENCE public.email_prompts_id_seq OWNED BY public.email_prompts.id;
 --
 
 CREATE TABLE public.participants (
-    id integer
+    id text NOT NULL,
+    e0 integer,
+    e1 integer,
+    e2 integer,
+    e3 integer,
+    e4 integer,
+    e5 integer,
+    e6 integer,
+    e7 integer,
+    e8 integer,
+    e9 integer,
+    prompt_count integer
 );
 
 
@@ -76,7 +87,9 @@ ALTER TABLE public.participants OWNER TO postgres;
 CREATE TABLE public.responses (
     id integer NOT NULL,
     response text,
-    submission_time timestamp without time zone
+    submission_time timestamp without time zone,
+    uid text,
+    email_id integer
 );
 
 
@@ -153,7 +166,7 @@ COPY public.email_prompts (id, description, salutation, body, closing, sender) F
 -- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.participants (id) FROM stdin;
+COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, prompt_count) FROM stdin;
 \.
 
 
@@ -161,7 +174,7 @@ COPY public.participants (id) FROM stdin;
 -- Data for Name: responses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.responses (id, response, submission_time) FROM stdin;
+COPY public.responses (id, response, submission_time, uid, email_id) FROM stdin;
 \.
 
 
@@ -184,7 +197,7 @@ SELECT pg_catalog.setval('public.email_prompts_id_seq', 1, false);
 -- Name: responses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.responses_id_seq', 26, true);
+SELECT pg_catalog.setval('public.responses_id_seq', 339, true);
 
 
 --
@@ -193,6 +206,14 @@ SELECT pg_catalog.setval('public.responses_id_seq', 26, true);
 
 ALTER TABLE ONLY public.email_prompts
     ADD CONSTRAINT email_prompts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.participants
+    ADD CONSTRAINT participants_pkey PRIMARY KEY (id);
 
 
 --

@@ -22,11 +22,11 @@ This is the interface for Synergy. Work in progress.
 8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/<UID>/<EMAIL ID>` for the different email prompts
 
 ## To Do
-* finish flow of app after clicking send button
-* check wordcount in textarea
-* log tab clicks in db
 * prevent user from backpaging and modifying answers
     * solution: flag user once final submission and redirect page
+    * solution: check if email id exists in response table already for a uid and if it does, do not increment prompt_count and redirect
+* check wordcount in textarea
+* log tab clicks in db
 * figure out how to track input from textarea in realtime and process
 * hosting
 * user testing
