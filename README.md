@@ -39,6 +39,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * SQL injection
 * backpaging and corrupting data
 * submitting data after end of experiment
+* not being provided all 10 questions
 * guessing someone else's uid
 * promises not handled correctly
 

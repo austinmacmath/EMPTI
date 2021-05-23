@@ -86,7 +86,6 @@ router.post('/send', function (req, res, next) {
 
 // tab key press
 router.post('/tab', function (req, res) {
-  console.log("prompt_count: ", prompt_count);
   res.sendStatus(200);
 })
 
