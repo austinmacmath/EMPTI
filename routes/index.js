@@ -20,7 +20,7 @@ router.get('/goodbye', function(req, res) {
 });
 
 // db test
-router.get('/db', function (req, res) {
+router.get('/db',async (req, res) => {
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT * FROM participants');
