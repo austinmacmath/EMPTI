@@ -13,6 +13,7 @@ router.get('/goodbye', function(req, res) {
 
 // db test
 router.get('/db', function (req, res) {
+  console.log("HELLO")
   try {
     console.log("hello")
     const result = db.many('SELECT * FROM participants');
