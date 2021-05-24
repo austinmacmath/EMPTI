@@ -11,6 +11,18 @@ router.get('/goodbye', function(req, res) {
   res.render('goodbye');
 });
 
+// db test
+router.get('/db', function (req, res) {
+  try {
+    const result = db.many('SELECT * FROM participants');
+    const results = { 'results': (result) ? result.rows : null};
+    res.send(results);
+  } catch(err) {
+      console.error(err);
+      res.send("Error " + err);
+  }
+});
+
 // home page
 router.get('/:uid', function(req, res) {
   db.one("SELECT COUNT(*) FROM participants WHERE id = $1", [req.params.uid])
