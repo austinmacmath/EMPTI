@@ -14,6 +14,7 @@ router.get('/goodbye', function(req, res) {
 // db test
 router.get('/db', function (req, res) {
   try {
+    console.log("hello")
     const result = db.many('SELECT * FROM participants');
     const results = { 'results': (result) ? result.rows : null};
     res.send(results);
