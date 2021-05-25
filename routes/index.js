@@ -1,16 +1,15 @@
 var express = require('express');
 var pgp = require('pg-promise')();
 var db = pgp(process.env.DATABASE_URL);
-console.log("DBURL: ", process.env.DATABASE_URL);
 var router = express.Router();
 
-const { Pool } = require("pg");
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+// const { Pool } = require("pg");
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
 // catch the favicon request for now
 router.get('/favicon.ico', (req, res) => res.status(204));
@@ -21,18 +20,18 @@ router.get('/goodbye', function(req, res) {
 });
 
 // db test
-router.get('/db',async (req, res) => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT * FROM participants');
-    const results = { 'results': (result) ? result.rows : null};
-    res.send(results );
-    client.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-});
+// router.get('/db',async (req, res) => {
+//   try {
+//     const client = await pool.connect();
+//     const result = await client.query('SELECT * FROM participants');
+//     const results = { 'results': (result) ? result.rows : null};
+//     res.send(results );
+//     client.release();
+//   } catch (err) {
+//     console.error(err);
+//     res.send("Error " + err);
+//   }
+// });
 
 // home page
 router.get('/:uid', function(req, res) {
