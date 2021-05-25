@@ -1,5 +1,5 @@
 # Synergy
-**THIS IS THE README FOR THE PRODUCTION APP.**
+**THIS IS THE README FOR THE PRODUCTION APP.** <br>
 This is a Google Smart Compose/email client simulator for the Synergy project. Work in progress.
 
 ## Requirements
@@ -43,6 +43,8 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * Heroku Config
     * `NODE_ENV: production`
     * `PGSSLMODE: no-verify`
+* Heroku PostgreSQL: `heroku pg:psql`
+* Config: `heroku config`
 
 ## Security Concerns
 * SQL injection
