@@ -14,8 +14,8 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 * [Design](https://docs.google.com/document/d/1poJQO2GKQ6j3X6-B_ka_6YI4fTV3rGEd9f98XrYKm0M)
 
 ## Start Instructions
-1. Navigate to [synergy-ucsb.herokuapp.com](https://synergy-ucsb.herokuapp.com)
-2. You'll see **Not Found**. This is because you need to provide a UID in the url path. See [Generating new UIDs](#Generating-new-UIDs).
+1. Navigate to [synergy-ucsb.herokuapp.com](https://synergy-ucsb.herokuapp.com/)
+2. You'll see **Not Found**. This is because you need to provide a UID in the URL path. See [Generating new UIDs](#Generating-new-UIDs). The URL should look like `https://synergy-ucsb.herokuapp.com/my-uid`
 
 ## Generating new UIDs
 Run `node make_id.js`. This will create a new random 20 digit string for a user. 
