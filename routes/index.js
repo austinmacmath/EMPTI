@@ -5,7 +5,7 @@ var router = express.Router();
 
 const { Pool } = require("pg");
 const pool = new Pool({
-  connectionString: 'postgres://usbvbbruziveim:1a8bfb795fe32aabf3f8076ef655d3cc356baef6557c43121b90bc0fc0af2a3e@ec2-3-212-75-25.compute-1.amazonaws.com:5432/d3l0j0852r9jjq',
+  connectionString: 'postgres://usbvbbruziveim:1a8bfb795fe32aabf3f8076ef655d3cc356baef6557c43121b90bc0fc0af2a3e@ec2-3-212-75-25.compute-1.amazonaws.com:5432',
   ssl: {
     rejectUnauthorized: false
   }
