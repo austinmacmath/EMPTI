@@ -37,10 +37,12 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * user testing
 
 ## Production Notes
+* changes are only propagated if pushing to `heroku master`
+* insert connection string information in `make_id.js`
+    * info can be found in Heroku Datastore Settings
 * Heroku Config
     * `NODE_ENV: production`
     * `PGSSLMODE: no-verify`
-* Changes are only propagated if pushing to `heroku master`
 
 ## Security Concerns
 * SQL injection

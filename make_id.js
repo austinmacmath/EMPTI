@@ -1,17 +1,11 @@
-var pgp = require('pg-promise')();
-var db = pgp('dpostgres://usbvbbruziveim:1a8bfb795fe32aabf3f8076ef655d3cc356baef6557c43121b90bc0fc0af2a3e@ec2-3-212-75-25.compute-1.amazonaws.com:5432/d3l0j0852r9jjq');
+const { Pool } = require('pg');
 
-// const { Client } = require('pg');
-
-// const client = new Client({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'synergy',
-//   password: 'password',
-//   port: 5432,
-// });
-
-// client.connect();
+const pool = new Pool({
+  connectionString: 'INSERT CONNECTION STRING',
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 function make_id(length) {
   var result           = [];
@@ -57,14 +51,15 @@ shuffle(arr)
 async function get_user() {
   console.log("begin");
   while(!is_unique) {
-    await db.one("SELECT COUNT(*) FROM participants WHERE id = $1", id)
+    var client = await pool.connect();
+    await client.query("SELECT COUNT(*) FROM participants WHERE id = '" + id + "'")
         .then(function (data) {
           if(data.count == 1) {
             console.log(id + " exists, generating new id");
             id = make_id(20);
           } else {
             console.log(id + " is unique");
-            db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], 0])
+            client.query('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], 0])
               .then(id => {
                 console.log(id)
               })
