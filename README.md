@@ -1,4 +1,5 @@
 # Synergy
+**THIS IS THE README FOR THE DEVELOPMENT APP.**<br><br>
 This is a Google Smart Compose/email client simulator for the Synergy project. Work in progress.
 
 ## Requirements
