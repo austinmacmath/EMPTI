@@ -1,6 +1,7 @@
 var express = require('express');
 var pgp = require('pg-promise')();
 var db = pgp(process.env.DATABASE_URL);
+console.log(process.env.DATABASE_URL);
 var router = express.Router();
 
 const { Pool } = require("pg");
