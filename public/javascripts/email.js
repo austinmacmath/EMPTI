@@ -9,8 +9,10 @@ window.onload = function() {
             console.log("wordcount: ", wordCount);
             if(wordCount < 200) {
                 console.log("word count < 200");
+                document.getElementById("wc_error").innerHTML = " Word count must be greater than 200."
             } else {
                 clicked = true;
+                button.disabled = true;
                 var str = window.location.pathname;
                 var id = str.substring(
                     str.indexOf("/") + 1, 
@@ -51,8 +53,6 @@ window.onload = function() {
                     console.log(response)
                     if(response.ok) {
                         console.log('Tab!');
-                        console.log('clicked: ', clicked);
-                        return;
                     }
                     // throw new Error('Tab request failed.');
                 })
