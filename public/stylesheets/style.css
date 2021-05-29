@@ -97,3 +97,13 @@ button.send:hover {
   box-shadow: -1px 1px 2px 0 grey;
   cursor: pointer;
 }
+
+span.wordcount {
+  text-decoration: none;
+  float: right;
+}
+
+span.wc_label {
+  text-decoration: none;
+  float: right;
+}
