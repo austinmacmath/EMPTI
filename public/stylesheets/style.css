@@ -110,6 +110,6 @@ span.wc_label {
 
 span.wc_error {
   text-decoration: none;
-  float: left;
+  float: none;
   color: red;
 }
