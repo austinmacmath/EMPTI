@@ -69,7 +69,6 @@ div.recipient {
   position: absolute;
   padding: 15px;
   color: #838383;
-  text-decoration: underline;
 }
 
 textarea {
@@ -109,7 +108,5 @@ span.wc_label {
 }
 
 span.wc_error {
-  text-decoration: none;
-  float: none;
   color: red;
 }
