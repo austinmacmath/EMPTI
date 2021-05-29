@@ -24,10 +24,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * prevent user from backpaging and modifying answers
     * solution: flag user once final submission and redirect page
     * solution: check if email id exists in response table already for a uid and if it does, do not increment prompt_count and redirect
-* check wordcount in textarea
-* log tab clicks in db
-* figure out how to track input from textarea in realtime and process
-* hosting
+* nlp
 * user testing
 
 ## Production Notes
