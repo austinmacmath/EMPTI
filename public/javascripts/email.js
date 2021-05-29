@@ -12,6 +12,7 @@ window.onload = function() {
                 document.getElementById("wc_error").innerHTML = " Word count must be greater than 200."
             } else {
                 clicked = true;
+                button.disabled = true;
                 var str = window.location.pathname;
                 var id = str.substring(
                     str.indexOf("/") + 1, 
