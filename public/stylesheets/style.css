@@ -107,3 +107,8 @@ span.wc_label {
   text-decoration: none;
   float: right;
 }
+
+span.wc_error {
+  text-decoration: none;
+  color: red;
+}

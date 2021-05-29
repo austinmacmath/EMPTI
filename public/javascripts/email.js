@@ -8,7 +8,8 @@ window.onload = function() {
             var wordCount = document.getElementById('wordcount').innerHTML;
             console.log("wordcount: ", wordCount);
             if(wordCount < 200) {
-                console.log("word count < 200")
+                console.log("word count < 200");
+                document.getElementById("wc_error").innerHTML = " Word count must be greater than 200."
             } else {
                 clicked = true;
                 var str = window.location.pathname;
