@@ -5,34 +5,40 @@ window.onload = function() {
     var button = document.getElementById('send');
     if(!clicked) {
         button.addEventListener('click', function(event) {
-            clicked = true;
-            var str = window.location.pathname;
-            var id = str.substring(
-                str.indexOf("/") + 1, 
-                str.lastIndexOf("/")
-                );
-                var email = str.substring(
-                    str.lastIndexOf("/") + 1
+            var wordCount = document.getElementById('wordcount').innerHTML;
+            console.log("wordcount: ", wordCount);
+            if(wordCount < 200) {
+                console.log("word count < 200")
+            } else {
+                clicked = true;
+                var str = window.location.pathname;
+                var id = str.substring(
+                    str.indexOf("/") + 1, 
+                    str.lastIndexOf("/")
                     );
-                    var response = document.getElementById('email').value;
-            fetch('/send', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({message: response, uid: id, email_id: email})
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log('Send!');
-                console.log(result.email_id)
-                if(result.email_id == -1) {
-                    window.location='/goodbye';
-                } else {
-                    window.location='/' + id + '/' + result.email_id;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    var email = str.substring(
+                        str.lastIndexOf("/") + 1
+                        );
+                        var response = document.getElementById('email').value;
+                fetch('/send', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: response, uid: id, email_id: email})
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Send!');
+                    console.log(result.email_id)
+                    if(result.email_id == -1) {
+                        window.location='/goodbye';
+                    } else {
+                        window.location='/' + id + '/' + result.email_id;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
         });
     }
 
@@ -54,4 +60,18 @@ window.onload = function() {
                 });
         }
     });
+
+    document
+        .querySelector("#email")
+        .addEventListener("keyup", function countWord() {
+          let res = [];
+          let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
+          str.map((s) => {
+            let trimStr = s.trim();
+            if (trimStr.length > 0) {
+              res.push(trimStr);
+            }
+          });
+          document.querySelector("#wordcount").innerText = res.length;
+        });
 }
