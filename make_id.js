@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: 'INSERT CONNECTION STRING',
+  connectionString: 'INSERTCONNECTIONSTRING',
   ssl: {
     rejectUnauthorized: false
   }
