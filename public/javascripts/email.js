@@ -76,4 +76,20 @@ window.onload = function() {
           });
           document.querySelector("#wordcount").innerText = res.length;
         });
+
+    var worker = new Worker('/javascripts/worker.js')
+    worker.onmessage = function(e) {
+        console.log(e.data);
+    }
+    if(window.Worker) {
+        document.querySelector('#email').onkeyup = function(e) {
+            var response = document.getElementById("email").value; 
+            var begin = Math.max(response.lastIndexOf(' ', response.length-2), response.lastIndexOf('\n', response.length-2));
+            var lastWord = response.substring(begin+1, response.length-1);
+            var regex = /^[a-z0-9]+$/i;
+            if((e.keyCode == 32 || e.keyCode == 13) && regex.test(lastWord)) {
+                worker.postMessage(lastWord);
+            }
+        }
+    }
 }
