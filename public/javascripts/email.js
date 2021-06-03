@@ -1,8 +1,5 @@
 console.log('Client-side code running!');
 var clicked = false;
-// import Worker from 'web-worker';
-// var Worker = require('web-worker');
-// const worker = new Worker(new URL('./worker.js', import.meta.url));
 
 window.onload = function() {
     console.log("INSIDE ONLOAD")
