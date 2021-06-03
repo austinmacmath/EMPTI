@@ -1,7 +1,11 @@
 console.log('Client-side code running!');
 var clicked = false;
+// import Worker from 'web-worker';
+// var Worker = require('web-worker');
+// const worker = new Worker(new URL('./worker.js', import.meta.url));
 
 window.onload = function() {
+    console.log("INSIDE ONLOAD")
     var button = document.getElementById('send');
     if(!clicked) {
         button.addEventListener('click', function(event) {
@@ -65,27 +69,31 @@ window.onload = function() {
     document
         .querySelector("#email")
         .addEventListener("keyup", function countWord() {
-          let res = [];
-          let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
-          str.map((s) => {
+            let res = [];
+            let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
+            str.map((s) => {
             let trimStr = s.trim();
             if (trimStr.length > 0) {
-              res.push(trimStr);
+                res.push(trimStr);
             }
-          });
-          document.querySelector("#wordcount").innerText = res.length;
         });
+
+        document.querySelector("#wordcount").innerText = res.length;
+    });
+    
+    var worker = new Worker('/javascripts/worker.js')
+    worker.onmessage = function(e) {
+        console.log(e.data);
+    }
+    if(window.Worker) {
+        document.querySelector('#email').onkeyup = function(e) {
+            var response = document.getElementById("email").value; 
+            var begin = Math.max(response.lastIndexOf(' ', response.length-2), response.lastIndexOf('\n', response.length-2));
+            var lastWord = response.substring(begin+1, response.length-1);
+            var regex = /^[a-z0-9]+$/i;
+            if((e.keyCode == 32 || e.keyCode == 13) && regex.test(lastWord)) {
+                worker.postMessage(lastWord);
+            }
+        }
+    }
 }
-
-// function countWord() {
-//     var words = document.getElementById('email').value;
-//     var count = 0;
-//     var split = words.split(' ');
-//     for (var i = 0; i < split.length; i++) {
-//         if (split[i] != '') {
-//             count += 1;
-//         }
-//     }
-
-//     document.getElementById("wordcount").innerHTML = count;
-// }
