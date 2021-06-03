@@ -2,7 +2,6 @@ console.log('Client-side code running!');
 var clicked = false;
 
 window.onload = function() {
-    console.log("INSIDE ONLOAD")
     var button = document.getElementById('send');
     if(!clicked) {
         button.addEventListener('click', function(event) {
