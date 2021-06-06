@@ -7,6 +7,9 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 * [Node.js](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
+* (Python) tensorflow 1.15 
+* (Python) tensorflowjs 1.1.5
+* (JS) @tensorflow/tfjs-node 1.3.2
 * Optional: [pgAdmin](https://www.pgadmin.org/)
 
 ## Background Information
@@ -25,6 +28,9 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 
 ## Generating new UIDs
 Run `node make_id.js`. This will create a new random 20 digit string for a user. 
+
+## How to Browserify
+`browserify worker.js > bundle.js`
 
 ## To Do
 * prevent user from backpaging and modifying answers

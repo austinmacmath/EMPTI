@@ -77,7 +77,7 @@ window.onload = function() {
         document.querySelector("#wordcount").innerText = res.length;
     });
     
-    var worker = new Worker('/javascripts/worker.js')
+    var worker = new Worker('/javascripts/bundle.js')
     worker.onmessage = function(e) {
         console.log(e.data);
     }
