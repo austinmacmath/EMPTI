@@ -6,6 +6,11 @@ var router = express.Router();
 // catch the favicon request for now
 router.get('/favicon.ico', (req, res) => res.status(204));
 
+// for testing and development
+router.get('/test', function(req, res) {
+  res.render('test');
+})
+
 // goodbye
 router.get('/goodbye', function(req, res) {
   res.render('goodbye');

@@ -1,6 +1,22 @@
 console.log('Client-side code running!');
 var clicked = false;
 
+function insertTextAtCursor(el, text) {
+    var val = el.value, endIndex, range, doc = el.ownerDocument;
+    if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
+        endIndex = el.selectionEnd;
+        el.value = val.slice(0, endIndex) + text + val.slice(endIndex);
+        el.selectionStart = endIndex;
+        el.selectionEnd = endIndex + text.length;
+    } else if (doc.selection != "undefined" && doc.selection.createRange) {
+        el.focus();
+        range = doc.selection.createRange();
+        range.collapse(false);
+        range.text = text;
+        range.select();
+    }
+}
+
 window.onload = function() {
     var button = document.getElementById('send');
     if(!clicked) {
@@ -82,6 +98,7 @@ window.onload = function() {
         console.log(e.data);
     }
     if(window.Worker) {
+        // document.getElementById("email").placeholder = "TEST TEXT!";
         document.querySelector('#email').onkeyup = function(e) {
             var response = document.getElementById("email").value; 
             var begin = Math.max(response.lastIndexOf(' ', response.length-2), response.lastIndexOf('\n', response.length-2));
@@ -89,7 +106,17 @@ window.onload = function() {
             var regex = /^[a-z0-9]+$/i;
             if((e.keyCode == 32 || e.keyCode == 13) && regex.test(lastWord)) {
                 worker.postMessage(lastWord);
+                // insertTextAtCursor(document.getElementById("email"), "TEST TEXT");
             }
         }
     }
+
+    var s1 = document.getElementById('email');
+    var s2 = document.getElementById('predictions');
+    function select_scroll_1(e) { 
+        s2.scrollTop = s1.scrollTop; 
+        console.log(s1.scrollTop);
+        console.log(s2.scrollTop);
+    }
+    s1.addEventListener('scroll', select_scroll_1, false);
 }
