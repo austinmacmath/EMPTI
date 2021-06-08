@@ -1,0 +1,125 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 1px;
+}
+
+div.subject {
+    font-size: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+div.metadata {
+    font-size: 12px;
+    padding-top: 12px;
+}
+
+div.message {
+    padding-bottom: 12px;
+}
+
+div.message-body {
+    padding: 40px;
+    padding-bottom: 20px;
+    /* border-style: solid; */
+    border-width: 5px;
+    border-color: red;
+    width: 900px;
+    margin: auto;
+  }
+
+div.response-body {
+    padding: 40px;
+    padding-top: 0px;
+    /* border-style: solid; */
+    border-width: 5px;
+    border-color: blue;
+    width: 900px;
+    margin: auto;
+}
+
+span.left-justify {
+    float: left;
+}
+
+span.right-justify {
+    float: right;
+}
+
+div.reply-body {
+    height: 510px;
+    width: 900px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    border-color: #959595;
+    box-shadow: -1px 1px 2px 0 grey;
+}
+
+div.recipient {
+    position: absolute;
+    padding: 15px;
+    color: #838383;
+}
+
+.container, .backdrop, .predictions, textarea {
+    width: 849px;
+    height: 400px;
+    overflow: auto;
+}
+ 
+.predictions, textarea {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.container {
+    display: block;
+    margin: 0 auto;
+    transform: translateZ(0);
+}
+
+.backdrop {
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    border: 2px solid #685972;
+    background-color: #fff;
+    overflow: auto;
+    transition: transform 1s;
+}
+
+.predictions {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: black;
+}
+
+textarea {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    border: 2px solid #74637f;
+    border-radius: 0;
+    color: white;
+    font-size: 16;
+    background-color: transparent;
+    overflow: auto;
+    resize: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+/* .textarea{
+    width:10%;
+    position: absolute;
+    background-color:#eee;
+    overflow:hidden;
+    height:250px;
+    max-height:250px;
+    border:1px solid #ccc;
+    overflow-y: auto;
+} */

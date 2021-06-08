@@ -103,14 +103,14 @@ div.recipient {
 .predictions {
   white-space: pre-wrap;
   word-wrap: break-word;
-  color: black;
+  color: transparent;
 }
 
 textarea {
   display: block;
   position: absolute;
   z-index: 2;
-  color: blue;
+  color: black;
   background-color: transparent;
   resize: none;
   /* width: 850px;

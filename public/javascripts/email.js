@@ -1,21 +1,6 @@
 console.log('Client-side code running!');
 var clicked = false;
-
-function insertTextAtCursor(el, text) {
-    var val = el.value, endIndex, range, doc = el.ownerDocument;
-    if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
-        endIndex = el.selectionEnd;
-        el.value = val.slice(0, endIndex) + text + val.slice(endIndex);
-        el.selectionStart = endIndex;
-        el.selectionEnd = endIndex + text.length;
-    } else if (doc.selection != "undefined" && doc.selection.createRange) {
-        el.focus();
-        range = doc.selection.createRange();
-        range.collapse(false);
-        range.text = text;
-        range.select();
-    }
-}
+var words = [];
 
 window.onload = function() {
     var button = document.getElementById('send');
@@ -69,6 +54,8 @@ window.onload = function() {
                     console.log(response)
                     if(response.ok) {
                         console.log('Tab!');
+                        document.getElementById('email').value = document.getElementById("predictions").innerText;
+                        words = [];
                     }
                     // throw new Error('Tab request failed.');
                 })
@@ -93,9 +80,12 @@ window.onload = function() {
         document.querySelector("#wordcount").innerText = res.length;
     });
     
-    var worker = new Worker('/javascripts/bundle.js')
+    var worker = new Worker('/javascripts/browser-worker.js');
     worker.onmessage = function(e) {
         console.log(e.data);
+        if(e.data.right !== undefined) {
+            document.getElementById('predictions').innerHTML = document.getElementById("email").value + '<span style="color:Gray">' + e.data.right + '</span>';
+        }
     }
     if(window.Worker) {
         // document.getElementById("email").placeholder = "TEST TEXT!";
@@ -105,8 +95,19 @@ window.onload = function() {
             var lastWord = response.substring(begin+1, response.length-1);
             var regex = /^[a-z0-9]+$/i;
             if((e.keyCode == 32 || e.keyCode == 13) && regex.test(lastWord)) {
-                worker.postMessage(lastWord);
-                // insertTextAtCursor(document.getElementById("email"), "TEST TEXT");
+                if(words.length == 3) {
+                    words.shift();
+                    words.push(lastWord);
+                } else {
+                    words.push(lastWord);
+                }
+                if(words.length == 3) {
+                    console.log(words);
+                    worker.postMessage(words[0] + " " + words[1] + " " + words[2]);
+                }
+            }
+            if(e.keyCode != 9) {
+                document.getElementById("predictions").innerHTML = response;
             }
         }
     }
@@ -115,8 +116,6 @@ window.onload = function() {
     var s2 = document.getElementById('predictions');
     function select_scroll_1(e) { 
         s2.scrollTop = s1.scrollTop; 
-        console.log(s1.scrollTop);
-        console.log(s2.scrollTop);
     }
     s1.addEventListener('scroll', select_scroll_1, false);
 }
