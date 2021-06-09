@@ -1,6 +1,7 @@
 console.log('Client-side code running!');
 var clicked = false;
-var words = [];
+var words = "";
+var predWordCount = 0;
 
 window.onload = function() {
     var button = document.getElementById('send');
@@ -55,7 +56,8 @@ window.onload = function() {
                     if(response.ok) {
                         console.log('Tab!');
                         document.getElementById('email').value = document.getElementById("predictions").innerText;
-                        words = [];
+                        words = "";
+                        predWordCount = 0;
                     }
                     // throw new Error('Tab request failed.');
                 })
@@ -84,7 +86,7 @@ window.onload = function() {
     worker.onmessage = function(e) {
         console.log(e.data);
         if(e.data.right !== undefined) {
-            document.getElementById('predictions').innerHTML = document.getElementById("email").value + '<span style="color:Gray">' + e.data.right + '</span>';
+            document.getElementById('predictions').innerHTML = document.getElementById("email").value + '<span style="color:Gray">' + e.data.right.substring(1, e.data.right.length - 6) + '</span>';
         }
     }
     if(window.Worker) {
@@ -94,16 +96,16 @@ window.onload = function() {
             var begin = Math.max(response.lastIndexOf(' ', response.length-2), response.lastIndexOf('\n', response.length-2));
             var lastWord = response.substring(begin+1, response.length-1);
             var regex = /^[a-z0-9]+$/i;
+            if(e.keyCode == 190 || e.keyCode == 191 || e.keyCode == 49) {
+                words = "";
+                predWordCount = 0;
+            }
             if((e.keyCode == 32 || e.keyCode == 13) && regex.test(lastWord)) {
-                if(words.length == 3) {
-                    words.shift();
-                    words.push(lastWord);
-                } else {
-                    words.push(lastWord);
-                }
-                if(words.length == 3) {
+                words += lastWord + " ";
+                predWordCount += 1;
+                if(predWordCount >= 3) {
                     console.log(words);
-                    worker.postMessage(words[0] + " " + words[1] + " " + words[2]);
+                    worker.postMessage(words.trim());
                 }
             }
             if(e.keyCode != 9) {
