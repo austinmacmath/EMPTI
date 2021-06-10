@@ -50,14 +50,14 @@ window.onload = function() {
     email.addEventListener('keydown', function(event) {
         if(event.key == 'Tab') {
             event.preventDefault();
+            document.getElementById('email').value = document.getElementById("predictions").innerText;
+            words = "";
+            predWordCount = 0;
             fetch('/tab', {method: 'POST'})
                 .then(function(response) {
                     console.log(response)
                     if(response.ok) {
                         console.log('Tab!');
-                        document.getElementById('email').value = document.getElementById("predictions").innerText;
-                        words = "";
-                        predWordCount = 0;
                     }
                     // throw new Error('Tab request failed.');
                 })
@@ -82,7 +82,7 @@ window.onload = function() {
         document.querySelector("#wordcount").innerText = res.length;
     });
     
-    var worker = new Worker('/javascripts/browser-worker.js');
+    var worker = new Worker('/javascripts/browser-worker1.js');
     worker.onmessage = function(e) {
         console.log(e.data);
         if(e.data.right !== undefined) {

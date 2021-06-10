@@ -29,7 +29,7 @@ function tokenize(dict, text) {
     const sentence = `<start> ${normalize(text)} <end>`;
     const words = sentence.split(' ');
     const tokens = array.sequence(E.either)(words.map((word) => E.fromNullable('Unknown word')(dict[word] || null)));
-    const padded = pipe(tokens, E.chain((tks) => {
+    const padded = pipe.pipe(tokens, E.chain((tks) => {
         if (tks.length > MAX_INPUT_LENGTH)
             return E.left('Input is too long');
         return E.right(padSequence(tks, MAX_INPUT_LENGTH));
@@ -42,7 +42,7 @@ function tokenize(dict, text) {
  */
 function decodeSequence(encoderModel, inferenceModel, dict, text) {
     const reverseDict = Object.fromEntries(Object.entries(dict).map(([key, value]) => [value, key]));
-    return pipe(tokenize(dict, text), E.map((sequence) => {
+    return pipe.pipe(tokenize(dict, text), E.map((sequence) => {
         const tensor = [sequence];
         let state = encoderModel.predict(tf.tensor(tensor));
         let targetSeq = tf.tensor([[dict['<start>']]]);
@@ -75,16 +75,27 @@ Promise.all([
     tf.loadLayersModel('/enc-model/model.json'),
     tf.loadLayersModel('/inf-model/model.json'),
 ]).then(([dict, encoderModel, inferenceModel]) => {
-    encoderModel.summary();
-    inferenceModel.summary();
+    // encoderModel.summary();
+    // inferenceModel.summary();
     channel.postMessage({ type: 'ACTIVATE' });
+
+    // const text = "thank you for";
+    // const text = "please review";
+    // const text = "can you get"
+    // const text = "this looks like a";
+    // const text = "please be sure this";
+    onmessage = function(e) {
+        const decodedSeq = decodeSequence(encoderModel, inferenceModel, dict, e.data);
+        postMessage(decodedSeq);
+    }
+
     channel.addEventListener('message', (event) => {
         const message = event.data;
         switch (message.type) {
             case 'DECODE': {
                 const text = message.payload;
                 const decodedSeq = decodeSequence(encoderModel, inferenceModel, dict, text);
-                pipe(decodedSeq, E.fold((error) => channel.postMessage({ type: 'ERROR', payload: error }), (decoded) => {
+                pipe.pipe(decodedSeq, E.fold((error) => channel.postMessage({ type: 'ERROR', payload: error }), (decoded) => {
                     //
                 }));
                 return;
