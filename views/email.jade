@@ -26,7 +26,10 @@ html
         div.recipient #[u To: #{sender}]
           br
           br
-          textarea(id='email' name='email')
+          div(class='container' id='container')
+            div(class='backdrop' id='backdrop')
+              div(class='predictions' id='predictions')
+            textarea(id='email' name='email')
           br
           button(class='send' id='send' tabindex='-1') Send
           span(class='wordcount' id='wordcount') 0
