@@ -25,6 +25,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * solution: flag user once final submission and redirect page
     * solution: check if email id exists in response table already for a uid and if it does, do not increment prompt_count and redirect
 * nlp
+* log text on tab stroke
 * user testing
 
 ## Production Notes
