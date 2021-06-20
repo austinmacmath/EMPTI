@@ -91,6 +91,13 @@ router.post('/send', function (req, res, next) {
 
 // tab key press
 router.post('/tab', function (req, res) {
+  db.one('INSERT INTO tabs(uid, email_id, predictive_text, tab_time, hit_time, miss_time, false_alarm_time) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING false_alarm_time', [req.body.uid, req.body.email_id, req.body.predictive_text, req.body.tab_time, req.body.hit_time, req.body.miss_time, req.body.false_alarm_time])
+    .then(false_alarm_time => {
+      console.log("INSERT SUCCESS: ", false_alarm_time)
+    })
+    .catch(function (error) {
+      res.send({"error": error})
+    })
   res.sendStatus(200);
 })
 

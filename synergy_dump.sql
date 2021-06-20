@@ -5,6 +5,8 @@
 -- Dumped from database version 13.3
 -- Dumped by pg_dump version 13.2
 
+-- Started on 2021-06-19 23:27:28 PDT
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -21,6 +23,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- TOC entry 201 (class 1259 OID 16390)
 -- Name: email_prompts; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -37,6 +40,7 @@ CREATE TABLE public.email_prompts (
 ALTER TABLE public.email_prompts OWNER TO postgres;
 
 --
+-- TOC entry 200 (class 1259 OID 16388)
 -- Name: email_prompts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -52,6 +56,8 @@ CREATE SEQUENCE public.email_prompts_id_seq
 ALTER TABLE public.email_prompts_id_seq OWNER TO postgres;
 
 --
+-- TOC entry 3293 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: email_prompts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -59,6 +65,7 @@ ALTER SEQUENCE public.email_prompts_id_seq OWNED BY public.email_prompts.id;
 
 
 --
+-- TOC entry 205 (class 1259 OID 16434)
 -- Name: participants; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -81,6 +88,7 @@ CREATE TABLE public.participants (
 ALTER TABLE public.participants OWNER TO postgres;
 
 --
+-- TOC entry 203 (class 1259 OID 16401)
 -- Name: responses; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -96,6 +104,7 @@ CREATE TABLE public.responses (
 ALTER TABLE public.responses OWNER TO postgres;
 
 --
+-- TOC entry 202 (class 1259 OID 16399)
 -- Name: responses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -111,6 +120,8 @@ CREATE SEQUENCE public.responses_id_seq
 ALTER TABLE public.responses_id_seq OWNER TO postgres;
 
 --
+-- TOC entry 3294 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: responses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -118,6 +129,41 @@ ALTER SEQUENCE public.responses_id_seq OWNED BY public.responses.id;
 
 
 --
+-- TOC entry 206 (class 1259 OID 16460)
+-- Name: tabs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tabs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    MAXVALUE 2147483647
+    CACHE 1;
+
+
+ALTER TABLE public.tabs_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 16462)
+-- Name: tabs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tabs (
+    id integer DEFAULT nextval('public.tabs_id_seq'::regclass) NOT NULL,
+    uid text,
+    email_id integer,
+    predictive_text text,
+    tab_time bigint,
+    hit_time bigint,
+    miss_time bigint,
+    false_alarm_time bigint
+);
+
+
+ALTER TABLE public.tabs OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16416)
 -- Name: test; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -129,6 +175,7 @@ CREATE TABLE public.test (
 ALTER TABLE public.test OWNER TO postgres;
 
 --
+-- TOC entry 3139 (class 2604 OID 16393)
 -- Name: email_prompts id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -136,6 +183,7 @@ ALTER TABLE ONLY public.email_prompts ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- TOC entry 3140 (class 2604 OID 16404)
 -- Name: responses id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -143,6 +191,8 @@ ALTER TABLE ONLY public.responses ALTER COLUMN id SET DEFAULT nextval('public.re
 
 
 --
+-- TOC entry 3281 (class 0 OID 16390)
+-- Dependencies: 201
 -- Data for Name: email_prompts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -163,6 +213,8 @@ COPY public.email_prompts (id, description, salutation, body, closing, sender) F
 
 
 --
+-- TOC entry 3285 (class 0 OID 16434)
+-- Dependencies: 205
 -- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -171,6 +223,8 @@ COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, prompt_cou
 
 
 --
+-- TOC entry 3283 (class 0 OID 16401)
+-- Dependencies: 203
 -- Data for Name: responses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -179,6 +233,18 @@ COPY public.responses (id, response, submission_time, uid, email_id) FROM stdin;
 
 
 --
+-- TOC entry 3287 (class 0 OID 16462)
+-- Dependencies: 207
+-- Data for Name: tabs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tabs (id, uid, email_id, predictive_text, tab_time, hit_time, miss_time, false_alarm_time) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3284 (class 0 OID 16416)
+-- Dependencies: 204
 -- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -187,6 +253,8 @@ COPY public.test (id) FROM stdin;
 
 
 --
+-- TOC entry 3295 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: email_prompts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -194,13 +262,25 @@ SELECT pg_catalog.setval('public.email_prompts_id_seq', 1, false);
 
 
 --
+-- TOC entry 3296 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: responses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.responses_id_seq', 339, true);
+SELECT pg_catalog.setval('public.responses_id_seq', 487, true);
 
 
 --
+-- TOC entry 3297 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: tabs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tabs_id_seq', 17, true);
+
+
+--
+-- TOC entry 3143 (class 2606 OID 16398)
 -- Name: email_prompts email_prompts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -209,6 +289,7 @@ ALTER TABLE ONLY public.email_prompts
 
 
 --
+-- TOC entry 3147 (class 2606 OID 16441)
 -- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -217,12 +298,24 @@ ALTER TABLE ONLY public.participants
 
 
 --
+-- TOC entry 3145 (class 2606 OID 16409)
 -- Name: responses responses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.responses
     ADD CONSTRAINT responses_pkey PRIMARY KEY (id);
 
+
+--
+-- TOC entry 3149 (class 2606 OID 16470)
+-- Name: tabs tabs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tabs
+    ADD CONSTRAINT tabs_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2021-06-19 23:27:28 PDT
 
 --
 -- PostgreSQL database dump complete
