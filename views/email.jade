@@ -1,14 +1,14 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/minimal.css')
     script(src='/javascripts/email.js')
 
   body
     div.message-body
       div.subject Re: #{subject} 
       div.metadata 
-        span.left-justify #[strong #{sender}]
+        span.left-justify #{sender}
         span.right-justify 9:15 AM (#{hours} hours ago)
         br
         | to You 
@@ -23,7 +23,7 @@ html
           | #{closing}
     div.response-body
       div.reply-body
-        div.recipient #[u To: #{sender}]
+        div.recipient To: #{sender}
           br
           br
           div(class='container' id='container')
