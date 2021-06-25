@@ -42,6 +42,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
         * 2 non-biased
         * 2 biased
 * implement predictionary
+    * browserify predictionary
 * prevent user from backpaging and modifying answers
     * solution: flag user once final submission and redirect page
     * solution: check if email id exists in response table already for a uid and if it does, do not increment prompt_count and redirect
