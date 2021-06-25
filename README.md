@@ -33,11 +33,19 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 `browserify worker.js > bundle.js`
 
 ## To Do
+* implement training email
+* implement different conditions
+    * 1st half synergistic
+        * 2 non-biased
+        * 2 biased
+    * 2nd half non-synergistic
+        * 2 non-biased
+        * 2 biased
+* implement predictionary
 * prevent user from backpaging and modifying answers
     * solution: flag user once final submission and redirect page
     * solution: check if email id exists in response table already for a uid and if it does, do not increment prompt_count and redirect
 * user testing
-* implement different basic manipulations
 
 ## Security Concerns
 * SQL injection
