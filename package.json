@@ -10,7 +10,6 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "minify-stream": "^2.1.0",
     "morgan": "~1.9.1",
     "pg": "^8.6.0",
     "pg-promise": "^10.10.2",
