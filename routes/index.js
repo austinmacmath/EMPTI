@@ -41,9 +41,23 @@ router.get('/:uid/:promptId', function(req, res) {
         if(n - 9 < 0) {
           n += 24;
         }
+        var prompt_count;
+        var control_first;
+        db.one('SELECT prompt_count, control_first FROM participants WHERE id = $1', [req.params.uid])
+          .then(function (data) {
+            prompt_count = data.prompt_count;
+            control_first = data.control_first;
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
         db.one('SELECT * FROM email_prompts WHERE id = $1', [req.params.promptId])
           .then(function (data) {
-            res.render('email', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9 });
+            if((prompt_count < 4 && control_first == 1) || (prompt_count >= 4 && control_first == 0)) {
+              res.render('email1', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9 });
+            } else {
+              res.render('email0', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9 });
+            }
           })
           .catch(function (error) {
             console.log(error)

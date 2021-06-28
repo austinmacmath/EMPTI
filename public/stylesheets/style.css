@@ -71,6 +71,10 @@ div.recipient {
   position: absolute;
   padding: 15px;
   color: #838383;
+  /* text-decoration: underline; */
+}
+
+span.to {
   text-decoration: underline;
 }
 
@@ -151,4 +155,5 @@ span.wc_label {
 
 span.wc_error {
   color: red;
+  text-decoration: none none none none none;
 }

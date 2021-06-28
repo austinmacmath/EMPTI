@@ -1,15 +1,104 @@
 console.log('Client-side code running!');
+
+// prevent backpaging
+if (window.history && history.pushState) {
+    addEventListener('load', function() {
+        history.pushState(null, null, null); // creates new history entry with same URL
+        addEventListener('popstate', function() {
+            alert("Please do not return to the previous page.");
+            history.pushState(null, null, null);
+        });    
+    });
+}
+
 var clicked = false;
-var words = "";
-var predWordCount = 0;
-var predText = "";
-var predTextSaved = "";
-var lastPressTab = false;
-var predTextDisplayTime;
-var predTextDisplayed = false;
-var timeToTab;
+
+let predictionary = Predictionary.instance();
+let DICT_EN = 'DICT_EN'
+let startTime = new Date().getTime();
+
+let input = '';
+let suggestions = [];
+let nrOfSuggestions = 10;
+let learnFromChosen = true;
+
+$.get('/dictionaries/words_en.txt').then(function (result) {
+    parseWords(result, DICT_EN);
+    console.log('finish EN after: ' + (new Date().getTime() - startTime))
+});
+
+function parseWords(string, dictionaryKey) {
+    predictionary.parseWords(string, {
+        elementSeparator: '\n',
+        rankSeparator: ' ',
+        wordPosition: 2,
+        rankPosition: 0,
+        addToDictionary: dictionaryKey
+    });
+}
+
+function refreshSuggestions() {
+    suggestions = predictionary.predict(input, {maxPredictions: nrOfSuggestions});
+    console.log(suggestions);
+}
+
+function add(suggestion) {
+    input = predictionary.applyPrediction(input, suggestion, {dontLearn: false});
+    var response = document.getElementById('email');
+    response.value = input.substring(0, input.length - 1);
+    refreshSuggestions();
+    predictionary.learnFromInput(input);
+}
 
 window.onload = function() {
+    // Press tab key
+    var email = document.getElementById('email');
+    email.addEventListener('keydown', function(event) {
+        if(event.key == 'Tab') {
+            event.preventDefault();
+            if(suggestions.length > 0) {
+                add(suggestions[0]);
+            }
+        }
+    });
+    
+    // Get word count
+    email.addEventListener("keyup", function countWord() {
+        let res = [];
+        let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
+        str.map((s) => {
+            let trimStr = s.trim();
+            if (trimStr.length > 0) {
+                res.push(trimStr);
+            }
+        });
+        document.querySelector("#wordcount").innerText = res.length;
+    });
+    
+    // Predict: focus on displaying predictive text behind textarea correctly
+    email.oninput = handleInput;
+    function handleInput(event) {
+        input = email.value;
+        console.log("input: ", input);
+        if(event.key != 'Tab') {
+            predictionary.learnFromInput(input);
+            refreshSuggestions();
+        }
+    
+        var lastSpace = input.lastIndexOf(' ');
+        var suggestion = "";
+        if(suggestions.length > 0) {
+            suggestion = suggestions[0];
+        }
+        var lastWord = input.substring(lastSpace + 1);
+        if(lastWord != suggestion.substring(0, lastWord.length)) {
+            document.getElementById('predictions').innerHTML = input;
+            suggestions = [];
+        } else {
+            document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestion.substring(input.length - lastSpace - 1) + '</span>';
+        }
+    }
+
     // Click send button
     var button = document.getElementById('send');
     if(!clicked) {
@@ -52,151 +141,7 @@ window.onload = function() {
             }
         });
     }
-
-    // Press tab key
-    var email = document.getElementById('email');
-    email.addEventListener('keydown', function(event) {
-        if(event.key == 'Tab') {
-            event.preventDefault();
-            if(predText != "") {
-                var date3 = new Date();
-                timeToTab = date3.getTime();
-                console.log('Tab Time: ', timeToTab);
-                document.getElementById('email').value = document.getElementById("predictions").innerText;
-                words = "";
-                predText = "";
-                predWordCount = 0;
-                lastPressTab = true;
-                // fetch('/tab', {method: 'POST'})
-                //     .then(function(response) {
-                //         // console.log(response)
-                //         if(response.ok) {
-                //             // console.log("Tab response ok.")
-                //         }
-                //     })
-                //     .catch(function(error) {
-                //         console.log(error);
-                //     });
-            }
-        }
-    });
-
-    // Get word count
-    document
-        .querySelector("#email")
-        .addEventListener("keyup", function countWord() {
-            let res = [];
-            let str = this.value.replace(/[\t\n\r\.\?\!]/gm, " ").split(" ");
-            str.map((s) => {
-            let trimStr = s.trim();
-            if (trimStr.length > 0) {
-                res.push(trimStr);
-            }
-        });
-        document.querySelector("#wordcount").innerText = res.length;
-    });
-   
-    var worker = new Worker('/javascripts/browser-worker1.js');
-    // Write predictive text to predictions div
-    worker.onmessage = function(e) {
-        // console.log(e.data);
-        if(e.data.right !== undefined) {
-            predText = e.data.right.substring(1, e.data.right.length - 6);
-            predTextSaved = predText;
-            document.getElementById('predictions').innerHTML = document.getElementById("email").value + '<span style="color:Gray">' + e.data.right.substring(1, e.data.right.length - 6) + '</span>';
-            var date = new Date();
-            predTextDisplayTime = date.getTime();
-            predTextDisplayed = true;
-        } else {
-            predText = "";
-        }
-        console.log("Predictive Text Time: ", predTextDisplayTime);
-        console.log("Predictive Text: ", predText);
-    }
-    // Send words to predictive text algorithm in web worker
-    if(window.Worker) {
-        document.querySelector('#email').onkeyup = function(e) {
-            // console.log("predTextDisplayed: ", predTextDisplayed);
-            var response = document.getElementById("email").value; 
-            var begin = Math.max(response.lastIndexOf(' ', response.length-2), response.lastIndexOf('\n', response.length-2));
-            var lastWord = response.substring(begin+1, response.length-1);
-            var regex = /^[a-z0-9]+$/i;
-            // If ending punctuation is typed, reset words 
-            if(e.keyCode == 190 || e.keyCode == 191 || e.keyCode == 49) {
-                words = "";
-                predWordCount = 0;
-            }
-            // If enter or space is clicked, append the last word to words
-            if((e.keyCode == 32 || e.keyCode == 13) && regex.test(lastWord)) {
-                words += lastWord + " ";
-                predWordCount += 1;
-                if(predWordCount >= 3) {
-                    console.log(words);
-                    worker.postMessage(words.trim());
-                }
-            }
-            // If tab is not pressed, copy textarea content to predictions div
-            if(e.keyCode != 9) {
-                var date2 = new Date();
-                document.getElementById("predictions").innerHTML = response;
-                var str = window.location.pathname;
-                var id = str.substring(
-                    str.indexOf("/") + 1, 
-                    str.lastIndexOf("/")
-                    );
-                var email = str.substring(
-                    str.lastIndexOf("/") + 1
-                    );
-                // If the last key pressed is tab and delete is typed after, its a false alarm
-                if(lastPressTab && e.keyCode == 8) {
-                    var timeToFalseAlarm = date2.getTime();
-                    console.log("FALSE ALARM TIME: ", timeToFalseAlarm);
-                    fetch('/tab', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({uid: id, email_id: email, predictive_text: predTextSaved, tab_time: timeToTab, hit_time: 0, miss_time: 0, false_alarm_time: timeToFalseAlarm})
-                    })
-                    .then(response => {
-                        console.log('False Alarm Sent');
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                } else if(lastPressTab && e.keyCode != 8) {
-                    var timeToHit = date2.getTime();
-                    console.log("HIT TIME: ", timeToHit);
-                    fetch('/tab', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({uid: id, email_id: email, predictive_text: predTextSaved, tab_time: timeToTab, hit_time: timeToHit, miss_time: 0, false_alarm_time: 0})
-                    })
-                    .then(response => {
-                        console.log('Hit Sent');
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                } else if(predTextDisplayed) {
-                    var timeToMiss = date2.getTime();
-                    console.log("MISS TIME: ", timeToMiss);
-                    fetch('/tab', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({uid: id, email_id: email, predictive_text: predTextSaved, tab_time: 0, hit_time: 0, miss_time: timeToMiss, false_alarm_time: 0})
-                    })
-                    .then(response => {
-                        console.log('Miss Sent');
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                }
-                lastPressTab = false;
-            }
-            predTextDisplayed = false;
-        }
-    }
-
+    
     // Scroll predictive text div and textarea at the same time
     var s1 = document.getElementById('email');
     var s2 = document.getElementById('predictions');

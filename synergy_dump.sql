@@ -5,7 +5,7 @@
 -- Dumped from database version 13.3
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-06-19 23:27:28 PDT
+-- Started on 2021-06-28 00:53:03 PDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -65,7 +65,7 @@ ALTER SEQUENCE public.email_prompts_id_seq OWNED BY public.email_prompts.id;
 
 
 --
--- TOC entry 205 (class 1259 OID 16434)
+-- TOC entry 207 (class 1259 OID 16472)
 -- Name: participants; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -79,9 +79,8 @@ CREATE TABLE public.participants (
     e5 integer,
     e6 integer,
     e7 integer,
-    e8 integer,
-    e9 integer,
-    prompt_count integer
+    prompt_count integer,
+    control_first integer
 );
 
 
@@ -129,7 +128,7 @@ ALTER SEQUENCE public.responses_id_seq OWNED BY public.responses.id;
 
 
 --
--- TOC entry 206 (class 1259 OID 16460)
+-- TOC entry 205 (class 1259 OID 16460)
 -- Name: tabs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -144,7 +143,7 @@ CREATE SEQUENCE public.tabs_id_seq
 ALTER TABLE public.tabs_id_seq OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 16462)
+-- TOC entry 206 (class 1259 OID 16462)
 -- Name: tabs; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -213,12 +212,12 @@ COPY public.email_prompts (id, description, salutation, body, closing, sender) F
 
 
 --
--- TOC entry 3285 (class 0 OID 16434)
--- Dependencies: 205
+-- TOC entry 3287 (class 0 OID 16472)
+-- Dependencies: 207
 -- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, prompt_count) FROM stdin;
+COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, prompt_count, control_first) FROM stdin;
 \.
 
 
@@ -233,8 +232,8 @@ COPY public.responses (id, response, submission_time, uid, email_id) FROM stdin;
 
 
 --
--- TOC entry 3287 (class 0 OID 16462)
--- Dependencies: 207
+-- TOC entry 3286 (class 0 OID 16462)
+-- Dependencies: 206
 -- Data for Name: tabs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -267,16 +266,16 @@ SELECT pg_catalog.setval('public.email_prompts_id_seq', 1, false);
 -- Name: responses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.responses_id_seq', 487, true);
+SELECT pg_catalog.setval('public.responses_id_seq', 535, true);
 
 
 --
 -- TOC entry 3297 (class 0 OID 0)
--- Dependencies: 206
+-- Dependencies: 205
 -- Name: tabs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tabs_id_seq', 17, true);
+SELECT pg_catalog.setval('public.tabs_id_seq', 48, true);
 
 
 --
@@ -289,7 +288,7 @@ ALTER TABLE ONLY public.email_prompts
 
 
 --
--- TOC entry 3147 (class 2606 OID 16441)
+-- TOC entry 3149 (class 2606 OID 16479)
 -- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -307,7 +306,7 @@ ALTER TABLE ONLY public.responses
 
 
 --
--- TOC entry 3149 (class 2606 OID 16470)
+-- TOC entry 3147 (class 2606 OID 16470)
 -- Name: tabs tabs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -315,7 +314,7 @@ ALTER TABLE ONLY public.tabs
     ADD CONSTRAINT tabs_pkey PRIMARY KEY (id);
 
 
--- Completed on 2021-06-19 23:27:28 PDT
+-- Completed on 2021-06-28 00:53:03 PDT
 
 --
 -- PostgreSQL database dump complete

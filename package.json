@@ -7,17 +7,13 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
     "express": "~4.16.1",
-    "fp-ts": "^2.10.5",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "minify-stream": "^2.1.0",
     "morgan": "~1.9.1",
     "pg": "^8.6.0",
     "pg-promise": "^10.10.2",
-    "predictionary": "^1.4.4",
-    "uglifyify": "^5.0.2",
     "ws": "^7.4.6"
   },
   "devDependencies": {}

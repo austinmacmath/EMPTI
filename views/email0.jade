@@ -1,11 +1,11 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='https://code.jquery.com/jquery-3.4.1.min.js')
-    script(src='https://unpkg.com/lz-string@1.4.4/libs/lz-string.min.js')
+    link(rel='stylesheet', href='/stylesheets/minimal.css')
+    script(src='/javascripts/jquery-3.4.1.min.js')
+    script(src='/javascripts/lz-string.min.js')
     script(src='/javascripts/predictionary.min.js')
-    script(src='/javascripts/test.js')
+    script(src='/javascripts/email.js')
 
   body
     div.message-body
@@ -26,7 +26,8 @@ html
           | #{closing}
     div.response-body
       div.reply-body
-        div.recipient To: #{sender}
+        div.recipient 
+          span(class='to' id='to') To: #{sender}
           br
           br
           div(class='container' id='container')
