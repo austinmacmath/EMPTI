@@ -15,8 +15,8 @@ html
         span.right-justify 9:15 AM (#{hours} hours ago)
         br
         | to You 
-      div.message
-        pre
+      div(class='message' id='message')
+        pre(id='message-text')
           | #{salutation}
           br
           br
@@ -39,3 +39,4 @@ html
           span(class='wordcount' id='wordcount') 0
           span(class='wc_label') Word Count:&nbsp
           span(class='wc_error' id='wc_error')
+          p(hidden id='b') #{b}

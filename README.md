@@ -41,7 +41,9 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 
 ## Updates
 * half synergistic half non
+* random selection of bias/unbias model
 * predictionary
+    * train predictionary on original email (in progress)
 * prevent backpaging
 
 ## Security Concerns
@@ -53,4 +55,3 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * promises not handled correctly
 
 ## Technical Concerns
-* latency/bandwidth

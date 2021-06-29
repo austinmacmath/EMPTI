@@ -13,7 +13,9 @@ if (window.history && history.pushState) {
 
 var clicked = false;
 
-let predictionary = Predictionary.instance();
+let predictionary;
+
+
 let DICT_EN = 'DICT_EN'
 let startTime = new Date().getTime();
 
@@ -21,11 +23,6 @@ let input = '';
 let suggestions = [];
 let nrOfSuggestions = 10;
 let learnFromChosen = true;
-
-$.get('/dictionaries/words_en.txt').then(function (result) {
-    parseWords(result, DICT_EN);
-    console.log('finish EN after: ' + (new Date().getTime() - startTime))
-});
 
 function parseWords(string, dictionaryKey) {
     predictionary.parseWords(string, {
@@ -51,6 +48,25 @@ function add(suggestion) {
 }
 
 window.onload = function() {
+    var b = document.getElementById('b');
+    console.log(b.innerHTML);
+    if(b.innerHTML == "1") {
+        predictionary = Predictionary.instance();
+    } else if(b.innerHTML == "0") {
+        predictionary = Predictionary.instance();
+    }
+
+    // Get dictionary
+    $.get('/dictionaries/words_en.txt').then(function (result) {
+        parseWords(result, DICT_EN);
+        console.log('finish EN after: ' + (new Date().getTime() - startTime))
+    });
+
+    // Train predictionary on original email. This does not seem to work.
+    // var originalEmail = document.getElementById('message').innerHTML;
+    // console.log(originalEmail);
+    // predictionary.learnFromInput(originalEmail);
+
     // Press tab key
     var email = document.getElementById('email');
     email.addEventListener('keydown', function(event) {
@@ -58,6 +74,8 @@ window.onload = function() {
             event.preventDefault();
             if(suggestions.length > 0) {
                 add(suggestions[0]);
+                var lastSpace = input.lastIndexOf(' ');
+                document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestions[0].substring(input.length - lastSpace - 1) + '</span>';
             }
         }
     });
