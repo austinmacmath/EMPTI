@@ -36,7 +36,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
         * 2 non-biased
         * 2 biased
 * encode d'
-* implement different models
+* model should work for capital words also
 * user testing
 
 ## Updates

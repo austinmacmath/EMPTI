@@ -36,7 +36,10 @@ function parseWords(string, dictionaryKey) {
 
 function refreshSuggestions() {
     suggestions = predictionary.predict(input, {maxPredictions: nrOfSuggestions});
-    console.log(suggestions);
+    if(suggestions.length > 0) {
+        suggestions[0] = suggestions[0].toLowerCase();
+        console.log(suggestions);
+    }
 }
 
 function add(suggestion) {
@@ -49,7 +52,6 @@ function add(suggestion) {
 
 window.onload = function() {
     var b = document.getElementById('b');
-    console.log(b.innerHTML);
     if(b.innerHTML == "1") {
         predictionary = Predictionary.instance();
     } else if(b.innerHTML == "0") {
