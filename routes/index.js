@@ -31,32 +31,54 @@ router.get('/:uid', function(req, res) {
     })
 });
 
+// tutorial-0
+router.get('/:uid/t0', function(req, res) {
+  db.one("SELECT COUNT(*) FROM participants WHERE id = $1", [req.params.uid])
+  .then(function (data) {
+    if(data.count == 1) {
+      res.render('tutorial-0')
+    } else {
+      res.render('wrong_uid')
+    }
+  })
+  .catch(function (error) {
+    console.log(error)
+  })
+})
+
+// tutorial-1
+router.get('/:uid/t1', function(req, res) {
+  db.one("SELECT COUNT(*) FROM participants WHERE id = $1", [req.params.uid])
+  .then(function (data) {
+    if(data.count == 1) {
+      res.render('tutorial-1')
+    } else {
+      res.render('wrong_uid')
+    }
+  })
+  .catch(function (error) {
+    console.log(error)
+  })
+})
+
 // emails
 router.get('/:uid/:promptId', function(req, res) {
-  db.one("SELECT COUNT(*) FROM participants WHERE id = $1", [req.params.uid])
+  db.one("SELECT * FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.count == 1) {
+      if(data.id == req.params.uid) {
         var d = new Date();
         var n = d.getHours();
         if(n - 9 < 0) {
           n += 24;
         }
-        var prompt_count;
-        var control_first;
+        var prompt_count = data.prompt_count;
+        var control_first = data.control_first;
         var bi;
-        db.one('SELECT prompt_count, control_first FROM participants WHERE id = $1', [req.params.uid])
-          .then(data => {
-            prompt_count = data.prompt_count;
-            control_first = data.control_first;
-            return db.one("SELECT b" + prompt_count + " FROM participants WHERE id = '" + req.params.uid + "'")
-          })
+        db.one("SELECT b" + prompt_count + " FROM participants WHERE id = '" + req.params.uid + "'")
           .then(data => {
             bi = Object.values(data)[0];
+            return db.one('SELECT * FROM email_prompts WHERE id = $1', [req.params.promptId]);
           })
-          .catch(function (error) {{
-            console.log(error);
-          }})
-        db.one('SELECT * FROM email_prompts WHERE id = $1', [req.params.promptId])
           .then(function (data) {
             if((prompt_count < 4 && control_first == 1) || (prompt_count >= 4 && control_first == 0)) {
               res.render('email1', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9, b:bi });

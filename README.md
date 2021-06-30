@@ -38,13 +38,19 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * encode d'
 * model should work for capital words also
 * user testing
+* include "completed" flag once a user is done
 
 ## Updates
-* half synergistic half non
+* half synergistic half non-synergistic
 * random selection of bias/unbias model
 * predictionary
-    * train predictionary on original email (in progress)
-* prevent backpaging
+    * trained predictionary on original email
+* prevent backpaging check
+* fix time difference on email
+* tutorial emails
+    * content the same for both?
+    * what order? 
+* predictive text doesn't work if writing in middle of paragraph. 
 
 ## Security Concerns
 * SQL injection
