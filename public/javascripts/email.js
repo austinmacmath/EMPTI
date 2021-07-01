@@ -30,6 +30,7 @@ window.onload = function() {
     let learnFromChosen = true;
 
     let predictionDisplayTime;
+    let prevSuggestion;
     
     function parseWords(string, dictionaryKey) {
         predictionary.parseWords(string, {
@@ -49,7 +50,10 @@ window.onload = function() {
             var lastWord = input.substring(lastSpace + 1);
             if(lastWord == suggestions[0].substring(0, lastWord.length)) {
                 predictionDisplayTime = new Date().getTime();
-                console.log("SUGGEST: ", suggestions[0], " @ ", predictionDisplayTime);
+                if(suggestions[0] != prevSuggestion) {
+                    prevSuggestion = suggestions[0];
+                    console.log("SUGGEST: ", suggestions[0], " @ ", predictionDisplayTime);
+                }
             }
         }
     }
@@ -58,7 +62,10 @@ window.onload = function() {
         // encoding for d'
         if(b.innerHTML == "0") { // unbiased
             var tabTime = new Date().getTime();
-            console.log("TAB: ", suggestions[0], " @ ", tabTime);
+            console.log("HIT: ", suggestions[0], " @ ", tabTime);
+            var lastSpace = input.lastIndexOf(' ');
+            var lastWord = input.substring(lastSpace + 1); 
+            console.log("ROOT: ", lastWord);
         } else { // biased
     
         }
@@ -113,19 +120,25 @@ window.onload = function() {
     email.oninput = handleInput;
     function handleInput(event) {
         input = email.value;
-        // console.log("input: ", input);
-        // console.log("cursor: ", event.target.selectionStart)
+        var lastSpace = input.lastIndexOf(' ');
+        var lastWord = input.substring(lastSpace + 1);
         if(event.key != 'Tab') {
             predictionary.learnFromInput(input);
+            if(input.length == event.target.selectionStart && suggestions.length > 0) {
+                if(lastWord != suggestions[0].substring(0, lastWord.length)) {
+                    console.log("MISS: ", lastWord);
+                }
+            }
             refreshSuggestions();
+            // console.log("suggestion: ", suggestions[0]);
+            // console.log("input length: ", input.length);
+            // console.log("cursor location: ", event.target.selectionStart);
         }
         
-        var lastSpace = input.lastIndexOf(' ');
         var suggestion = "";
         if(suggestions.length > 0) {
             suggestion = suggestions[0];
         }
-        var lastWord = input.substring(lastSpace + 1);
         if(lastWord != suggestion.substring(0, lastWord.length)) {
             document.getElementById('predictions').innerHTML = input;
             suggestions = [];
@@ -139,9 +152,7 @@ window.onload = function() {
     if(!clicked && button != null) {
         button.addEventListener('click', function(event) {
             var wordCount = document.getElementById('wordcount').innerHTML;
-            // console.log("wordcount: ", wordCount);
             if(wordCount < 200) {
-                // console.log("word count < 200");
                 document.getElementById("wc_error").innerHTML = " Word count must be greater than 200."
             } else {
                 clicked = true;
