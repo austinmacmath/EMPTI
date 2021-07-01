@@ -61,7 +61,7 @@ async function get_user() {
             id = make_id(20);
           } else {
             console.log(id + " is unique");
-            db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], bias0[0], bias0[1], bias0[2], bias0[3], bias1[0], bias1[1], bias1[2], bias1[3], 0, Math.floor(Math.random() * 2)])
+            db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], bias0[0], bias0[1], bias0[2], bias0[3], bias1[0], bias1[1], bias1[2], bias1[3], 0, Math.floor(Math.random() * 2), 0])
               .then(id => {
                 console.log(id)
               })

@@ -29,16 +29,15 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 ## To Do
 * implement training email
 * implement different conditions
-    * 1st half synergistic
+    * half synergistic
         * 2 non-biased
         * 2 biased
-    * 2nd half non-synergistic
+    * half non-synergistic
         * 2 non-biased
         * 2 biased
 * encode d'
 * model should work for capital words also
 * user testing
-* include "completed" flag once a user is done
 
 ## Updates
 * half synergistic half non-synergistic
@@ -50,6 +49,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * tutorial emails
     * content the same for both?
     * what order? 
+* include "completed" flag once a user is done
 * predictive text doesn't work if writing in middle of paragraph. 
 
 ## Security Concerns

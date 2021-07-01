@@ -5,7 +5,7 @@
 -- Dumped from database version 13.3
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-06-28 00:53:03 PDT
+-- Started on 2021-06-30 22:51:40 PDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -65,7 +65,7 @@ ALTER SEQUENCE public.email_prompts_id_seq OWNED BY public.email_prompts.id;
 
 
 --
--- TOC entry 207 (class 1259 OID 16472)
+-- TOC entry 207 (class 1259 OID 16496)
 -- Name: participants; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -79,8 +79,17 @@ CREATE TABLE public.participants (
     e5 integer,
     e6 integer,
     e7 integer,
+    b0 integer,
+    b1 integer,
+    b2 integer,
+    b3 integer,
+    b4 integer,
+    b5 integer,
+    b6 integer,
+    b7 integer,
     prompt_count integer,
-    control_first integer
+    synergy_first integer,
+    completed integer
 );
 
 
@@ -212,12 +221,12 @@ COPY public.email_prompts (id, description, salutation, body, closing, sender) F
 
 
 --
--- TOC entry 3287 (class 0 OID 16472)
+-- TOC entry 3287 (class 0 OID 16496)
 -- Dependencies: 207
 -- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, prompt_count, control_first) FROM stdin;
+COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, b0, b1, b2, b3, b4, b5, b6, b7, prompt_count, synergy_first, completed) FROM stdin;
 \.
 
 
@@ -266,7 +275,7 @@ SELECT pg_catalog.setval('public.email_prompts_id_seq', 1, false);
 -- Name: responses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.responses_id_seq', 535, true);
+SELECT pg_catalog.setval('public.responses_id_seq', 651, true);
 
 
 --
@@ -288,7 +297,7 @@ ALTER TABLE ONLY public.email_prompts
 
 
 --
--- TOC entry 3149 (class 2606 OID 16479)
+-- TOC entry 3149 (class 2606 OID 16503)
 -- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -314,7 +323,7 @@ ALTER TABLE ONLY public.tabs
     ADD CONSTRAINT tabs_pkey PRIMARY KEY (id);
 
 
--- Completed on 2021-06-28 00:53:03 PDT
+-- Completed on 2021-06-30 22:51:40 PDT
 
 --
 -- PostgreSQL database dump complete
