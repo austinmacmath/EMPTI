@@ -125,7 +125,7 @@ window.onload = function() {
         if(event.key != 'Tab') {
             predictionary.learnFromInput(input);
             if(input.length == event.target.selectionStart && suggestions.length > 0) {
-                if(lastWord != suggestions[0].substring(0, lastWord.length)) {
+                if(lastWord != suggestions[0].substring(0, lastWord.length) && b.innerHTML == "0") {
                     console.log("MISS: ", lastWord);
                 }
             }

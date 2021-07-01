@@ -27,13 +27,7 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 Run `node make_id.js`. This will create a new random 20 digit string for a user. 
 
 ## To Do
-* implement different conditions
-    * half synergistic
-        * 2 non-biased
-        * 2 biased
-    * half non-synergistic
-        * 2 non-biased
-        * 2 biased
+* implement biased model
 * encode d'
 * model should work for capital words also
 * user testing
@@ -50,7 +44,8 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * what order? 
 * include "completed" flag once a user is done
 * print out suggestion time and text
-* print out tab time and text
+* print out hit time and text (unbiased only)
+* print out miss time and text (unbiased only)
 * predictive text doesn't work if writing in middle of paragraph. 
 
 ## Security Concerns
