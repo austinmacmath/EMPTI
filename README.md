@@ -49,6 +49,8 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * content the same for both?
     * what order? 
 * include "completed" flag once a user is done
+* print out suggestion time and text
+* print out tab time and text
 * predictive text doesn't work if writing in middle of paragraph. 
 
 ## Security Concerns
