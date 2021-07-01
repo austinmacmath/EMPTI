@@ -12,6 +12,15 @@ div.metadata {
   font-size: 14px;
 }
 
+div.tutorial-body {
+  padding: 40px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+  width: 810px;
+  margin-bottom: 40px;
+}
+
 div.message-body {
   padding-bottom: 20px;
   border-width: 5px;

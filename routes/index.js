@@ -29,36 +29,43 @@ router.get('/:uid', function(req, res) {
       }
     })
     .catch(function (error) {
+      console.log('home')
       console.log(error)
     })
 });
 
 // tutorial-0
 router.get('/:uid/t0', function(req, res) {
-  db.one("SELECT COUNT(*) FROM participants WHERE id = $1", [req.params.uid])
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
   .then(function (data) {
-    if(data.count == 1) {
+    if(data.id == req.params.uid && data.completed == 0) {
       res.render('tutorial-0')
+    } else if(data.id = req.params.uid && data.completed == 1) {
+      res.render('goodbye') 
     } else {
       res.render('wrong_uid')
     }
   })
   .catch(function (error) {
+    console.log('tutorial0')
     console.log(error)
   })
 })
 
 // tutorial-1
 router.get('/:uid/t1', function(req, res) {
-  db.one("SELECT COUNT(*) FROM participants WHERE id = $1", [req.params.uid])
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
   .then(function (data) {
-    if(data.count == 1) {
+    if(data.id == req.params.uid && data.completed == 0) {
       res.render('tutorial-1')
+    } else if(data.id = req.params.uid && data.completed == 1) {
+      res.render('goodbye') 
     } else {
       res.render('wrong_uid')
     }
   })
   .catch(function (error) {
+    console.log('tutorial1')
     console.log(error)
   })
 })

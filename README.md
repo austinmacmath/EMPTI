@@ -27,7 +27,6 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 Run `node make_id.js`. This will create a new random 20 digit string for a user. 
 
 ## To Do
-* implement training email
 * implement different conditions
     * half synergistic
         * 2 non-biased

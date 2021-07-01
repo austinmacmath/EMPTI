@@ -19,6 +19,15 @@ div.message {
   padding-bottom: 12px;
 }
 
+div.tutorial-body {
+  padding: 40px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+  width: 810px;
+  margin: auto;
+}
+
 div.message-body {
   padding: 40px;
   padding-bottom: 20px;

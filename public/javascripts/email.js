@@ -28,6 +28,8 @@ window.onload = function() {
     let suggestions = [];
     let nrOfSuggestions = 10;
     let learnFromChosen = true;
+
+    let predictionDisplayTime;
     
     function parseWords(string, dictionaryKey) {
         predictionary.parseWords(string, {
@@ -43,11 +45,24 @@ window.onload = function() {
         suggestions = predictionary.predict(input, {maxPredictions: nrOfSuggestions});
         if(suggestions.length > 0) {
             suggestions[0] = suggestions[0].toLowerCase();
-            console.log(suggestions);
+            var lastSpace = input.lastIndexOf(' ');
+            var lastWord = input.substring(lastSpace + 1);
+            if(lastWord == suggestions[0].substring(0, lastWord.length)) {
+                predictionDisplayTime = new Date().getTime();
+                console.log("SUGGEST: ", suggestions[0], " @ ", predictionDisplayTime);
+            }
         }
     }
     
     function add(suggestion) {
+        // encoding for d'
+        if(b.innerHTML == "0") { // unbiased
+            var tabTime = new Date().getTime();
+            console.log("TAB: ", suggestions[0], " @ ", tabTime);
+        } else { // biased
+    
+        }
+
         input = predictionary.applyPrediction(input, suggestion, {dontLearn: false});
         var response = document.getElementById('email');
         response.value = input.substring(0, input.length - 1);
@@ -63,7 +78,7 @@ window.onload = function() {
     
     // Train predictionary on original email
     var originalEmail = document.getElementById('message-text').innerHTML.replace(/<(.|\n)*?>/g, ' ');
-    console.log(originalEmail);
+    // console.log(originalEmail);
     predictionary.learnFromText(originalEmail);
     
     // Press tab key
@@ -74,7 +89,9 @@ window.onload = function() {
             if(suggestions.length > 0) {
                 add(suggestions[0]);
                 var lastSpace = input.lastIndexOf(' ');
-                document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestions[0].substring(input.length - lastSpace - 1) + '</span>';
+                if(suggestions.length > 0) {
+                    document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestions[0].substring(input.length - lastSpace - 1) + '</span>';
+                }
             }
         }
     });
@@ -96,8 +113,8 @@ window.onload = function() {
     email.oninput = handleInput;
     function handleInput(event) {
         input = email.value;
-        console.log("input: ", input);
-        console.log("cursor: ", event.target.selectionStart)
+        // console.log("input: ", input);
+        // console.log("cursor: ", event.target.selectionStart)
         if(event.key != 'Tab') {
             predictionary.learnFromInput(input);
             refreshSuggestions();
@@ -122,9 +139,9 @@ window.onload = function() {
     if(!clicked && button != null) {
         button.addEventListener('click', function(event) {
             var wordCount = document.getElementById('wordcount').innerHTML;
-            console.log("wordcount: ", wordCount);
+            // console.log("wordcount: ", wordCount);
             if(wordCount < 200) {
-                console.log("word count < 200");
+                // console.log("word count < 200");
                 document.getElementById("wc_error").innerHTML = " Word count must be greater than 200."
             } else {
                 clicked = true;
