@@ -33,6 +33,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * user testing
 
 ## Updates
+### 7/7
 * half synergistic half non-synergistic
 * random selection of bias/unbias model
 * predictionary
@@ -48,6 +49,15 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * print out miss time and text (unbiased only)
 * predictive text doesn't work if writing in middle of paragraph. 
 
+### 7/21
+* minimum 100 word count
+* differing content in tutorial
+* replace "real simulation" with "live page"
+* include reminder of tab key
+
+## Questions
+* How to define bias? 
+
 ## Security Concerns
 * SQL injection
 * backpaging and corrupting data
@@ -57,3 +67,17 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * promises not handled correctly
 
 ## Technical Concerns
+
+## Edits
+* for credibility
+    * add google logo
+* add all manipulations on high synergy page
+* synergy is all of the manipuilations
+* between tutorial and real thing, have black screen syaing experiment beginning
+    * reiterate instructions from first page
+* move tutorial right in front of corresponding synergistic condition
+* for identification manipulation, put the writing questionnaire at the very beginning
+    * say algorithm just learned from the questionnaire for high synergy condition]
+    * algorithm doesn't learn from questiionnaire for low synergy
+* collect # of times unique words were chosen from each dataset
+* could find corpus of commonly misspelled words

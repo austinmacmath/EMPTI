@@ -26,7 +26,7 @@ window.onload = function() {
     
     let input = '';
     let suggestions = [];
-    let nrOfSuggestions = 10;
+    let nrOfSuggestions = 1;
     let learnFromChosen = true;
 
     let predictionDisplayTime;
@@ -126,7 +126,8 @@ window.onload = function() {
             predictionary.learnFromInput(input);
             if(input.length == event.target.selectionStart && suggestions.length > 0) {
                 if(lastWord != suggestions[0].substring(0, lastWord.length) && b.innerHTML == "0") {
-                    console.log("MISS: ", lastWord);
+                    var missTime = new Date().getTime();
+                    console.log("MISS: ", lastWord, " @ ", missTime);
                 }
             }
             refreshSuggestions();
@@ -152,8 +153,8 @@ window.onload = function() {
     if(!clicked && button != null) {
         button.addEventListener('click', function(event) {
             var wordCount = document.getElementById('wordcount').innerHTML;
-            if(wordCount < 200) {
-                document.getElementById("wc_error").innerHTML = " Word count must be greater than 200."
+            if(wordCount < 100) {
+                document.getElementById("wc_error").innerHTML = " Word count must be greater than 100."
             } else {
                 clicked = true;
                 button.disabled = true;
