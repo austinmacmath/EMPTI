@@ -81,6 +81,8 @@ router.get('/:uid/:promptId', function(req, res) {
           n += 24;
         }
         var prompt_count = data.prompt_count;
+        var t0_complete = data.t0_complete;
+        var t1_complete = data.t1_complete;
         if(prompt_count >= 8) {
           db.one("UPDATE participants SET completed = 1 WHERE id = '" + req.params.uid + "' RETURNING id")
             .then(data => {
@@ -98,10 +100,32 @@ router.get('/:uid/:promptId', function(req, res) {
               return db.one('SELECT * FROM email_prompts WHERE id = $1', [req.params.promptId]);
             })
             .then(function (data) {
-              if((prompt_count < 4 && synergy_first == 1) || (prompt_count >= 4 && synergy_first == 0)) {
-                res.render('email1', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9, b:bi });
-              } else {
-                res.render('email0', { subject: data.description, sender: data.sender, salutation: data.salutation, body: data.body, closing: data.closing, hours: n-9, b:bi });
+              if((prompt_count < 4 && synergy_first == 1 && t1_complete == 0) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 0)) {
+                // window.location = '/' + req.params.uid + 't1'
+                res.redirect('/' + req.params.uid + '/t1')
+              } else if((prompt_count < 4 && synergy_first == 1 && t1_complete == 1) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 1)) {
+                  res.render('email1', { 
+                    subject: data.description, 
+                    sender: data.sender, 
+                    salutation: 
+                    data.salutation, 
+                    body: data.body, 
+                    closing: data.closing, 
+                    hours: n-9, 
+                    b:bi });
+              } else if((prompt_count < 4 && synergy_first == 0 && t0_complete == 0) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 0)) {
+                // window.location = '/' + req.params.uid + 't0'
+                // res.render('tutorial-0') // should call  router.get('/:uid/t0', function(req, res) here somehow
+                res.redirect('/' + req.params.uid + '/t0')
+              } else if((prompt_count < 4 && synergy_first == 0 && t0_complete == 1) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 1)) {
+                res.render('email0', { 
+                  subject: data.description, 
+                  sender: data.sender, 
+                  salutation: data.salutation, 
+                  body: data.body, 
+                  closing: data.closing, 
+                  hours: n-9, 
+                  b:bi });
               }
             })
             .catch(function (error) {
@@ -170,6 +194,57 @@ router.post('/start', function (req, res) {
       console.log(error)
     })
     // res.sendStatus(200)
+})
+
+// t0 complete
+router.post('/t0_complete', function (req, res) {
+  db.one("UPDATE participants SET t0_complete = 1 WHERE id = '" + req.body.uid + "' RETURNING id")
+    .then(data => {
+      console.log(data)
+      return db.one("SELECT prompt_count FROM participants WHERE id = '" + req.body.uid + "'")
+    })
+    .then(result => {
+      var prompt_count = result.prompt_count;
+      return prompt_count;
+    })
+    .then(result => {
+      return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
+    })
+    .then(result => {
+      console.log("result")
+      console.log(result)
+      res.send({"email_id": Object.values(result)[0]});
+      console.log("email_id: ", Object.values(result)[0])
+    })
+    .catch(err => {
+      console.log(err)
+    }) 
+})
+
+
+// t1 complete
+router.post('/t1_complete', function (req, res) {
+  db.one("UPDATE participants SET t1_complete = 1 WHERE id = '" + req.body.uid + "' RETURNING id")
+    .then(data => {
+      console.log(data)
+      return db.one("SELECT prompt_count FROM participants WHERE id = '" + req.body.uid + "'")
+    })
+    .then(result => {
+      var prompt_count = result.prompt_count;
+      return prompt_count;
+    })
+    .then(result => {
+      return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
+    })
+    .then(result => {
+      console.log("result")
+      console.log(result)
+      console.log("email_id: ", Object.values(result)[0])
+      res.send({"email_id": Object.values(result)[0]});
+    })
+    .catch(err => {
+      console.log(err)
+    }) 
 })
 
 module.exports = router;

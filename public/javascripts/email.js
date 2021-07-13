@@ -200,7 +200,20 @@ window.onload = function() {
                 str.indexOf("/") + 1, 
                 str.lastIndexOf("/")
             );
-            window.location='/' + id + '/t1';
+            fetch('/t0_complete', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({uid: id})
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result.email_id);
+                window.location='/' + id + '/' + result.email_id;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            // window.location='/' + id + '/t1';
         })
     }
 
@@ -213,19 +226,32 @@ window.onload = function() {
                 str.indexOf("/") + 1, 
                 str.lastIndexOf("/")
             );
-            fetch('/start', {
+            fetch('/t1_complete', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({uid: id})
             })
             .then(response => response.json())
             .then(result => {
-                console.log('Success:', result.email);
-                window.location='/' + id + '/' + result.email;
+                console.log('Success:', result.email_id);
+                window.location='/' + id + '/' + result.email_id;
             })
             .catch(error => {
                 console.error('Error:', error);
             });
+            // fetch('/start', {
+            //     method: 'POST',
+            //     headers: {'Content-Type': 'application/json'},
+            //     body: JSON.stringify({uid: id})
+            // })
+            // .then(response => response.json())
+            // .then(result => {
+            //     console.log('Success:', result.email);
+            //     window.location='/' + id + '/' + result.email;
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            // });
         })
     }
             
