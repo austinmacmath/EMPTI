@@ -54,6 +54,8 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * differing content in tutorial
 * replace "real simulation" with "live page"
 * include reminder of tab key
+* move tutorial right in front of corresponding synergistic condition
+* add google logo
 
 ## Questions
 * How to define bias? 
@@ -69,13 +71,10 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 ## Technical Concerns
 
 ## Edits
-* for credibility
-    * add google logo
 * add all manipulations on high synergy page
 * synergy is all of the manipuilations
 * between tutorial and real thing, have black screen syaing experiment beginning
     * reiterate instructions from first page
-* move tutorial right in front of corresponding synergistic condition
 * for identification manipulation, put the writing questionnaire at the very beginning
     * say algorithm just learned from the questionnaire for high synergy condition]
     * algorithm doesn't learn from questiionnaire for low synergy
