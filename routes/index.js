@@ -16,6 +16,42 @@ router.get('/goodbye', function(req, res) {
   res.render('goodbye');
 });
 
+// tutorial transition 0
+router.get('/:uid/tt0', function(req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if(data.id == req.params.uid && data.completed == 0) {
+        console.log(data.completed)
+        res.render('tutorial-transition-0');
+      } else if(data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye') 
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// tutorial transition 1
+router.get('/:uid/tt1', function(req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+  .then(function (data) {
+    if(data.id == req.params.uid && data.completed == 0) {
+      res.render('tutorial-transition-1');
+    } else if(data.id = req.params.uid && data.completed == 1) {
+      res.render('goodbye')
+    } else {
+      res.render('wrong_uid')
+    }
+  })
+  .catch(function (error) {
+    console.log('home')
+    console.log(error)
+  })
+})
+
 // home page
 router.get('/:uid', function(req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
