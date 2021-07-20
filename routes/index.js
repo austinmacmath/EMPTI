@@ -11,6 +11,10 @@ router.get('/test', function(req, res) {
   res.render('test');
 })
 
+router.get('/questionnaire', function(req, res) {
+  res.render('questionnaire')
+})
+
 // goodbye
 router.get('/goodbye', function(req, res) {
   res.render('goodbye');
