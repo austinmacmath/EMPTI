@@ -56,6 +56,10 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * include reminder of tab key
 * move tutorial right in front of corresponding synergistic condition
 * add google logo
+* between tutorial and real thing, have black screen syaing experiment beginning
+* added typing indicator for percieved interactivity
+* added questionnaire and loading page (currently unformatted)
+    * indicate that algorithm learns/doesn't from questionnaire for different conditions
 
 ## Questions
 * How to define bias? 
@@ -71,12 +75,28 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 ## Technical Concerns
 
 ## Edits
+* make predictionary work in middle of text
 * add all manipulations on high synergy page
 * synergy is all of the manipuilations
-* between tutorial and real thing, have black screen syaing experiment beginning
-    * reiterate instructions from first page
 * for identification manipulation, put the writing questionnaire at the very beginning
     * say algorithm just learned from the questionnaire for high synergy condition]
     * algorithm doesn't learn from questiionnaire for low synergy
 * collect # of times unique words were chosen from each dataset
 * could find corpus of commonly misspelled words
+
+## To Do from 7/21 meeting
+* add more isntructions for qeuestionnaire
+* record user responses for questionnaire
+* make it clear on loading page that you will complete 2 versions, perhaps show images of 2 conditions on loading page
+    * show that questionnaire will contribute to the personalized one
+    * one personalized one non-personalized
+    * make it clear which one they're using
+    * on email page, have 2 icons, one high and low synergy, and highlight the one being used
+* in tutorial/reminder blurb, include that we are going to use questionnaire data
+* in loading page, indicate: personalization undergoing/completed
+* in email page, with bouncing bubbles write "smart compose is thinking"
+* add transition between two conditions: pause screen "pause, you're halfway through the experiment, going to startt working with other condition"
+* add progress number in email, like you are on number 2/8
+* embed "qualtrics" questionnaire after each phase
+* implement d' encoding
+    * correct/incorrect words dictionary

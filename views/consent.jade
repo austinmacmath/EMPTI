@@ -1,0 +1,60 @@
+doctype html
+html
+    head
+        script(src='/javascripts/consent.js')
+        link(rel='stylesheet' href='/stylesheets/consent.css')
+    body
+        div.title
+            | Consent to Participate in a Research Study
+            br
+            | University of California, Santa Barbara
+        div.purpose
+            | Purpose:
+            br
+            | You are being asked to participate in a research study conducted by Professor Kristy Hamilton at University of California, Santa Barbara. Participation is voluntary. The purpose of this research study is to understand how AI facilitates users in their daily emailing activities.
+            br
+            br
+        div.procedures
+            | Procedures:
+            br
+            | If you choose to be in the study, you will respond to several emails and complete a survey on two email platforms, based on the instruction provided to you. This entire study will take roughly 2 hours to complete. Please know that you can skip questions that you do not wish to answer or stop the survey at any time. The survey is anonymous and no one will be able to link your responses back to you. Please do not include your name or other information that could be used to identify you in the survey responses.
+            br
+            br
+        div.eligibility
+            | Eligibility:
+            br
+            | To be eligible to participate in this study, you must be over 18 years old. You must also participate in this study on a computer or a laptop. Cell phones are NOT applicable. You must use email at least occasionally. 
+            br
+            br
+        div.confidentiality
+            | Confidentiality: 
+            br
+            | Your Mechanical Turk Worker ID will be used to distribute the payment to you, but we will not store your worker ID with your survey responses. Please be aware that your Mturk Workers ID can potentially be linked to information about you on your Amazon Public Profile page, however we will not access any personally identifying information from your Amazon Public Profile. 
+            br
+            br
+        div.costspayments
+            | Costs/Payments:
+            br
+            | By completing this study today, you will earn $ [insert money] USD. Mturk does not allow for prorated compensation.?
+            br
+            br
+            | #[strong NOTE: This study contains some attention checks to make sure that participants are finishing the tasks honestly and completely.] As long as you read the questions carefully and answer the survey honestly in good faith, #[strong your HIT will be approved. If you fail the attention checks, you will not be paid and/or your HIT will be rejected.]
+            br
+            br
+        div.contactinformation 
+            | Contact Information: 
+            br
+            | If you have questions about the research, you can contact Dr. Hamilton at 
+            a(href='mailto:kristyhamilton@ucsb.edu') kristyhamilton@ucsb.edu
+            | .
+            br
+            br
+            | If you have any questions regarding your rights as a research subject, please contact the Human Subjects Committee at (805) 893-3807 or 
+            a(href='mailto:hsc@research.ucsb.edu') hsc@research.ucsb.edu
+            | . Or write to the University of California, Human Subjects Committee, Office of Research, Santa Barbara, CA 93106-2050.
+            br
+            br
+            | If you do not want to participate in this study, simply close your browser window now. If you decide you would like to participate, please click on the “next”  button below, which will indicate that you consent to participate in the study and will start the experiment. 
+            br
+            br
+            button(class='next' id='next') Next

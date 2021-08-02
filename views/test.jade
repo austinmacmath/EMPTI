@@ -1,40 +1,12 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='https://code.jquery.com/jquery-3.4.1.min.js')
-    script(src='https://unpkg.com/lz-string@1.4.4/libs/lz-string.min.js')
-    script(src='/javascripts/predictionary.min.js')
+    link(rel='stylesheet', href='/stylesheets/temp.css')
     script(src='/javascripts/test.js')
 
   body
-    div.message-body
-      div.subject Re: #{subject} 
-      div.metadata 
-        span.left-justify #{sender}
-        span.right-justify 9:15 AM (#{hours} hours ago)
-        br
-        | to You 
-      div.message
-        pre
-          | #{salutation}
-          br
-          br
-          | #{body}
-          br
-          br
-          | #{closing}
-    div.response-body
-      div.reply-body
-        div.recipient To: #{sender}
-          br
-          br
-          div(class='container' id='container')
-            div(class='backdrop' id='backdrop')
-              div(class='predictions' id='predictions')
-            textarea(id='email' name='email')
-          br
-          button(class='send' id='send' tabindex='-1') Send
-          span(class='wordcount' id='wordcount') 0
-          span(class='wc_label') Word Count:&nbsp
-          span(class='wc_error' id='wc_error')
+    input(type='text' placeholder='type here' id='message-input' class='card__input')
+    div(class='typing')
+      span(class='typing__bullet')
+      span(class='typing__bullet')
+      span(class='typing__bullet')

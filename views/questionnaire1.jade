@@ -1,0 +1,117 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/questionnaire.css')
+        script(src='/javascripts/questionnaire1.js')
+    body
+        div.tutorial-body
+            | In order to better serve you with your personal writing style, please fill out this writing habit questionnaire so that our algorithm can provide you with tailored suggestions based on your answers.  
+        div.q1
+            br
+            | 1. Please select the frequency of you engaging in the writing activities (both online and offline)  listed below:
+            table
+                tr
+                    th
+                    th Hardly ever/never
+                    th A few times a year
+                    th A few times a month
+                    th A few times a week
+                    th Almost every day
+                tr
+                    th Diary/journal
+                    td 
+                        input(type='radio' name='1')
+                    td 
+                        input(type='radio' name='1')
+                    td 
+                        input(type='radio' name='1')
+                    td 
+                        input(type='radio' name='1')
+                    td 
+                        input(type='radio' name='1')
+                tr
+                    th Academic or school paper 
+                    td 
+                        input(type='radio' name='2')
+                    td 
+                        input(type='radio' name='2')
+                    td 
+                        input(type='radio' name='2')
+                    td 
+                        input(type='radio' name='2')
+                    td 
+                        input(type='radio' name='2')
+                tr
+                    th Letters or emails to relatives
+                    td 
+                        input(type='radio' name='3')
+                    td 
+                        input(type='radio' name='3')
+                    td 
+                        input(type='radio' name='3')
+                    td 
+                        input(type='radio' name='3')
+                    td 
+                        input(type='radio' name='3')
+                tr
+                    th Notes or text messages
+                    td 
+                        input(type='radio' name='4')
+                    td 
+                        input(type='radio' name='4')
+                    td 
+                        input(type='radio' name='4')
+                    td 
+                        input(type='radio' name='4')
+                    td 
+                        input(type='radio' name='4')
+                tr
+                    th Novel or stories
+                    td 
+                        input(type='radio' name='5')
+                    td 
+                        input(type='radio' name='5')
+                    td 
+                        input(type='radio' name='5')
+                    td 
+                        input(type='radio' name='5')
+                    td 
+                        input(type='radio' name='5')
+                tr
+                    th Emails for work purposes
+                    td 
+                        input(type='radio' name='6')
+                    td 
+                        input(type='radio' name='6')
+                    td 
+                        input(type='radio' name='6')
+                    td 
+                        input(type='radio' name='6')
+                    td 
+                        input(type='radio' name='6')
+                tr
+                    th Content for social media
+                    td 
+                        input(type='radio' name='7')
+                    td 
+                        input(type='radio' name='7')
+                    td 
+                        input(type='radio' name='7')
+                    td 
+                        input(type='radio' name='7')
+                    td 
+                        input(type='radio' name='7')
+                tr
+                    th Comments or reviews for books, products, etc.
+                    td 
+                        input(type='radio' name='8')
+                    td 
+                        input(type='radio' name='8')
+                    td 
+                        input(type='radio' name='8')
+                    td 
+                        input(type='radio' name='8')
+                    td 
+                        input(type='radio' name='8')
+        br
+        button(id='next') Next 
