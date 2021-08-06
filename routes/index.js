@@ -7,41 +7,40 @@ var router = express.Router();
 router.get('/favicon.ico', (req, res) => res.status(204));
 
 // for testing and development
-router.get('/test', function(req, res) {
+router.get('/test', function (req, res) {
   res.render('test');
 })
 
 // goodbye
-router.get('/goodbye', function(req, res) {
+router.get('/goodbye', function (req, res) {
   res.render('goodbye');
 });
 
 // consent
-router.get('/:uid/consent', function(req, res) {
+router.get('/:uid/consent', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if(data.id == req.params.uid && data.completed == 0) {
-      console.log(data.completed)
-      res.render('consent')
-    } else if(data.id = req.params.uid && data.completed == 1) {
-      res.render('goodbye') 
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('consent')
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 // welcome 1
-router.get('/:uid/welcome1', function(req, res) {
+router.get('/:uid/welcome1', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('welcome1')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -52,13 +51,13 @@ router.get('/:uid/welcome1', function(req, res) {
 });
 
 // welcome 2
-router.get('/:uid/welcome2', function(req, res) {
+router.get('/:uid/welcome2', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('welcome2')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -69,13 +68,13 @@ router.get('/:uid/welcome2', function(req, res) {
 });
 
 // welcome 3
-router.get('/:uid/welcome3', function(req, res) {
+router.get('/:uid/welcome3', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('welcome3')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -86,14 +85,13 @@ router.get('/:uid/welcome3', function(req, res) {
 });
 
 // questionnaire 1
-router.get('/:uid/questionnaire1', function(req, res) {
+router.get('/:uid/questionnaire1', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
-        console.log(data.completed)
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('questionnaire1')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -104,14 +102,13 @@ router.get('/:uid/questionnaire1', function(req, res) {
 })
 
 // questionnaire 2
-router.get('/:uid/questionnaire2', function(req, res) {
+router.get('/:uid/questionnaire2', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
-        console.log(data.completed)
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('questionnaire2')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -122,14 +119,13 @@ router.get('/:uid/questionnaire2', function(req, res) {
 })
 
 // questionnaire 3
-router.get('/:uid/questionnaire3', function(req, res) {
+router.get('/:uid/questionnaire3', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
-        console.log(data.completed)
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('questionnaire3')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -140,14 +136,14 @@ router.get('/:uid/questionnaire3', function(req, res) {
 })
 
 // questionnaire 4
-router.get('/:uid/questionnaire4', function(req, res) {
+router.get('/:uid/questionnaire4', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
+      if (data.id == req.params.uid && data.completed == 0) {
         console.log(data.completed)
         res.render('questionnaire4')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -158,14 +154,13 @@ router.get('/:uid/questionnaire4', function(req, res) {
 })
 
 // questionnaire 5
-router.get('/:uid/questionnaire5', function(req, res) {
+router.get('/:uid/questionnaire5', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
-        console.log(data.completed)
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('questionnaire5')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -176,14 +171,13 @@ router.get('/:uid/questionnaire5', function(req, res) {
 })
 
 // questionnaire 6
-router.get('/:uid/questionnaire6', function(req, res) {
+router.get('/:uid/questionnaire6', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
-        console.log(data.completed)
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('questionnaire6')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -194,14 +188,13 @@ router.get('/:uid/questionnaire6', function(req, res) {
 })
 
 // loading
-router.get('/:uid/loading', function(req, res) {
+router.get('/:uid/loading', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if(data.id == req.params.uid && data.completed == 0) {
-      console.log(data.completed)
-      res.render('loading')
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('loading')
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -212,14 +205,13 @@ router.get('/:uid/loading', function(req, res) {
 })
 
 // tutorial transition 0
-router.get('/:uid/tt0', function(req, res) {
+router.get('/:uid/tt0', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid && data.completed == 0) {
-        console.log(data.completed)
+      if (data.id == req.params.uid && data.completed == 0) {
         res.render('tutorial-transition-0');
-      } else if(data.id = req.params.uid && data.completed == 1) {
-        res.render('goodbye') 
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
       } else {
         res.render('wrong_uid')
       }
@@ -230,74 +222,239 @@ router.get('/:uid/tt0', function(req, res) {
 })
 
 // tutorial transition 1
-router.get('/:uid/tt1', function(req, res) {
+router.get('/:uid/tt1', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if(data.id == req.params.uid && data.completed == 0) {
-      res.render('tutorial-transition-1');
-    } else if(data.id = req.params.uid && data.completed == 1) {
-      res.render('goodbye')
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log('home')
-    console.log(error)
-  })
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('tutorial-transition-1');
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 
 // tutorial-0
-router.get('/:uid/t0', function(req, res) {
-  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if(data.id == req.params.uid && data.completed == 0) {
-      res.render('tutorial-0')
-    } else if(data.id = req.params.uid && data.completed == 1) {
-      res.render('goodbye') 
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log('tutorial0')
-    console.log(error)
-  })
+router.get('/:uid/t0', function (req, res) {
+  db.one("SELECT id, completed, t1_complete FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        if (data.t1_complete) {
+          res.render('tutorial-0', {
+            order: "two"
+          })
+        } else {
+          res.render('tutorial-0', {
+            order: "one"
+          })
+        }
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 // tutorial-1
-router.get('/:uid/t1', function(req, res) {
+router.get('/:uid/t1', function (req, res) {
+  db.one("SELECT id, completed, t0_complete FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        if (data.t0_complete) {
+          res.render('tutorial-1', {
+            order: "two"
+          })
+        } else {
+          res.render('tutorial-1', {
+            order: "one"
+          })
+        }
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// manipulation check 1
+router.get('/:uid/m1', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if(data.id == req.params.uid && data.completed == 0) {
-      res.render('tutorial-1')
-    } else if(data.id = req.params.uid && data.completed == 1) {
-      res.render('goodbye') 
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log('tutorial1')
-    console.log(error)
-  })
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('manipulation-check-1');
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// manipulation check 2
+router.get('/:uid/m2', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('manipulation-check-2');
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// survey-1
+router.get('/:uid/s1', function (req, res) {
+  db.one("SELECT id, completed, synergy_first FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        if (data.synergy_first) {
+          res.render('survey-1', {
+            algorithm: "Smart Predictor"
+          })
+        } else {
+          res.render('survey-1', {
+            algorithm: "Ringgo"
+          })
+        }
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// survey-2
+router.get('/:uid/s2', function (req, res) {
+  db.one("SELECT id, completed, synergy_first FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        if (data.synergy_first) {
+          res.render('survey-2', {
+            algorithm: "Smart Predictor"
+          })
+        } else {
+          res.render('survey-2', {
+            algorithm: "Ringgo"
+          })
+        }
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// survey-3
+router.get('/:uid/s3', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('survey-3')
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// Mechanical Turk 1
+router.get('/:uid/mt1', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('mturk-1')
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// Mechanical Turk 2
+router.get('/:uid/mt2', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('mturk-2')
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// break
+router.get('/:uid/break', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('break');
+      } else if (data.id = req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 // emails
-router.get('/:uid/:promptId', function(req, res) {
+router.get('/:uid/:promptId', function (req, res) {
   db.one("SELECT * FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
-      if(data.id == req.params.uid) {
+      if (data.id == req.params.uid) {
         var d = new Date();
         var n = d.getHours();
-        if(n - 9 < 0) {
+        if (n - 9 < 0) {
           n += 24;
         }
         var prompt_count = data.prompt_count;
         var t0_complete = data.t0_complete;
         var t1_complete = data.t1_complete;
-        if(prompt_count >= 8) {
+        if (prompt_count >= 8) {
           db.one("UPDATE participants SET completed = 1 WHERE id = '" + req.params.uid + "' RETURNING id")
             .then(data => {
               res.render('goodbye');
@@ -314,32 +471,30 @@ router.get('/:uid/:promptId', function(req, res) {
               return db.one('SELECT * FROM email_prompts WHERE id = $1', [req.params.promptId]);
             })
             .then(function (data) {
-              if((prompt_count < 4 && synergy_first == 1 && t1_complete == 0) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 0)) {
-                // window.location = '/' + req.params.uid + 't1'
+              if ((prompt_count < 4 && synergy_first == 1 && t1_complete == 0) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 0)) {
                 res.redirect('/' + req.params.uid + '/t1')
-              } else if((prompt_count < 4 && synergy_first == 1 && t1_complete == 1) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 1)) {
-                  res.render('email1', { 
-                    subject: data.description, 
-                    sender: data.sender, 
-                    salutation: 
-                    data.salutation, 
-                    body: data.body, 
-                    closing: data.closing, 
-                    hours: n-9, 
-                    b:bi });
-              } else if((prompt_count < 4 && synergy_first == 0 && t0_complete == 0) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 0)) {
-                // window.location = '/' + req.params.uid + 't0'
-                // res.render('tutorial-0') // should call  router.get('/:uid/t0', function(req, res) here somehow
+              } else if ((prompt_count < 4 && synergy_first == 1 && t1_complete == 1) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 1)) {
+                res.render('email1', {
+                  subject: data.description,
+                  sender: data.sender,
+                  salutation: data.salutation,
+                  body: data.body,
+                  closing: data.closing,
+                  hours: n - 9,
+                  b: bi
+                });
+              } else if ((prompt_count < 4 && synergy_first == 0 && t0_complete == 0) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 0)) {
                 res.redirect('/' + req.params.uid + '/t0')
-              } else if((prompt_count < 4 && synergy_first == 0 && t0_complete == 1) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 1)) {
-                res.render('email0', { 
-                  subject: data.description, 
-                  sender: data.sender, 
-                  salutation: data.salutation, 
-                  body: data.body, 
-                  closing: data.closing, 
-                  hours: n-9, 
-                  b:bi });
+              } else if ((prompt_count < 4 && synergy_first == 0 && t0_complete == 1) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 1)) {
+                res.render('email0', {
+                  subject: data.description,
+                  sender: data.sender,
+                  salutation: data.salutation,
+                  body: data.body,
+                  closing: data.closing,
+                  hours: n - 9,
+                  b: bi
+                });
               }
             })
             .catch(function (error) {
@@ -360,20 +515,36 @@ router.post('/send', function (req, res, next) {
   // for a specified user, needs to increment count and get count
   var prompt_count;
   db.one("UPDATE participants SET prompt_count = prompt_count + 1 WHERE id = '" + req.body.uid + "'; SELECT prompt_count FROM participants WHERE id = '" + req.body.uid + "'")
-  .then(result => {
+    .then(result => {
       prompt_count = result.prompt_count;
       return prompt_count;
-  })
-  .then(result => {
-      return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
-  })
-  .then(result => {
-      res.send({"email_id": Object.values(result)[0]});
-  })
-  .catch(error => {
-    console.log(error);
-    res.send({"email_id": -1});
-  })
+    })
+    .then(result => {
+      if (result == '8') {
+        return 8
+      } else {
+        return db.one("SELECT e" + result + ", prompt_count FROM participants WHERE id = '" + req.body.uid + "'");
+      }
+    })
+    .then(result => {
+      if (result == 8) {
+        res.send({
+          "email_id": null,
+          "prompt_count": result
+        })
+      } else {
+        res.send({
+          "email_id": Object.values(result)[0],
+          "prompt_count": result.prompt_count
+        });
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      res.send({
+        "email_id": -1
+      });
+    })
 
   db.one('INSERT INTO responses(response, submission_time, uid, email_id) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.message, req.body.uid, req.body.email_id])
     .then(uid => {
@@ -391,7 +562,9 @@ router.post('/tab', function (req, res) {
       console.log("INSERT SUCCESS: ", uid)
     })
     .catch(function (error) {
-      res.send({"error": error})
+      res.send({
+        "error": error
+      })
     })
   res.sendStatus(200);
 })
@@ -400,21 +573,19 @@ router.post('/tab', function (req, res) {
 router.post('/start', function (req, res) {
   db.one('SELECT e0 FROM participants where id = $1', [req.body.uid])
     .then(function (data) {
-      console.log(data.e0)
-      // res.send(data.email_order)
-      res.send({"email": data.e0})
+      res.send({
+        "email": data.e0
+      })
     })
     .catch(function (error) {
       console.log(error)
     })
-    // res.sendStatus(200)
 })
 
 // t0 complete
 router.post('/t0_complete', function (req, res) {
   db.one("UPDATE participants SET t0_complete = 1 WHERE id = '" + req.body.uid + "' RETURNING id")
     .then(data => {
-      console.log(data)
       return db.one("SELECT prompt_count FROM participants WHERE id = '" + req.body.uid + "'")
     })
     .then(result => {
@@ -425,14 +596,13 @@ router.post('/t0_complete', function (req, res) {
       return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
     })
     .then(result => {
-      console.log("result")
-      console.log(result)
-      res.send({"email_id": Object.values(result)[0]});
-      console.log("email_id: ", Object.values(result)[0])
+      res.send({
+        "email_id": Object.values(result)[0]
+      });
     })
     .catch(err => {
       console.log(err)
-    }) 
+    })
 })
 
 
@@ -440,7 +610,6 @@ router.post('/t0_complete', function (req, res) {
 router.post('/t1_complete', function (req, res) {
   db.one("UPDATE participants SET t1_complete = 1 WHERE id = '" + req.body.uid + "' RETURNING id")
     .then(data => {
-      console.log(data)
       return db.one("SELECT prompt_count FROM participants WHERE id = '" + req.body.uid + "'")
     })
     .then(result => {
@@ -451,14 +620,23 @@ router.post('/t1_complete', function (req, res) {
       return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
     })
     .then(result => {
-      console.log("result")
-      console.log(result)
-      console.log("email_id: ", Object.values(result)[0])
-      res.send({"email_id": Object.values(result)[0]});
+      res.send({
+        "email_id": Object.values(result)[0]
+      });
     })
     .catch(err => {
       console.log(err)
-    }) 
+    })
+})
+
+// break complete
+router.post('/break_complete', function (req, res) {
+  db.one("SELECT synergy_first FROM participants WHERE id = '" + req.body.uid + "'")
+    .then(data => {
+      res.send({
+        "synergy_first": data.synergy_first
+      })
+    })
 })
 
 module.exports = router;

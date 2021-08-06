@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/mturk.css')
+        script(src='/javascripts/mturk-1.js')
+    body
+        div.body
+            | You are almost finished with the task...
+            br
+            br
+            | To ensure approval of your HIT in MTurk, you must perform the four steps listed below. If you do NOT complete all four steps, your survey responses may not be recorded properly and your HIT may not be approved.
+            br
+            br
+            ol
+                li Submit this task to the researcher by clicking on the button with one right arrow below.
+                li Write down or copy the unique numeric completion code that appears below. 
+                li On the MTurk website, enter your unique completion code into the space provided for this HIT.
+                li Submit your HIT for approval. (Approval may take up to 3 days.)
+            br
+            br
+            button(id='next') Next

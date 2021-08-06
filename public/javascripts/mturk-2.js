@@ -1,4 +1,3 @@
-// prevent backpaging
 if (window.history && history.pushState) {
     addEventListener('load', function () {
         history.pushState(null, null, null); // creates new history entry with same URL
@@ -7,4 +6,16 @@ if (window.history && history.pushState) {
             history.pushState(null, null, null);
         });
     });
+}
+
+window.onload = function () {
+    var button = document.getElementById('next')
+    button.addEventListener('click', function (event) {
+        var str = window.location.pathname;
+        var id = str.substring(
+            str.indexOf("/") + 1,
+            str.lastIndexOf("/")
+        );
+        window.location = '/goodbye';
+    })
 }

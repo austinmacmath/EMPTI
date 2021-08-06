@@ -8,3 +8,15 @@ if (window.history && history.pushState) {
         });
     });
 }
+
+window.onload = function () {
+    var button = document.getElementById('next')
+    button.addEventListener('click', function (event) {
+        var str = window.location.pathname;
+        var id = str.substring(
+            str.indexOf("/") + 1,
+            str.lastIndexOf("/")
+        );
+        window.location = '/' + id + '/s2';
+    })
+}
