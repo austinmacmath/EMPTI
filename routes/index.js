@@ -569,6 +569,18 @@ router.post('/tab', function (req, res) {
   res.sendStatus(200);
 })
 
+// submit questionnaire 1
+router.post('/q1_submit', function (req, res) {
+  db.one('INSERT INTO questionnaire_1(uid, submission_time, medium, frequency) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
 // start button click
 router.post('/start', function (req, res) {
   db.one('SELECT e0 FROM participants where id = $1', [req.body.uid])
