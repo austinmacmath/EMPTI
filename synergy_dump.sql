@@ -5,7 +5,7 @@
 -- Dumped from database version 13.3
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-06-30 22:51:40 PDT
+-- Started on 2021-08-08 00:58:25 PDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -56,7 +56,7 @@ CREATE SEQUENCE public.email_prompts_id_seq
 ALTER TABLE public.email_prompts_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3293 (class 0 OID 0)
+-- TOC entry 3329 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: email_prompts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -65,7 +65,7 @@ ALTER SEQUENCE public.email_prompts_id_seq OWNED BY public.email_prompts.id;
 
 
 --
--- TOC entry 207 (class 1259 OID 16496)
+-- TOC entry 207 (class 1259 OID 16504)
 -- Name: participants; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -89,11 +89,103 @@ CREATE TABLE public.participants (
     b7 integer,
     prompt_count integer,
     synergy_first integer,
-    completed integer
+    completed integer,
+    t0_complete integer,
+    t1_complete integer
 );
 
 
 ALTER TABLE public.participants OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16516)
+-- Name: questionnaire_1; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.questionnaire_1 (
+    uid text,
+    submission_time timestamp without time zone,
+    medium text,
+    frequency text
+);
+
+
+ALTER TABLE public.questionnaire_1 OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16524)
+-- Name: questionnaire_2; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.questionnaire_2 (
+    uid text,
+    submission_time timestamp without time zone,
+    medium text,
+    frequency text
+);
+
+
+ALTER TABLE public.questionnaire_2 OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16538)
+-- Name: questionnaire_3; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.questionnaire_3 (
+    uid text,
+    submission_time timestamp without time zone,
+    medium text,
+    frequency text
+);
+
+
+ALTER TABLE public.questionnaire_3 OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16544)
+-- Name: questionnaire_4; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.questionnaire_4 (
+    uid text,
+    submission_time timestamp without time zone,
+    medium text,
+    frequency text
+);
+
+
+ALTER TABLE public.questionnaire_4 OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16550)
+-- Name: questionnaire_5; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.questionnaire_5 (
+    uid text,
+    submission_time timestamp without time zone,
+    perspective text,
+    checked boolean
+);
+
+
+ALTER TABLE public.questionnaire_5 OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16556)
+-- Name: questionnaire_6; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.questionnaire_6 (
+    uid text,
+    submission_time timestamp without time zone,
+    ability text,
+    skill text
+);
+
+
+ALTER TABLE public.questionnaire_6 OWNER TO postgres;
 
 --
 -- TOC entry 203 (class 1259 OID 16401)
@@ -128,7 +220,7 @@ CREATE SEQUENCE public.responses_id_seq
 ALTER TABLE public.responses_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3294 (class 0 OID 0)
+-- TOC entry 3330 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: responses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -183,7 +275,7 @@ CREATE TABLE public.test (
 ALTER TABLE public.test OWNER TO postgres;
 
 --
--- TOC entry 3139 (class 2604 OID 16393)
+-- TOC entry 3169 (class 2604 OID 16393)
 -- Name: email_prompts id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -191,7 +283,7 @@ ALTER TABLE ONLY public.email_prompts ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 3140 (class 2604 OID 16404)
+-- TOC entry 3170 (class 2604 OID 16404)
 -- Name: responses id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -199,7 +291,7 @@ ALTER TABLE ONLY public.responses ALTER COLUMN id SET DEFAULT nextval('public.re
 
 
 --
--- TOC entry 3281 (class 0 OID 16390)
+-- TOC entry 3311 (class 0 OID 16390)
 -- Dependencies: 201
 -- Data for Name: email_prompts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -221,17 +313,77 @@ COPY public.email_prompts (id, description, salutation, body, closing, sender) F
 
 
 --
--- TOC entry 3287 (class 0 OID 16496)
+-- TOC entry 3317 (class 0 OID 16504)
 -- Dependencies: 207
 -- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, b0, b1, b2, b3, b4, b5, b6, b7, prompt_count, synergy_first, completed) FROM stdin;
+COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, b0, b1, b2, b3, b4, b5, b6, b7, prompt_count, synergy_first, completed, t0_complete, t1_complete) FROM stdin;
 \.
 
 
 --
--- TOC entry 3283 (class 0 OID 16401)
+-- TOC entry 3318 (class 0 OID 16516)
+-- Dependencies: 208
+-- Data for Name: questionnaire_1; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.questionnaire_1 (uid, submission_time, medium, frequency) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3319 (class 0 OID 16524)
+-- Dependencies: 209
+-- Data for Name: questionnaire_2; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.questionnaire_2 (uid, submission_time, medium, frequency) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3320 (class 0 OID 16538)
+-- Dependencies: 210
+-- Data for Name: questionnaire_3; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.questionnaire_3 (uid, submission_time, medium, frequency) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3321 (class 0 OID 16544)
+-- Dependencies: 211
+-- Data for Name: questionnaire_4; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.questionnaire_4 (uid, submission_time, medium, frequency) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3322 (class 0 OID 16550)
+-- Dependencies: 212
+-- Data for Name: questionnaire_5; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.questionnaire_5 (uid, submission_time, perspective, checked) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3323 (class 0 OID 16556)
+-- Dependencies: 213
+-- Data for Name: questionnaire_6; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.questionnaire_6 (uid, submission_time, ability, skill) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3313 (class 0 OID 16401)
 -- Dependencies: 203
 -- Data for Name: responses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -241,7 +393,7 @@ COPY public.responses (id, response, submission_time, uid, email_id) FROM stdin;
 
 
 --
--- TOC entry 3286 (class 0 OID 16462)
+-- TOC entry 3316 (class 0 OID 16462)
 -- Dependencies: 206
 -- Data for Name: tabs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -251,7 +403,7 @@ COPY public.tabs (id, uid, email_id, predictive_text, tab_time, hit_time, miss_t
 
 
 --
--- TOC entry 3284 (class 0 OID 16416)
+-- TOC entry 3314 (class 0 OID 16416)
 -- Dependencies: 204
 -- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -261,7 +413,7 @@ COPY public.test (id) FROM stdin;
 
 
 --
--- TOC entry 3295 (class 0 OID 0)
+-- TOC entry 3331 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: email_prompts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -270,16 +422,16 @@ SELECT pg_catalog.setval('public.email_prompts_id_seq', 1, false);
 
 
 --
--- TOC entry 3296 (class 0 OID 0)
+-- TOC entry 3332 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: responses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.responses_id_seq', 651, true);
+SELECT pg_catalog.setval('public.responses_id_seq', 884, true);
 
 
 --
--- TOC entry 3297 (class 0 OID 0)
+-- TOC entry 3333 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: tabs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -288,7 +440,7 @@ SELECT pg_catalog.setval('public.tabs_id_seq', 48, true);
 
 
 --
--- TOC entry 3143 (class 2606 OID 16398)
+-- TOC entry 3173 (class 2606 OID 16398)
 -- Name: email_prompts email_prompts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -297,7 +449,7 @@ ALTER TABLE ONLY public.email_prompts
 
 
 --
--- TOC entry 3149 (class 2606 OID 16503)
+-- TOC entry 3179 (class 2606 OID 16511)
 -- Name: participants participants_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -306,7 +458,7 @@ ALTER TABLE ONLY public.participants
 
 
 --
--- TOC entry 3145 (class 2606 OID 16409)
+-- TOC entry 3175 (class 2606 OID 16409)
 -- Name: responses responses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -315,7 +467,7 @@ ALTER TABLE ONLY public.responses
 
 
 --
--- TOC entry 3147 (class 2606 OID 16470)
+-- TOC entry 3177 (class 2606 OID 16470)
 -- Name: tabs tabs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -323,7 +475,7 @@ ALTER TABLE ONLY public.tabs
     ADD CONSTRAINT tabs_pkey PRIMARY KEY (id);
 
 
--- Completed on 2021-06-30 22:51:40 PDT
+-- Completed on 2021-08-08 00:58:25 PDT
 
 --
 -- PostgreSQL database dump complete
