@@ -355,11 +355,11 @@ router.get('/:uid/s2', function (req, res) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first) {
           res.render('survey-2', {
-            algorithm: "Smart Predictor"
+            algorithm: "Ringgo"
           })
         } else {
           res.render('survey-2', {
-            algorithm: "Ringgo"
+            algorithm: "Smart Predictor"
           })
         }
       } else if (data.id = req.params.uid && data.completed == 1) {
@@ -632,6 +632,18 @@ router.post('/q5_submit', function (req, res) {
 // submit questionnaire 6
 router.post('/q6_submit', function (req, res) {
   db.one('INSERT INTO questionnaire_6(uid, submission_time, ability, skill) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.ability, req.body.skill])
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit manipulation check 1
+router.post('/m1_submit', function (req, res) {
+  db.one('INSERT INTO manipulation_check_1(uid, submission_time, answer) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.answer])
     .then(uid => {
       console.log("INSERT SUCCESS: ", uid)
     })

@@ -11,12 +11,28 @@ if (window.history && history.pushState) {
 
 window.onload = function () {
     var button = document.getElementById('next')
+    var radios = document.getElementsByName('algorithm') 
     button.addEventListener('click', function (event) {
         var str = window.location.pathname;
         var id = str.substring(
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                fetch('/m2_submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        uid: id,
+                        answer: radios[i].value
+                    })
+                })
+                break
+            }
+        }
         window.location = '/' + id + '/s2';
     })
 }

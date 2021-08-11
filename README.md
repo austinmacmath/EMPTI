@@ -100,3 +100,17 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * embed "qualtrics" questionnaire after each phase
 * implement d' encoding
     * correct/incorrect words dictionary
+
+
+## Edits 8/4 meeting
+* questionnaire
+    * for instruction, make text larger
+    * center everything
+* when mentioning name of algorithm (smart predictor/ringo), make it bold
+* on break page add timer, if they don't click next in a min, automatically move forward, tell the user
+* instructions for ringgo should be identical to smart predictor
+* percieved interactivity
+    * think of ways to make percieved interactivity more pronounced, for bouncing bubbles, maybe add color, or have rotating green arrow
+    * in tutorial, can describe what the thought bubbles do 
+    * in tutorial can have popups that describe features of the interface and hold their hand, make interactive if possible
+* track time spent on all pages (including tutorial page)
