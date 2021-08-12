@@ -653,6 +653,18 @@ router.post('/m1_submit', function (req, res) {
   res.sendStatus(200);
 })
 
+// submit manipulation check 2
+router.post('/m2_submit', function (req, res) {
+  db.one('INSERT INTO manipulation_check_2(uid, submission_time, answer) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.answer])
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
 // start button click
 router.post('/start', function (req, res) {
   db.one('SELECT e0 FROM participants where id = $1', [req.body.uid])

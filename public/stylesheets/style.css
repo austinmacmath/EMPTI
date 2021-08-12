@@ -184,8 +184,8 @@ span.wc_error {
 
 .typing__bullet {
   display: inline-block;
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.3);
   transition: all(300ms) linear;
@@ -200,7 +200,7 @@ span.wc_error {
 }
 
 .typing.is-typing-active .typing__bullet {
-  background-color: #000;
+  background-color: #00ff2a;
   animation: bounce 600ms linear infinite both;
 }
 
