@@ -91,10 +91,6 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 
 
 ## 8/16 meeting (for pretest thingy)
-* welcome1
-    * change name of algorithm ringgo
-* welcome2
-    * change name of ringgo
 * questionnaire*
     * center everything
     * log when radios are not clicked also or force them to click
@@ -118,3 +114,4 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * remove cost/payments section
     * remove confidentiality section
     * s/Professor/Dr.
+* replace ringgo with cs predictor

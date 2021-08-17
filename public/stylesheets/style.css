@@ -200,7 +200,7 @@ span.wc_error {
 }
 
 .typing.is-typing-active .typing__bullet {
-  background-color: #00ff2a;
+  background-color: #2E9D44;
   animation: bounce 600ms linear infinite both;
 }
 

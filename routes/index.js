@@ -334,7 +334,7 @@ router.get('/:uid/s1', function (req, res) {
           })
         } else {
           res.render('survey-1', {
-            algorithm: "Ringgo"
+            algorithm: "CS Predictor"
           })
         }
       } else if (data.id = req.params.uid && data.completed == 1) {
@@ -355,7 +355,7 @@ router.get('/:uid/s2', function (req, res) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first) {
           res.render('survey-2', {
-            algorithm: "Ringgo"
+            algorithm: "CS Predictor"
           })
         } else {
           res.render('survey-2', {
@@ -649,7 +649,7 @@ router.post('/m1_submit', function (req, res) {
       return db.one("SELECT synergy_first FROM participants WHERE id = '" + req.body.uid + "'")
     })
     .then(result => {
-      if(result.synergy_first == 0 && req.body.answer == "Ringgo") {
+      if(result.synergy_first == 0 && req.body.answer == "CS Predictor") {
         res.send({
           "correct": true 
         })
