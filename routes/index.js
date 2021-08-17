@@ -646,11 +646,31 @@ router.post('/m1_submit', function (req, res) {
   db.one('INSERT INTO manipulation_check_1(uid, submission_time, answer) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.answer])
     .then(uid => {
       console.log("INSERT SUCCESS: ", uid)
+      return db.one("SELECT synergy_first FROM participants WHERE id = '" + req.body.uid + "'")
+    })
+    .then(result => {
+      if(result.synergy_first == 0 && req.body.answer == "Ringgo") {
+        res.send({
+          "correct": true 
+        })
+      } else if(result.synergy_first == 1 && req.body.answer == "Smart Predictor") {
+        res.send({
+          "correct": true
+        })
+      } else {
+        res.send({
+          "correct": false
+        })
+      }
     })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error)
+  //   })
+  // res.sendStatus(200);
 })
 
 // submit manipulation check 2
@@ -689,11 +709,13 @@ router.post('/t0_complete', function (req, res) {
       return prompt_count;
     })
     .then(result => {
-      return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
+      return db.one("SELECT e" + result + ", t0_complete, t1_complete FROM participants WHERE id = '" + req.body.uid + "'");
     })
     .then(result => {
       res.send({
-        "email_id": Object.values(result)[0]
+        "email_id": Object.values(result)[0],
+        "t0_complete": result.t0_complete,
+        "t1_complete": result.t1_complete
       });
     })
     .catch(err => {
@@ -713,11 +735,13 @@ router.post('/t1_complete', function (req, res) {
       return prompt_count;
     })
     .then(result => {
-      return db.one("SELECT e" + result + " FROM participants WHERE id = '" + req.body.uid + "'");
+      return db.one("SELECT e" + result + ", t0_complete, t1_complete FROM participants WHERE id = '" + req.body.uid + "'");
     })
     .then(result => {
       res.send({
-        "email_id": Object.values(result)[0]
+        "email_id": Object.values(result)[0],
+        "t0_complete": result.t0_complete,
+        "t1_complete": result.t1_complete
       });
     })
     .catch(err => {
@@ -731,6 +755,29 @@ router.post('/break_complete', function (req, res) {
     .then(data => {
       res.send({
         "synergy_first": data.synergy_first
+      })
+    })
+})
+
+// check if tutorials are complete
+router.post('/tutorial_complete', function (req, res) {
+  var t0_complete
+  var t1_complete
+  db.one("SELECT prompt_count, t0_complete, t1_complete FROM participants WHERE id ='" + req.body.uid + "'")
+    .then(data => {
+      t0_complete = data.t0_complete
+      t1_complete = data.t1_complete
+      // res.send({
+      //   "t0_complete": data.t0_complete,
+      //   "t1_complete": data.t1_complete
+      // })
+      return db.one("SELECT e" + data.prompt_count + " FROM participants WHERE id = '" + req.body.uid + "'")
+    })
+    .then(result => {
+      res.send({
+        "email_id": Object.values(result)[0],
+        "t0_complete": t0_complete,
+        "t1_complete": t1_complete
       })
     })
 })

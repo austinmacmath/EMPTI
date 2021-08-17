@@ -29,8 +29,11 @@ window.onload = function () {
                 })
                 .then(response => response.json())
                 .then(result => {
-                    console.log('Success:', result.email_id);
-                    window.location = '/' + id + '/' + result.email_id;
+                    if(result.t0_complete && result.t1_complete) {
+                        window.location = '/' + id + '/' + result.email_id;
+                    } else {
+                        window.location = '/' + id + '/m1'
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);

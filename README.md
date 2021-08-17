@@ -33,33 +33,9 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * user testing
 
 ## Updates
-### 7/7
-* half synergistic half non-synergistic
-* random selection of bias/unbias model
-* predictionary
-    * trained predictionary on original email
-* prevent backpaging check
-* fix time difference on email
-* tutorial emails
-    * content the same for both?
-    * what order? 
-* include "completed" flag once a user is done
-* print out suggestion time and text
-* print out hit time and text (unbiased only)
-* print out miss time and text (unbiased only)
-* predictive text doesn't work if writing in middle of paragraph. 
 
 ### 7/21
-* minimum 100 word count
-* differing content in tutorial
-* replace "real simulation" with "live page"
-* include reminder of tab key
-* move tutorial right in front of corresponding synergistic condition
-* add google logo
 * between tutorial and real thing, have black screen syaing experiment beginning
-* added typing indicator for percieved interactivity
-* added questionnaire and loading page (currently unformatted)
-    * indicate that algorithm learns/doesn't from questionnaire for different conditions
 
 ## Questions
 * How to define bias? 
@@ -76,13 +52,6 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 
 ## Edits
 * make predictionary work in middle of text
-* add all manipulations on high synergy page
-* synergy is all of the manipuilations
-* for identification manipulation, put the writing questionnaire at the very beginning
-    * say algorithm just learned from the questionnaire for high synergy condition]
-    * algorithm doesn't learn from questiionnaire for low synergy
-* collect # of times unique words were chosen from each dataset
-* could find corpus of commonly misspelled words
 
 ## To Do from 7/21 meeting
 * add more isntructions for qeuestionnaire
@@ -94,7 +63,6 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * on email page, have 2 icons, one high and low synergy, and highlight the one being used
 * in tutorial/reminder blurb, include that we are going to use questionnaire data
 * in loading page, indicate: personalization undergoing/completed
-* in email page, with bouncing bubbles write "smart compose is thinking"
 * add transition between two conditions: pause screen "pause, you're halfway through the experiment, going to startt working with other condition"
 * add progress number in email, like you are on number 2/8
 * embed "qualtrics" questionnaire after each phase
@@ -106,11 +74,47 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * questionnaire
     * for instruction, make text larger
     * center everything
-* when mentioning name of algorithm (smart predictor/ringo), make it bold
 * on break page add timer, if they don't click next in a min, automatically move forward, tell the user
-* instructions for ringgo should be identical to smart predictor
 * percieved interactivity
     * think of ways to make percieved interactivity more pronounced, for bouncing bubbles, maybe add color, or have rotating green arrow
     * in tutorial, can describe what the thought bubbles do 
     * in tutorial can have popups that describe features of the interface and hold their hand, make interactive if possible
 * track time spent on all pages (including tutorial page)
+
+## Updates
+* instructions for ringgo should be identical to smart predictor
+* made typing indicator bigger and green
+* created database tables to log user input for questionnaires and manipulation checks
+* when mentioning name of algorithm (smart predictor/ringo), make it bold
+
+* shuffle order of questionnaires elements within each page and surveys
+
+
+## 8/16 meeting (for pretest thingy)
+* welcome1
+    * change name of algorithm ringgo
+* welcome2
+    * change name of ringgo
+* questionnaire*
+    * center everything
+    * log when radios are not clicked also or force them to click
+* survey
+    * center everything
+    * randomize items not pages
+* break
+    * add timer, will move to next page after 1 min automatically
+* high synergy page
+    * change typing indicator green color
+* for email pages
+    * record page load time
+* progress bar
+
+## Completed
+* place 1st manipulation check after first tutorial transition
+    * add retry text popup
+* page m1: s/did/willj
+* consent 
+    * remove mturk references
+    * remove cost/payments section
+    * remove confidentiality section
+    * s/Professor/Dr.

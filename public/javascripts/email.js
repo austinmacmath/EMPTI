@@ -184,7 +184,7 @@ window.onload = function () {
                             console.log("goodbye");
                             window.location = '/goodbye';
                         } else if (result.prompt_count == 4) {
-                            window.location = '/' + id + '/m1'
+                            window.location = '/' + id + '/s1'
                         } else if (result.prompt_count == 8) {
                             window.location = '/' + id + '/m2'
                         } else {
