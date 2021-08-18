@@ -584,69 +584,69 @@ router.get('/:uid/s3-1', function (req, res) {
 // survey-3-2
 router.get('/:uid/s3-2', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if (data.id == req.params.uid && data.completed == 0) {
-      res.render('survey-3-2')
-    } else if (data.id == req.params.uid && data.completed == 1) {
-      res.render('goodbye')
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('survey-3-2')
+      } else if (data.id == req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 // survey-3-3
 router.get('/:uid/s3-3', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if (data.id == req.params.uid && data.completed == 0) {
-      res.render('survey-3-3')
-    } else if (data.id == req.params.uid && data.completed == 1) {
-      res.render('goodbye')
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('survey-3-3')
+      } else if (data.id == req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 // survey-3-4
 router.get('/:uid/s3-4', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if (data.id == req.params.uid && data.completed == 0) {
-      res.render('survey-3-4')
-    } else if (data.id == req.params.uid && data.completed == 1) {
-      res.render('goodbye')
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('survey-3-4')
+      } else if (data.id == req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 // survey-3-5
 router.get('/:uid/s3-5', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
-  .then(function (data) {
-    if (data.id == req.params.uid && data.completed == 0) {
-      res.render('survey-3-5')
-    } else if (data.id == req.params.uid && data.completed == 1) {
-      res.render('goodbye')
-    } else {
-      res.render('wrong_uid')
-    }
-  })
-  .catch(function (error) {
-    console.log(error)
-  })
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('survey-3-5')
+      } else if (data.id == req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 })
 
 // Mechanical Turk 1
@@ -908,11 +908,11 @@ router.post('/m1_submit', function (req, res) {
       return db.one("SELECT synergy_first FROM participants WHERE id = '" + req.body.uid + "'")
     })
     .then(result => {
-      if(result.synergy_first == 0 && req.body.answer == "CS Predictor") {
+      if (result.synergy_first == 0 && req.body.answer == "CS Predictor") {
         res.send({
-          "correct": true 
+          "correct": true
         })
-      } else if(result.synergy_first == 1 && req.body.answer == "Smart Predictor") {
+      } else if (result.synergy_first == 1 && req.body.answer == "Smart Predictor") {
         res.send({
           "correct": true
         })
@@ -935,6 +935,144 @@ router.post('/m1_submit', function (req, res) {
 // submit manipulation check 2
 router.post('/m2_submit', function (req, res) {
   db.one('INSERT INTO manipulation_check_2(uid, submission_time, answer) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.answer])
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-1-1
+router.post('/s1-1_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_1(uid, submission_time, algorithm, measure, value) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-1-2
+router.post('/s1-2_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_2(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-1-3
+router.post('/s1-3_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_3(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-1-4
+router.post('/s1-4_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_4(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-1-5
+router.post('/s1-5_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_5(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-1-6
+router.post('/s1-6_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_6(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
     .then(uid => {
       console.log("INSERT SUCCESS: ", uid)
     })
@@ -1026,16 +1164,16 @@ router.post('/tutorial_complete', function (req, res) {
     .then(data => {
       t0_complete = data.t0_complete
       t1_complete = data.t1_complete
-      if(data.prompt_count == 8) {
+      if (data.prompt_count == 8) {
         return 8
       } else {
         return db.one("SELECT e" + data.prompt_count + " FROM participants WHERE id = '" + req.body.uid + "'")
       }
     })
     .then(result => {
-      if(result == 8) {
+      if (result == 8) {
         res.send({
-          "email_id": null, 
+          "email_id": null,
           "t0_complete": t0_complete,
           "t1_complete": t1_complete
         })
