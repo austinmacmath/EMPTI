@@ -16,6 +16,6 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
-        window.location = '/' + id + '/s3';
+        window.location = '/' + id + '/s1-1';
     })
 }

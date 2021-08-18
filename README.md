@@ -48,59 +48,40 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * guessing someone else's uid
 * promises not handled correctly
 
-## Technical Concerns
-
 ## Edits
 * make predictionary work in middle of text
 
 ## To Do from 7/21 meeting
 * add more isntructions for qeuestionnaire
-* record user responses for questionnaire
 * make it clear on loading page that you will complete 2 versions, perhaps show images of 2 conditions on loading page
-    * show that questionnaire will contribute to the personalized one
     * one personalized one non-personalized
     * make it clear which one they're using
     * on email page, have 2 icons, one high and low synergy, and highlight the one being used
-* in tutorial/reminder blurb, include that we are going to use questionnaire data
-* in loading page, indicate: personalization undergoing/completed
 * add transition between two conditions: pause screen "pause, you're halfway through the experiment, going to startt working with other condition"
 * add progress number in email, like you are on number 2/8
-* embed "qualtrics" questionnaire after each phase
 * implement d' encoding
     * correct/incorrect words dictionary
 
 
 ## Edits 8/4 meeting
-* questionnaire
-    * for instruction, make text larger
-    * center everything
 * on break page add timer, if they don't click next in a min, automatically move forward, tell the user
 * percieved interactivity
-    * think of ways to make percieved interactivity more pronounced, for bouncing bubbles, maybe add color, or have rotating green arrow
     * in tutorial, can describe what the thought bubbles do 
     * in tutorial can have popups that describe features of the interface and hold their hand, make interactive if possible
 * track time spent on all pages (including tutorial page)
 
-## Updates
-* instructions for ringgo should be identical to smart predictor
-* made typing indicator bigger and green
-* created database tables to log user input for questionnaires and manipulation checks
-* when mentioning name of algorithm (smart predictor/ringo), make it bold
 
 * shuffle order of questionnaires elements within each page and surveys
 
 
 ## 8/16 meeting (for pretest thingy)
 * questionnaire*
-    * center everything
     * log when radios are not clicked also or force them to click
 * survey
-    * center everything
     * randomize items not pages
+    * create survey db tables
 * break
     * add timer, will move to next page after 1 min automatically
-* high synergy page
-    * change typing indicator green color
 * for email pages
     * record page load time
 * progress bar
@@ -115,3 +96,6 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * remove confidentiality section
     * s/Professor/Dr.
 * replace ringgo with cs predictor
+* change green color of typing indicator
+* center questionnaire
+* center surveys

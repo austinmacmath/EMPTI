@@ -1,0 +1,115 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey-1-2.js')
+    body
+        div.question
+            | How well do you feel you understand predictive algorithms like #[strong #{algorithm}]? 
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='understand' value=1)
+                    td 
+                        input(type='radio' name='understand' value=2)
+                    td 
+                        input(type='radio' name='understand' value=3)
+                    td 
+                        input(type='radio' name='understand' value=4)
+                    td 
+                        input(type='radio' name='understand' value=5)
+                    td 
+                        input(type='radio' name='understand' value=6)
+                    td 
+                        input(type='radio' name='understand' value=7)
+                tr
+                    td No understanding
+
+                    td 
+
+                    td Some understanding
+
+                    td  
+
+                    td A lot of understanding 
+
+                    td  
+
+                    td Full understanding
+            br
+            br
+            br
+            | How comfortable do you feel using predictive algorithms like #[strong #{algorithm}]? 
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='comfort' value=1)
+                    td 
+                        input(type='radio' name='comfort' value=2)
+                    td 
+                        input(type='radio' name='comfort' value=3)
+                    td 
+                        input(type='radio' name='comfort' value=4)
+                    td 
+                        input(type='radio' name='comfort' value=5)
+                    td 
+                        input(type='radio' name='comfort' value=6)
+                    td 
+                        input(type='radio' name='comfort' value=7)
+                tr
+                    td Not at all comfortable
+
+                    td 
+
+                    td Moderately comfortable
+
+                    td  
+
+                    td Very comfortable
+
+                    td  
+
+                    td Extremely comfortable 
+            br
+            br
+            br
+            | When using predictive algorithms like #[strong #{algorithm}], how confident are you that you can accomplish what you are trying to achieve? 
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='confident' value=1)
+                    td 
+                        input(type='radio' name='confident' value=2)
+                    td 
+                        input(type='radio' name='confident' value=3)
+                    td 
+                        input(type='radio' name='confident' value=4)
+                    td 
+                        input(type='radio' name='confident' value=5)
+                    td 
+                        input(type='radio' name='confident' value=6)
+                    td 
+                        input(type='radio' name='confident' value=7)
+                tr
+                    td Not at all confident
+
+                    td 
+
+                    td Moderately confident
+
+                    td  
+
+                    td Very confident
+
+                    td  
+
+                    td Extremely confident
+            br
+            br
+            button(id='next') Next

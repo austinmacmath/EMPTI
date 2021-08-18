@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey-1-6.js')
+    body
+        div.question
+            | How likely are you to adopt #[strong #{algorithm}] while using your own device to help you in the future? 
+            br
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='adopt' value=1)
+                    td 
+                        input(type='radio' name='adopt' value=2)
+                    td 
+                        input(type='radio' name='adopt' value=3)
+                    td 
+                        input(type='radio' name='adopt' value=4)
+                    td 
+                        input(type='radio' name='adopt' value=5)
+                    td 
+                        input(type='radio' name='adopt' value=6)
+                    td 
+                        input(type='radio' name='adopt' value=7)
+                tr
+                    td Very unlikely 
+
+                    td 
+
+                    td 
+
+                    td Neutral
+
+                    td 
+
+                    td  
+
+                    td very likely 
+            br
+            br
+            button(id='next') Next

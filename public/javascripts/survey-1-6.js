@@ -16,7 +16,25 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
-        // window.location = '/' + id + '/mt1';
-        window.location = '/' + id + '/s3-1'
+        fetch('/tutorial_complete', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                uid: id
+            })
+        }) 
+        .then(response => response.json())
+        .then(result => {
+            if(result.t0_complete && result.t1_complete) {
+                window.location = '/' + id + '/s3'
+            } else {
+                window.location = '/' + id + '/break'
+            }
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
     })
 }

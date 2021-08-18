@@ -13,8 +13,19 @@ div.tutorial-body {
     margin: auto;
 }
 
+div.question {
+    text-align: center;
+}
+
+div.boxes {
+    width: 300px;
+    text-align: start;
+    margin: auto;
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     text-align: center;
+    margin: auto;
 }
