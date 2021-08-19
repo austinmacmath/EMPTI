@@ -28,20 +28,22 @@ window.onload = function () {
             str.lastIndexOf("/")
         );
         for (var i = 0; i < perspectives.length; i++) {
-            console.log(perspectives[i].id + ": " + perspectives[i].checked);
-            promises.push(
-                fetch('/q5_submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        uid: id,
-                        perspective: perspectives[i].id,
-                        checked: perspectives[i].checked
+            // console.log(perspectives[i].id + ": " + perspectives[i].checked);
+            if(perspectives[i].checked) {
+                promises.push(
+                    fetch('/q5_submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            uid: id,
+                            perspective: perspectives[i].id,
+                            checked: perspectives[i].checked
+                        })
                     })
-                })
-            )
+                )
+            }
         }
         Promise.all(promises)
             .then(result => {

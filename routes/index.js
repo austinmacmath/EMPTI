@@ -1082,6 +1082,121 @@ router.post('/s1-6_submit', function (req, res) {
   res.sendStatus(200);
 })
 
+// submit survey-3-1
+router.post('/s3-1_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_3_1(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-3-2
+router.post('/s3-2_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_3_2(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-3-3
+router.post('/s3-3_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_3_3(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-3-4
+router.post('/s3-4_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_3_4(uid, submission_time, devices) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
+// submit survey-3-5
+router.post('/s3-5_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_3_5(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+    })
+    .then(uid => {
+      console.log("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
 // start button click
 router.post('/start', function (req, res) {
   db.one('SELECT e0 FROM participants where id = $1', [req.body.uid])

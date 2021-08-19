@@ -6,8 +6,7 @@ html
     body
         div.question
             | What is your age? 
-            br
-            input(type="text" id=age)
+            input(type="text" name="age" id="age")
             br
             br
             | What is the highest level of school you have completed or the highest degree you have received?
@@ -41,39 +40,40 @@ html
             | Are you Spanish, Hispanic, or Latino or none of these?
             br
             div.answers
-                input(type='radio' name="ethnicity" id='Spanish' value=1)
+                input(type='radio' name="SpanishHispanicLatino" id='Spanish' value=1)
                 label(for='Spanish') Spanish
                 br
-                input(type='radio' name="ethnicity" id='Hispanic' value=2)
+                input(type='radio' name="SpanishHispanicLatino" id='Hispanic' value=2)
                 label(for='Hispanic') Hispanic
                 br
-                input(type='radio' name="ethnicity" id='Latino' value=3)
+                input(type='radio' name="SpanishHispanicLatino" id='Latino' value=3)
                 label(for='Latino') Latino
                 br
-                input(type='radio' name="ethnicity" id='None of these' value=4)
+                input(type='radio' name="SpanishHispanicLatino" id='None of these' value=4)
                 label(for='None of these') None of these
             br
             br
             | Choose one or more races that you consider yourself to be.
             br
             div.answers
-                input(type='checkbox' id='White')
+                input(type='checkbox' name='ethnicity' id='White' value='White')
                 label(for='White') White
                 br
-                input(type='checkbox' id='Asian')
+                input(type='checkbox' name='ethnicity' id='Asian' value='Asian')
                 label(for='Asian') Asian 
                 br
-                input(type='checkbox' id='Black or African American')
+                input(type='checkbox' name='ethnicity' id='Black or African American' value='Black or African American')
                 label(for='Black or African American') Black or African American 
                 br
-                input(type='checkbox' id='Native Hawaiian or Pacific Islander')
+                input(type='checkbox' name='ethnicity' id='Native Hawaiian or Pacific Islander' value='Native Hawaiian or Pacific Islander')
                 label(for='Native Hawaiian or Pacific Islander') Native Hawaiian or Pacific Islander
                 br
-                input(type='checkbox' id='American Indian or Alaska Native')
+                input(type='checkbox' name='ethnicity' id='American Indian or Alaska Native' value='American Indian or Alaska Native')
                 label(for='American Indian or Alaska Native') American Indian or Alaska Native 
                 br
-                label(for='Other') Other (please specify)
-                input(type='text' id='Other')
+                input(type='checkbox' name='ethnicity' id='Other1')
+                label(for='Other1') Other (please specify) 
+                input(type='text' id='Other1Text')
             br
             br
             | What is your gender? 
@@ -171,10 +171,11 @@ html
                 input(type='radio' name="political" id='Independent' value=3)
                 label(for='Independent') Independent 
                 br
-                input(type='radio' name="political" id='No preference' value=3)
+                input(type='radio' name="political" id='No preference' value=4)
                 label(for='No preference') No preference 
                 br
-                label(for='Other') Other (please specify) 
-                input(type='text' name="political" id='Other')
+                input(type='radio', name="political" id ="Other2")
+                label(for='Other2') Other (please specify) 
+                input(type='text' name="political" id='Other2Text')
             br
             button(id='next') Next

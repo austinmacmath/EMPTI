@@ -85,6 +85,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * for email pages
     * record page load time
 * progress bar
+* remove algorithm column from survey_3_* db tables along with references to algorithm in index.js
 
 ## Completed
 * place 1st manipulation check after first tutorial transition

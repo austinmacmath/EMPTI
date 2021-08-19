@@ -12,25 +12,35 @@ if (window.history && history.pushState) {
 var clicked = false;
 
 window.onload = function () {
+    
     let predictionary;
     var b = document.getElementById('b');
     if (b.innerHTML == "1") {
         predictionary = Predictionary.instance();
+        // Get dictionary
+        $.get('/dictionaries/words_incorrect.txt').then(function (result) {
+            parseWords(result, DICT_EN);
+            console.log('finish EN after: ' + (new Date().getTime() - startTime))
+        });
     } else if (b.innerHTML == "0") {
         predictionary = Predictionary.instance();
+        $.get('/dictionaries/words_correct.txt').then(function (result) {
+            parseWords(result, DICT_EN);
+            console.log('finish EN after: ' + (new Date().getTime() - startTime))
+        });
     }
-
+    
     let DICT_EN = 'DICT_EN'
     let startTime = new Date().getTime();
-
+    
     let input = '';
     let suggestions = [];
     let nrOfSuggestions = 1;
     let learnFromChosen = true;
-
+    
     let predictionDisplayTime;
     let prevSuggestion;
-
+    
     function parseWords(string, dictionaryKey) {
         predictionary.parseWords(string, {
             elementSeparator: '\n',
@@ -79,12 +89,6 @@ window.onload = function () {
         refreshSuggestions();
         predictionary.learnFromInput(input);
     }
-
-    // Get dictionary
-    $.get('/dictionaries/words_en.txt').then(function (result) {
-        parseWords(result, DICT_EN);
-        console.log('finish EN after: ' + (new Date().getTime() - startTime))
-    });
 
     // Train predictionary on original email
     var originalEmail = document.getElementById('message-text').innerHTML.replace(/<(.|\n)*?>/g, ' ');
