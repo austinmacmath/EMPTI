@@ -79,13 +79,14 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * log when radios are not clicked also or force them to click
 * survey
     * randomize items not pages
-    * create survey db tables
 * break
     * add timer, will move to next page after 1 min automatically
 * for email pages
     * record page load time
+    * record d' actions in db table
 * progress bar
 * remove algorithm column from survey_3_* db tables along with references to algorithm in index.js
+* deploy application
 
 ## Completed
 * place 1st manipulation check after first tutorial transition
@@ -100,3 +101,4 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * change green color of typing indicator
 * center questionnaire
 * center surveys
+* implement different algorithm corpus
