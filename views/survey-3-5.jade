@@ -1,0 +1,181 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey-3-5.js')
+    body
+        div.question
+            | What is your age? 
+            input(type="text" name="age" id="age")
+            br
+            br
+            | What is the highest level of school you have completed or the highest degree you have received?
+            br
+            div.answers
+                input(type='radio' name="education" id='Less than high school degree' value=1)
+                label(for='Less than high school degree') Less than high school degree
+                br
+                input(type='radio' name="education" id='High school graduate (high school diploma or equivalent including GED)' value=2)
+                label(for='High school graduate (high school diploma or equivalent including GED)') High school graduate (high school diploma or equivalent including GED) 
+                br
+                input(type='radio' name="education" id='Some college but no degree' value=3)
+                label(for='Some college but no degree') Some college but no degree 
+                br
+                input(type='radio' name="education" id='Associate degree in college (2-year)' value=4)
+                label(for='Associate degree in college (2-year)') Associate degree in college (2-year) 
+                br
+                input(type='radio' name="education" id='Bachelor’s degree in college (4-year)' value=5)
+                label(for='Bachelor’s degree in college (4-year)') Bachelor’s degree in college (4-year) 
+                br
+                input(type='radio' name="education" id='Master\'s degree' value=6)
+                label(for='Master\'s degree') Master's degree 
+                br
+                input(type='radio' name="education" id='Doctoral degree' value=7)
+                label(for='Doctoral degree') Doctoral degree 
+                br
+                input(type='radio' name="education" id='Professional degree (JD, MD)' value=8)
+                label(for='Professional degree (JD, MD)') Professional degree (JD, MD) 
+            br
+            br
+            | Are you Spanish, Hispanic, or Latino or none of these?
+            br
+            div.answers
+                input(type='radio' name="SpanishHispanicLatino" id='Spanish' value=1)
+                label(for='Spanish') Spanish
+                br
+                input(type='radio' name="SpanishHispanicLatino" id='Hispanic' value=2)
+                label(for='Hispanic') Hispanic
+                br
+                input(type='radio' name="SpanishHispanicLatino" id='Latino' value=3)
+                label(for='Latino') Latino
+                br
+                input(type='radio' name="SpanishHispanicLatino" id='None of these' value=4)
+                label(for='None of these') None of these
+            br
+            br
+            | Choose one or more races that you consider yourself to be.
+            br
+            div.answers
+                input(type='checkbox' name='ethnicity' id='White' value='White')
+                label(for='White') White
+                br
+                input(type='checkbox' name='ethnicity' id='Asian' value='Asian')
+                label(for='Asian') Asian 
+                br
+                input(type='checkbox' name='ethnicity' id='Black or African American' value='Black or African American')
+                label(for='Black or African American') Black or African American 
+                br
+                input(type='checkbox' name='ethnicity' id='Native Hawaiian or Pacific Islander' value='Native Hawaiian or Pacific Islander')
+                label(for='Native Hawaiian or Pacific Islander') Native Hawaiian or Pacific Islander
+                br
+                input(type='checkbox' name='ethnicity' id='American Indian or Alaska Native' value='American Indian or Alaska Native')
+                label(for='American Indian or Alaska Native') American Indian or Alaska Native 
+                br
+                input(type='checkbox' name='ethnicity' id='Other1')
+                label(for='Other1') Other (please specify) 
+                input(type='text' id='Other1Text')
+            br
+            br
+            | What is your gender? 
+            br
+            div.answers
+                input(type='radio' name="gender" id='Male' value=1)
+                label(for='Male') Male
+                br
+                input(type='radio' name="gender" id='Female' value=2)
+                label(for='Female') Female 
+                br
+                input(type='radio' name="gender" id='Non-binary' value=3)
+                label(for='Non-binary') Non-binary 
+            br
+            br
+            |  Information about income is very important to understand and your information is completely confidential. Would you please give us your best estimate?
+            | Please indicate the answer that includes your entire household income in the previous year before taxes.
+            br
+            div.answers
+                input(type='radio' name="income" id='Less than $10,000' value=1)
+                label(for='Less than $10,000') Less than $10,000
+                br
+                input(type='radio' name="income" id='$10,000 to $19,999' value=2)
+                label(for='$10,000 to $19,999') $10,000 to $19,999
+                br
+                input(type='radio' name="income" id='$20,000 to $29,999' value=3)
+                label(for='$20,000 to $29,999') $20,000 to $29,999
+                br
+                input(type='radio' name="income" id='$30,000 to $39,999' value=4)
+                label(for='$30,000 to $39,999') $30,000 to $39,999
+                br
+                input(type='radio' name="income" id='$40,000 to $49,999' value=5)
+                label(for='$40,000 to $49,999') $40,000 to $49,999
+                br
+                input(type='radio' name="income" id='$50,000 to $59,999' value=6)
+                label(for='$50,000 to $59,999') $50,000 to $59,999
+                br
+                input(type='radio' name="income" id='$60,000 to $69,999' value=7)
+                label(for='$60,000 to $69,999') $60,000 to $69,999
+                br
+                input(type='radio' name="income" id='$70,000 to $79,999' value=8)
+                label(for='$70,000 to $79,999') $70,000 to $79,999
+                br
+                input(type='radio' name="income" id='$80,000 to $89,999' value=9)
+                label(for='$80,000 to $89,999') $80,000 to $89,999
+                br
+                input(type='radio' name="income" id='$90,000 to $99,999' value=10)
+                label(for='$90,000 to $99,999') $90,000 to $99,999
+                br
+                input(type='radio' name="income" id='$100,000 to $149,999' value=11)
+                label(for='$100,000 to $149,999') $100,000 to $149,999
+                br
+                input(type='radio' name="income" id='$150,000 or more' value=12)
+                label(for='$150,000 or more') $150,000 or more
+            br
+            br
+            | Please answer "Slightly disagree" to this question.
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='check' value=1)
+                    td 
+                        input(type='radio' name='check' value=2)
+                    td 
+                        input(type='radio' name='check' value=3)
+                    td 
+                        input(type='radio' name='check' value=4)
+                    td 
+                        input(type='radio' name='check' value=5)
+                    td 
+                        input(type='radio' name='check' value=6)
+                    td 
+                        input(type='radio' name='check' value=7)
+                tr
+                    td Strongly disagree 
+                    td Disagree
+                    td Slightly disagree 
+                    td Neither agree nor disagree 
+                    td Slightly agree 
+                    td Agree 
+                    td Strongly agree 
+            br
+            br
+            | Generally speaking, do you usually think of yourself as a Republican, a Democrat, an Independent, or something else?
+            br
+            div.answers
+                input(type='radio' name="political" id='Republican' value=1)
+                label(for='Republican') Republican 
+                br
+                input(type='radio' name="political" id='Democrat' value=2)
+                label(for='Democrat') Democrat
+                br
+                input(type='radio' name="political" id='Independent' value=3)
+                label(for='Independent') Independent 
+                br
+                input(type='radio' name="political" id='No preference' value=4)
+                label(for='No preference') No preference 
+                br
+                input(type='radio', name="political" id ="Other2")
+                label(for='Other2') Other (please specify) 
+                input(type='text' name="political" id='Other2Text')
+            br
+            button(id='next') Next

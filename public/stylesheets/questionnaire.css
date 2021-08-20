@@ -1,0 +1,40 @@
+body {
+    padding: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div.tutorial-body {
+    font-size: 16px;
+    padding: 40px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    width: 810px;
+    margin: auto;
+}
+
+div.question {
+    text-align: center;
+}
+
+div.boxes {
+    width: 300px;
+    text-align: start;
+    margin: auto;
+}
+
+table, th, td {
+    table-layout: fixed;
+    text-align: center;
+    margin: auto;
+}
+
+td {
+    width: 75px;
+    padding-top: 40px;
+    padding: 5px;
+}
+
+td.header {
+    width: 200px;
+}

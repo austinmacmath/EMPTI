@@ -1,0 +1,126 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey-1-5.js')
+    body
+        div.question
+            | Please indicate to what extent you agree or disagree with the following statements.
+            br
+            br
+            br
+            table
+                tr
+                    td
+                    td Strongly disagree
+                    td Disagree
+                    td Somewhat agree
+                    td Neither disagree nor agree
+                    td Somewhat agree
+                    td Agree
+                    td Strongly agree
+                tr
+                    td(class="header") Using #[strong #{algorithm}] enhanced my effectiveness in composing sentences and responding to emails.
+                    td 
+                        input(type='radio' name='effectiveness' value=1)
+                    td 
+                        input(type='radio' name='effectiveness' value=2)
+                    td
+                        input(type='radio' name='effectiveness' value=3)
+                    td 
+                        input(type='radio' name='effectiveness' value=4)
+                    td  
+                        input(type='radio' name='effectiveness' value=5)
+                    td 
+                        input(type='radio' name='effectiveness' value=6)
+                    td 
+                        input(type='radio' name='effectiveness' value=7)
+                    td 
+                tr
+                    td(class="header") Using #[strong #{algorithm}] made it easier for me to compose sentences and respond to emails.
+                    td 
+                        input(type='radio' name='easier' value=1)
+                    td 
+                        input(type='radio' name='easier' value=2)
+                    td
+                        input(type='radio' name='easier' value=3)
+                    td 
+                        input(type='radio' name='easier' value=4)
+                    td  
+                        input(type='radio' name='easier' value=5)
+                    td 
+                        input(type='radio' name='easier' value=6)
+                    td 
+                        input(type='radio' name='easier' value=7)
+                    td 
+                tr
+                    td(class="header") Using #[strong #{algorithm}] enabled me to compose sentences and respond to emails more quickly.
+                    td 
+                        input(type='radio' name='compose' value=1)
+                    td 
+                        input(type='radio' name='compose' value=2)
+                    td
+                        input(type='radio' name='compose' value=3)
+                    td 
+                        input(type='radio' name='compose' value=4)
+                    td  
+                        input(type='radio' name='compose' value=5)
+                    td 
+                        input(type='radio' name='compose' value=6)
+                    td 
+                        input(type='radio' name='compose' value=7)
+                    td 
+                tr
+                    td(class="header") Using #[strong #{algorithm}] increased my productivity of composing sentences and responding to emails. 
+                    td 
+                        input(type='radio' name='productivity' value=1)
+                    td 
+                        input(type='radio' name='productivity' value=2)
+                    td
+                        input(type='radio' name='productivity' value=3)
+                    td 
+                        input(type='radio' name='productivity' value=4)
+                    td  
+                        input(type='radio' name='productivity' value=5)
+                    td 
+                        input(type='radio' name='productivity' value=6)
+                    td 
+                        input(type='radio' name='productivity' value=7)
+                    td 
+                tr
+                    td(class="header") Using #[strong #{algorithm}] improved my performance of composing sentences and responding to emails. 
+                    td 
+                        input(type='radio' name='performance' value=1)
+                    td 
+                        input(type='radio' name='performance' value=2)
+                    td
+                        input(type='radio' name='performance' value=3)
+                    td 
+                        input(type='radio' name='performance' value=4)
+                    td  
+                        input(type='radio' name='performance' value=5)
+                    td 
+                        input(type='radio' name='performance' value=6)
+                    td 
+                        input(type='radio' name='performance' value=7)
+                    td 
+                tr
+                    td(class="header") Overall, #[strong #{algorithm}] was useful for me to compose sentences and respond to emails.
+                    td 
+                        input(type='radio' name='useful' value=1)
+                    td 
+                        input(type='radio' name='useful' value=2)
+                    td
+                        input(type='radio' name='useful' value=3)
+                    td 
+                        input(type='radio' name='useful' value=4)
+                    td  
+                        input(type='radio' name='useful' value=5)
+                    td 
+                        input(type='radio' name='useful' value=6)
+                    td 
+                        input(type='radio' name='useful' value=7)
+                    td 
+            br
+            br
+            button(id='next') Next

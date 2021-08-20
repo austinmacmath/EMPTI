@@ -1,0 +1,52 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/minimal.css')
+    script(src='/javascripts/jquery-3.4.1.min.js')
+    script(src='/javascripts/lz-string.min.js')
+    script(src='/javascripts/predictionary.min.js')
+    script(src='/javascripts/email.js' defer)
+
+  body
+    div.tutorial-body
+      | #[strong Instructions:] 
+      br
+      ol
+        li In this session, you will use #[strong CS Predictor] to respond to 4 emails. 
+        li The #[strong writing habits questionnaire] you completed earlier will NOT be used when working with #[strong CS Predictor] in this session.
+        li #[strong CS Predictor] is developed by a group of Computer Science (CS) junior students at UC Santa Barbara as a final project in their AI Programming course. It provides you with typing suggestions that a majority of users would have typed based on the probability model.
+        li Imagine as if someone has sent the email below to you and respond to the message as authentically as possible. 
+        li If a gray text appears after your cursor, you have the option to pressing the TAB key on the left side of your keyboard to autocomplete #[strong CS Predictor’s] suggestion. 
+    div.message-body
+      br
+      div.subject Re: #{subject} 
+      div.metadata 
+        span.left-justify #{sender}
+        span(class='right-justify' id='time') 9:15 AM (#{hours} hours ago)
+        br
+        | to You 
+      div(class='message' id='message')
+        pre(id='message-text')
+          | #{salutation}
+          br
+          br
+          | #{body}
+          br
+          br
+          | #{closing}
+    div.response-body
+      div.reply-body
+        div.recipient 
+          span(class='to' id='to') To: #{sender}
+          br
+          br
+          div(class='container' id='container')
+            div(class='backdrop' id='backdrop')
+              div(class='predictions' id='predictions')
+            textarea(id='email' name='email' spellcheck='false')
+          br
+          button(class='send' id='send' tabindex='-1') Send
+          span(class='wordcount' id='wordcount') 0
+          span(class='wc_label') Word Count:&nbsp
+          span(class='wc_error' id='wc_error')
+          p(hidden id='b') #{b}

@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    script(src='/javascripts/jquery-3.4.1.min.js')
+    script(src='/javascripts/lz-string.min.js')
+    script(src='/javascripts/predictionary.min.js')
+    script(src='/javascripts/email.js' defer)
+
+  body
+    div.tutorial-body
+      | #[strong Instructions:]
+      br
+      ol
+        li In this session, you will use #[strong Smart Predictor] to respond to 4 emails. 
+        li The #[strong writing habits questionnaire] you completed earlier WILL be used when working with #[strong Smart Predictor] in this session.
+        li #[strong Smart Predictor] is designed by the Computer Science Department at UC Santa Barbara in collaboration with Google’s Smart Compose Team. It is a highly personalized algorithm that learns from your typing patterns over time and provides you with typing suggestions that are tailored towards your own writing styles.  
+        li Imagine as if someone has sent the email below to you and respond to the message as authentically as possible. 
+        li If a gray text appears after your cursor, you have the option to pressing the TAB key on the left side of your keyboard to autocomplete #[strong Smart Predictor’s] suggestion. 
+    div.message-body
+      img.gmail(src='/images/gmail.png')
+      div.subject Re: #{subject} 
+      div.metadata 
+        span.left-justify #{sender}
+        span(class='right-justify' id='time') 9:15 AM (#{hours} hours ago)
+        br
+        | to You 
+      div(class='message' id='message')
+        pre(id='message-text')
+          | #{salutation}
+          br
+          br
+          | #{body}
+          br
+          br
+          | #{closing}
+    div.response-body
+      div.reply-body
+        div.recipient 
+          span(class='to' id='to') To: #{sender}
+          br
+          br
+          div(class='container' id='container')
+            div(class='backdrop' id='backdrop')
+              div(class='predictions' id='predictions')
+            textarea(id='email' name='email' spellcheck='false')
+          br
+          button(class='send' id='send' tabindex='-1') Send
+          span(class='wordcount' id='wordcount') 0
+          span(class='wc_label') Word Count:&nbsp
+          p(hidden id='b') #{b}
+          div(class='typing')
+            span(class='typing__bullet')
+            span(class='typing__bullet')
+            span(class='typing__bullet')
+          span(class='wc_error' id='wc_error')

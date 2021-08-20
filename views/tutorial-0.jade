@@ -1,0 +1,57 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/minimal.css')
+    script(src='/javascripts/jquery-3.4.1.min.js')
+    script(src='/javascripts/lz-string.min.js')
+    script(src='/javascripts/predictionary.min.js')
+    script(src='/javascripts/email.js')
+
+  body
+    div.tutorial-body
+      | #[strong THIS IS A TUTORIAL (your responses will not be recorded on this page):]
+      br
+      br
+      ol
+        li Welcome to session #{order}! In this session, you will use #[strong CS Predictor] to respond to 4 emails.
+        li The #[strong writing habits questionnaire] you completed earlier will NOT be used when working with #[strong CS Predictor] in this session.
+        li #[strong CS Predictor] is developed by a group of Computer Science (CS) junior students at UC Santa Barbara as a final project in their AI Programming course. It provides you with typing suggestions that a majority of users would have typed based on the probability model.
+        li Imagine as if someone has sent the email below to you and respond to the message as authentically as possible. 
+        li If a gray text appears after your cursor, you have the option to pressing the TAB key on the left side of your keyboard to autocomplete #[strong CS Predictor’s] suggestion. 
+        li In the live page (not this tutorial), your response to each email must be at least 100 words in order to submit.
+        li Once you understand how to interact with the #[strong CS Predictor], please click the SEND button to submit your and progress to the next email. 
+    div.message-body
+      br
+      div.subject Re: Trying to buy used car
+      div.metadata 
+        span.left-justify Bailey Hobbs
+        span(class='right-justify' id='time') 9:15 AM (#{hours} hours ago)
+        br
+        | to You 
+      div(class='message' id='message')
+        pre(id='message-text')
+          | Hello,
+          br
+          br
+          | Thank you for your response to my Craigslist posting and for your interest in buying my car. The car is a 2018 in relatively good condition. Please let me know if you have any questions, and please let me know your availability to do a test drive.
+          br
+          br
+          | Best, 
+          br
+          | Bailey Hobbs
+    div.response-body
+      div.reply-body
+        div.recipient 
+          span(class='to' id='to') To: Bailey Hobbs 
+          br
+          br
+          div(class='container' id='container')
+            div(class='backdrop' id='backdrop')
+              div(class='predictions' id='predictions')
+            textarea(id='email' name='email' spellcheck='false')
+          br
+          button(class='send' id='send-tutorial-0' tabindex='-1') Send
+          span(class='wordcount' id='wordcount') 0
+          span(class='wc_label') Word Count:&nbsp
+          span(class='wc_error' id='wc_error')
+          p(hidden id='b') 0

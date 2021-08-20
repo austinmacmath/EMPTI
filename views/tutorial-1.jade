@@ -1,0 +1,61 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery-3.4.1.min.js')
+    script(src='/javascripts/lz-string.min.js')
+    script(src='/javascripts/predictionary.min.js')
+    script(src='/javascripts/email.js')
+
+  body
+    div.tutorial-body
+      | #[strong THIS IS A TUTORIAL (your responses will not be recorded on this page):]
+      br
+      br
+      ol
+        li Welcome to session #{order}! In this session you will be working with #[strong Smart Predictor] to respond to 4 emails.
+        li #[strong Smart Predictor] is designed by the Computer Science Department at UC Santa Barbara in collaboration with Google’s Smart Compose Team. It is a highly personalized algorithm that learns from a) the writing questionnaire that you filled out at the beginning of our experiment and b) your typing patterns over time to provide you with typing suggestions that are tailored towards your own writing styles.   
+        li We ask you to imagine as if someone has sent the email below to you, and you are going to respond to it as authentically as possible. #[strong Your responses will NOT be linked to your identity, and please do not disclose any sensitive information.]
+        li Please type your response in the text box below. 
+        li If a gray text appears after your cursor, you have the option to pressing the TAB key on the left side of your keyboard to autocomplete #[strong Smart Predictor’s] suggestion. 
+        li In the live page (not this tutorial), your response to each email must be #[strong at least 100 words] in order to submit.
+        li Once you understand how to interact with #[strong Smart Predictor], please click the SEND button to submit your response and progress to the next email. 
+    div.message-body
+      img.gmail(src='/images/gmail.png')
+      div.subject Re: Your car's extended warranty
+      div.metadata 
+        span.left-justify Car Owner's Association
+        span(class='right-justify' id='time') 9:15 AM (#{hours} hours ago)
+        br
+        | to You 
+      div(class='message' id='message')
+        pre(id='message-text')
+          | Hello vehicle owner,
+          br
+          br
+          | We've been trying to reach you concerning your vehicle's extended warranty. You should've received a notice in the mail about your car's extended warranty eligibility. Since we've not gotten a response, we're giving you a final courtesy call before we close out your file. Press 2 to be removed and placed on our do-not-call list. To speak to someone about possibly extending or reinstating your vehicle's warranty, press 1 to speak with a warranty specialist.
+          br
+          br
+          | Best, 
+          br
+          | Dave
+    div.response-body
+      div.reply-body
+        div.recipient 
+          span(class='to' id='to') To: Car Owner's Association
+          br
+          br
+          div(class='container' id='container')
+            div(class='backdrop' id='backdrop')
+              div(class='predictions' id='predictions')
+            textarea(id='email' name='email' spellcheck='false')
+          br
+          button(class='send' id='send-tutorial-1' tabindex='-1') Send
+          span(class='wordcount' id='wordcount') 0
+          span(class='wc_label') Word Count:&nbsp
+          span(class='wc_error' id='wc_error')
+          p(hidden id='b') 0
+          div(class='typing')
+            span(class='typing__bullet')
+            span(class='typing__bullet')
+            span(class='typing__bullet')
