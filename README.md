@@ -1,5 +1,5 @@
 # Synergy
-**THIS IS THE README FOR THE DEVELOPMENT APP.**<br><br>
+**THIS IS THE README FOR THE PRODUCTION APP.**<br><br>
 This is a Google Smart Compose/email client simulator for the Synergy project. Work in progress.
 
 ## Requirements
@@ -24,7 +24,7 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/<UID>/<EMAIL ID>` for the different email prompts
 
 ## Generating new UIDs
-Run `node make_id.js`. This will create a new random 20 digit string for a user. 
+Run `node make_id.js`. This will create a new random 20 digit string for a user. Find database credentials at Heroku.
 
 ## To Do
 * implement biased model
@@ -32,23 +32,7 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * model should work for capital words also
 * user testing
 
-## Updates
-
-### 7/21
-* between tutorial and real thing, have black screen syaing experiment beginning
-
-## Questions
-* How to define bias? 
-
-## Security Concerns
-* SQL injection
-* backpaging and corrupting data
-* submitting data after end of experiment
-* not being provided all 10 questions
-* guessing someone else's uid
-* promises not handled correctly
-
-## Edits
+## To do 
 * make predictionary work in middle of text
 
 ## To Do from 7/21 meeting
