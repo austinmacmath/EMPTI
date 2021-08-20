@@ -241,10 +241,11 @@ var incorrectWords = [
     'welcomming',
     'whereever',
     'wierd'
-    ]
+]
+var dPrime = []
 
 window.onload = function () {
-    
+
     let predictionary;
     var b = document.getElementById('b');
     if (b.innerHTML == "1") {
@@ -252,27 +253,25 @@ window.onload = function () {
         // Get dictionary
         $.get('/dictionaries/words_incorrect.txt').then(function (result) {
             parseWords(result, DICT_EN);
-            console.log('finish EN after: ' + (new Date().getTime() - startTime))
         });
     } else if (b.innerHTML == "0") {
         predictionary = Predictionary.instance();
         $.get('/dictionaries/words_correct.txt').then(function (result) {
             parseWords(result, DICT_EN);
-            console.log('finish EN after: ' + (new Date().getTime() - startTime))
         });
     }
-    
+
     let DICT_EN = 'DICT_EN'
     let startTime = new Date().getTime();
-    
+
     let input = '';
     let suggestions = [];
     let nrOfSuggestions = 1;
     let learnFromChosen = true;
-    
+
     let predictionDisplayTime;
     let prevSuggestion;
-    
+
     function parseWords(string, dictionaryKey) {
         predictionary.parseWords(string, {
             elementSeparator: '\n',
@@ -295,7 +294,6 @@ window.onload = function () {
                 predictionDisplayTime = new Date().getTime();
                 if (suggestions[0] != prevSuggestion) {
                     prevSuggestion = suggestions[0];
-                    console.log("SUGGEST: ", suggestions[0], " @ ", predictionDisplayTime);
                 }
             }
         }
@@ -307,13 +305,24 @@ window.onload = function () {
         var lastSpace = input.lastIndexOf(' ');
         var lastWord = input.substring(lastSpace + 1);
         if (b.innerHTML == "0") { // unbiased
-            console.log("HIT: ", suggestions[0], " @ ", tabTime);
+            dPrime.push({
+                code: "hit",
+                suggestion: suggestions[0],
+                suggestionTime: predictionDisplayTime,
+                root: lastWord,
+                tabTime: tabTime
+            })
         } else { // biased
-            if(incorrectWords.includes(suggestions[0])) {
-               console.log("FALSE ALARM: ", suggestions[0], " @ ", tabTime) 
+            if (incorrectWords.includes(suggestions[0])) {
+                dPrime.push({
+                    code: "false alarm",
+                    suggestion: suggestions[0],
+                    suggestionTime: predictionDisplayTime,
+                    root: lastWord,
+                    tabTime: tabTime
+                })
             }
         }
-        console.log("ROOT: ", lastWord);
 
         input = predictionary.applyPrediction(input, suggestion, {
             dontLearn: false
@@ -368,10 +377,22 @@ window.onload = function () {
             if (input.length == event.target.selectionStart && suggestions.length > 0) {
                 var currentTime = new Date().getTime();
                 if (lastWord != suggestions[0].substring(0, lastWord.length) && b.innerHTML == "0") {
-                    console.log("MISS: ", lastWord, " @ ", currentTime);
+                    dPrime.push({
+                        code: "miss",
+                        suggestion: suggestions[0],
+                        suggestionTime: predictionDisplayTime,
+                        root: lastWord,
+                        tabTime: currentTime
+                    })
                 } else if (lastWord != suggestions[0].substring(0, lastWord.length) && b.innerHTML == "1") {
-                    if(incorrectWords.includes(suggestions[0])) {
-                        console.log("CORRECT REJECTION: ", lastWord, " @ ", currentTime)
+                    if (incorrectWords.includes(suggestions[0])) {
+                        dPrime.push({
+                            code: "correct rejection",
+                            suggestion: suggestions[0],
+                            suggestionTime: predictionDisplayTime,
+                            root: lastWord,
+                            tabTime: currentTime
+                        })
                     }
                 }
             }
@@ -417,20 +438,19 @@ window.onload = function () {
                         body: JSON.stringify({
                             message: response,
                             uid: id,
-                            email_id: email
+                            email_id: email,
+                            dprime: dPrime
                         })
                     })
                     .then(response => response.json())
                     .then(result => {
                         if (result.email_id == -1) {
-                            console.log("goodbye");
                             window.location = '/goodbye';
                         } else if (result.prompt_count == 4) {
                             window.location = '/' + id + '/s1'
                         } else if (result.prompt_count == 8) {
                             window.location = '/' + id + '/m2'
                         } else {
-                            console.log("next");
                             window.location = '/' + id + '/' + result.email_id;
                         }
                     })
@@ -501,7 +521,6 @@ window.onload = function () {
         };
 
     function showIndicator() {
-        console.log("showIndicator")
         _typingIndicator.classList.add(indicatorState.init);
     }
 
@@ -512,7 +531,6 @@ window.onload = function () {
     }
 
     function removeIndicator() {
-        console.log("removeIndicator")
         _typingIndicator.classList.remove(indicatorState.init, indicatorState.active);
     }
 
@@ -534,7 +552,6 @@ window.onload = function () {
     }
 
     function initTypingIndicator() {
-        console.log("initTypingIndicator")
         _input.onfocus = function () {
             showIndicator();
         };

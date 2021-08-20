@@ -1,61 +1,58 @@
-window.onload = function() {
+window.onload = function () {
     var _typingIndicator = document.querySelector('.typing'),
         _input = document.querySelector('#message-input'),
         idleTime = 400,
         idleTimer = null,
         inputValue,
         indicatorState = {
-            active : 'is-typing-active',
-            init : 'is-typing-init'
+            active: 'is-typing-active',
+            init: 'is-typing-init'
         };
-    
-    function showIndicator(){
-        console.log("showIndicator")
+
+    function showIndicator() {
         _typingIndicator.classList.add(indicatorState.init);
     }
-    
-    function activateIndicator(el){
+
+    function activateIndicator(el) {
         _typingIndicator.classList.add(indicatorState.active);
         inputValue = el.value;
         detectIdle(el);
     }
-    
-    function removeIndicator(){
-        console.log("removeIndicator")
+
+    function removeIndicator() {
         _typingIndicator.classList.remove(indicatorState.init, indicatorState.active);
     }
-    
-    function detectIdle(el){
+
+    function detectIdle(el) {
         if (idleTimer) {
             clearInterval(idleTimer);
         }
-        
-        idleTimer = setTimeout(function(){
+
+        idleTimer = setTimeout(function () {
             if (getInputCurrentValue(el) === inputValue) {
                 _typingIndicator.classList.remove(indicatorState.active);
             }
         }, idleTime);
     }
-    
-    function getInputCurrentValue(el){
+
+    function getInputCurrentValue(el) {
         var currentValue = el.value;
         return currentValue;
     }
-    
+
     function initTypingIndicator() {
-        console.log("initTypingIndicator")
-        _input.onfocus = function(){
+        _input.onfocus = function () {
             showIndicator();
         };
-    
-        _input.onkeyup = function() {
+
+        _input.onkeyup = function () {
             activateIndicator(this);
         };
-    
-        _input.onblur = function(){
+
+        _input.onblur = function () {
             removeIndicator();
         };
     }
-    
+
     initTypingIndicator();
 }

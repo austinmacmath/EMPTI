@@ -23,7 +23,6 @@ window.onload = function () {
         for (var i = 0; i < mediums.length; i++) {
             for (var j = 0, length = mediums[i].length; j < length; j++) {
                 if (mediums[i][j].checked) {
-                    console.log(mediums[i][j].name + ": " + mediums[i][j].value);
                     promises.push(
                         fetch('/s1-6_submit', {
                             method: 'POST',
@@ -43,7 +42,6 @@ window.onload = function () {
         }
         Promise.all(promises)
             .then(result => {
-                console.log("s1-6_submit success")
                 return fetch('/tutorial_complete', {
                     method: 'POST',
                     headers: {
@@ -52,11 +50,11 @@ window.onload = function () {
                     body: JSON.stringify({
                         uid: id
                     })
-                })  
+                })
             })
             .then(response => response.json())
             .then(result => {
-                if(result.t0_complete && result.t1_complete) {
+                if (result.t0_complete && result.t1_complete) {
                     window.location = '/' + id + '/s3'
                 } else {
                     window.location = '/' + id + '/break'

@@ -33,7 +33,6 @@ window.onload = function () {
         for (var i = 0; i < skills.length; i++) {
             for (var j = 0, length = skills[i].length; j < length; j++) {
                 if (skills[i][j].checked) {
-                    console.log(skills[i][j].name + ": " + skills[i][j].value);
                     promises.push(
                         fetch('/q6_submit', {
                             method: 'POST',
@@ -52,9 +51,7 @@ window.onload = function () {
             }
         }
         Promise.all(promises)
-            .then(result => {
-                console.log("q6_submit success")
-            })
+            .then(result => {})
             .catch(error => {
                 console.log(error)
             })

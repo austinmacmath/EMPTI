@@ -67,9 +67,7 @@ window.onload = function () {
             }
         }
         Promise.all(promises)
-            .then(result => {
-                console.log("s3-5_submit success")
-            })
+            .then(result => {})
             .catch(error => {
                 console.log(error)
             })

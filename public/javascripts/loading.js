@@ -26,7 +26,6 @@ window.onload = function () {
             })
             .then(response => response.json())
             .then(result => {
-                console.log('Success:', result.email);
                 window.location = '/' + id + '/' + result.email;
             })
             .catch(error => {

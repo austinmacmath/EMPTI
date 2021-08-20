@@ -28,8 +28,7 @@ window.onload = function () {
             str.lastIndexOf("/")
         );
         for (var i = 0; i < perspectives.length; i++) {
-            // console.log(perspectives[i].id + ": " + perspectives[i].checked);
-            if(perspectives[i].checked) {
+            if (perspectives[i].checked) {
                 promises.push(
                     fetch('/q5_submit', {
                         method: 'POST',
@@ -46,9 +45,7 @@ window.onload = function () {
             }
         }
         Promise.all(promises)
-            .then(result => {
-                console.log("q5_submit success")
-            })
+            .then(result => {})
             .catch(error => {
                 console.log(error)
             })

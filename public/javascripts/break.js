@@ -17,21 +17,21 @@ window.onload = function () {
             str.lastIndexOf("/")
         );
         fetch('/break_complete', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                uid: id
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    uid: id
+                })
             })
-        })
-        .then(response => response.json())
-        .then(result => {
-            if(result.synergy_first == '1') {
-                window.location = '/' + id + '/t0'
-            } else {
-                window.location = '/' + id + '/t1'
-            }
-        })
+            .then(response => response.json())
+            .then(result => {
+                if (result.synergy_first == '1') {
+                    window.location = '/' + id + '/t0'
+                } else {
+                    window.location = '/' + id + '/t1'
+                }
+            })
     })
 }

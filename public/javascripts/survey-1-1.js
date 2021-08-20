@@ -30,7 +30,6 @@ window.onload = function () {
         for (var i = 0; i < mediums.length; i++) {
             for (var j = 0, length = mediums[i].length; j < length; j++) {
                 if (mediums[i][j].checked) {
-                    console.log(mediums[i][j].name + ": " + mediums[i][j].value);
                     promises.push(
                         fetch('/s1-1_submit', {
                             method: 'POST',
@@ -49,9 +48,7 @@ window.onload = function () {
             }
         }
         Promise.all(promises)
-            .then(result => {
-                console.log("s1-1_submit success")
-            })
+            .then(result => {})
             .catch(error => {
                 console.log(error)
             })
