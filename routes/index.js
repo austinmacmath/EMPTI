@@ -1,6 +1,7 @@
 var express = require('express');
 var pgp = require('pg-promise')();
-var db = pgp('postgres://usbvbbruziveim:1a8bfb795fe32aabf3f8076ef655d3cc356baef6557c43121b90bc0fc0af2a3e@ec2-3-212-75-25.compute-1.amazonaws.com:5432/d3l0j0852r9jjq');
+// var db = pgp('postgres://usbvbbruziveim:1a8bfb795fe32aabf3f8076ef655d3cc356baef6557c43121b90bc0fc0af2a3e@ec2-3-212-75-25.compute-1.amazonaws.com:5432/d3l0j0852r9jjq');
+var db = pgp('postgres://postgres:password@localhost:5432/synergy');
 var router = express.Router();
 
 // catch the favicon request for now

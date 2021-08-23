@@ -35,3 +35,46 @@ window.onload = function () {
             })
     })
 }
+
+window.setTimeout(nextPage, 60000);
+window.setInterval(timerUpdate, 1000);
+
+function nextPage() {
+    var str = window.location.pathname;
+    var id = str.substring(
+        str.indexOf("/") + 1,
+        str.lastIndexOf("/")
+    );
+    fetch('/break_complete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            uid: id
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.synergy_first == '1') {
+            window.location = '/' + id + '/t0'
+        } else {
+            window.location = '/' + id + '/t1'
+        }
+    }) 
+}
+
+var seconds = 60
+
+function timerUpdate() {
+    document.getElementById('minutes').textContent = 0;
+    seconds -= 1;
+    if(seconds < 0) {
+        document.getElementById('seconds').textContent = '00';
+    }
+    else if(seconds < 10) {
+        document.getElementById('seconds').textContent = '0' + seconds;
+    } else {
+        document.getElementById('seconds').textContent = seconds;
+    }
+}

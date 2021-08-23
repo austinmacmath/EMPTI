@@ -5,7 +5,13 @@ html
         script(src='/javascripts/break.js')
     body
         div.body
-            | Now you can take a break up to a minute. When you are ready, please click the next button to proceed to the next session. 
+            | Now you can take a break up to a minute. When you are ready, please click the next button to proceed to the next session. The next session will load automatically if no action is taken in 1 minute.
+            br
+            br
+            div(class='timer')
+                span(id='minutes') 1
+                | :
+                span(id='seconds') 00
             br
             br
             button(id='next') Next
