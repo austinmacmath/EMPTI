@@ -63,8 +63,6 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * log when radios are not clicked also or force them to click
 * survey
     * randomize items not pages
-* break
-    * add timer, will move to next page after 1 min automatically
 * for email pages
     * record page load time
     * record d' actions in db table
@@ -86,3 +84,4 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * center questionnaire
 * center surveys
 * implement different algorithm corpus
+* add timer to break page
