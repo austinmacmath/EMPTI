@@ -397,6 +397,7 @@ window.onload = function () {
                 }
             }
             refreshSuggestions();
+            select_scroll_1(event);
         }
 
         var suggestion = "";
