@@ -11,14 +11,20 @@ if (window.history && history.pushState) {
 window.onload = function () {
     var url = window.location.href
     var firstTime = localStorage.getItem(url);
+    var secondTime = localStorage.getItem(url+"2")
     if(!firstTime) {
         var progressCount = parseInt(localStorage.getItem("progressCount")) + 1
         localStorage.setItem("progressCount", progressCount.toString())
         localStorage.setItem(url, progressCount.toString());
+    } else if (!secondTime) {
+        var progressCount = parseInt(localStorage.getItem("progressCount")) + 1
+        localStorage.setItem("progressCount", progressCount.toString())
+        localStorage.setItem(url, progressCount.toString());
+        localStorage.setItem(url+"2", progressCount.toString());
     }
     var progressCount = parseInt(localStorage.getItem(url))
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
-    
+
     var button = document.getElementById('next')
     var mediums = [
         document.getElementsByName('understand'),
