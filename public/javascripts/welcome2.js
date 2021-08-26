@@ -8,6 +8,9 @@ if(!firstTime) {
 console.log("Progress Count: " + localStorage.getItem("progressCount"))
 
 window.onload = function () {    
+    var progressCount = parseInt(localStorage.getItem(url))
+    document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
+    
     var next = document.getElementById('next');
     if (next != null) {
         next.addEventListener('click', function (event) {
