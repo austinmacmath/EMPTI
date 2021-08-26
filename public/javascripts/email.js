@@ -244,15 +244,16 @@ var incorrectWords = [
 ]
 var dPrime = []
 
+var url = window.location.href
+var firstTime = localStorage.getItem(url);
+if(!firstTime) {
+    var progressCount = parseInt(localStorage.getItem("progressCount")) + 1
+    localStorage.setItem("progressCount", progressCount.toString())
+    localStorage.setItem(url, progressCount.toString());
+}
+var progressCount = parseInt(localStorage.getItem(url))
+
 window.onload = function () {
-    var url = window.location.href
-    var firstTime = localStorage.getItem(url);
-    if(!firstTime) {
-        var progressCount = parseInt(localStorage.getItem("progressCount")) + 1
-        localStorage.setItem("progressCount", progressCount.toString())
-        localStorage.setItem(url, progressCount.toString());
-    }
-    var progressCount = parseInt(localStorage.getItem(url))
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
 
     let predictionary;

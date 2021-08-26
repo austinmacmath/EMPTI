@@ -31,7 +31,7 @@ div.completed {
     100% { transform: rotate(360deg); }
   }
 
-div {
+div.loading-text {
   margin: auto;
   text-align: center;
 }
