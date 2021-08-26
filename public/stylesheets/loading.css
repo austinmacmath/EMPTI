@@ -24,6 +24,7 @@ div.completed {
     width: 60px;
     height: 60px;
     animation: spin 2s linear infinite;
+    margin: auto;
   }
   
   @keyframes spin {
@@ -31,7 +32,7 @@ div.completed {
     100% { transform: rotate(360deg); }
   }
 
-div.loader {
+div.loading-text {
   margin: auto;
   text-align: center;
 }
