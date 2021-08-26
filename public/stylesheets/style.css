@@ -3,6 +3,20 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+div.pbar {
+  width: 960px;
+  height: 25px;
+  background-color: #dbdbdb;
+  border-radius: 15px;
+  margin: auto;
+}
+
+div.completed {
+  background-color: #6ed6ff;
+  height: 25px;
+  border-radius: 15px;
+}
+
 div.subject {
   font-size: 24px;
   padding-top: 12px;

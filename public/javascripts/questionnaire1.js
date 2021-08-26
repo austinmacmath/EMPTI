@@ -9,6 +9,16 @@ if (window.history && history.pushState) {
 }
 
 window.onload = function () {
+    var url = window.location.href
+    var firstTime = localStorage.getItem(url);
+    if(!firstTime) {
+        var progressCount = parseInt(localStorage.getItem("progressCount")) + 1
+        localStorage.setItem("progressCount", progressCount.toString())
+        localStorage.setItem(url, progressCount.toString());
+    }
+    var progressCount = parseInt(localStorage.getItem(url))
+    document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
+    
     var button = document.getElementById('next')
     var mediums = [document.getElementsByName('Diary/journal'), document.getElementsByName('Academic or school paper'), document.getElementsByName('Letters or emails to relatives'), document.getElementsByName('Notes or text messages'), document.getElementsByName('Novel or stories'), document.getElementsByName('Emails for work purposes'), document.getElementsByName('Content for social media'), document.getElementsByName('Comments or reviews for books, products, etc.')]
     var promises = []

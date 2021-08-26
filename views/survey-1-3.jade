@@ -4,6 +4,9 @@ html
         link(rel='stylesheet' href='/stylesheets/survey.css')
         script(src='/javascripts/survey-1-3.js')
     body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
         div.question
             | Please indicate to what extent the following statements describe your experience with #[strong #{algorithm}].
             br

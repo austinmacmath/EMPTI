@@ -4,6 +4,9 @@ html
         link(rel='stylesheet' href='/stylesheets/survey.css')
         script(src='/javascripts/survey-1-1.js')
     body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
         div.question
             | As a predictive typing suggestion algorithm, to what extent do you feel #[strong #{algorithm}] is (click the circle that is closest to how you feel about #[strong #{algorithm}]): 
             br

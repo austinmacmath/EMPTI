@@ -9,6 +9,16 @@ if (window.history && history.pushState) {
 }
 
 window.onload = function () {
+    var url = window.location.href
+    var firstTime = localStorage.getItem(url);
+    if(!firstTime) {
+        var progressCount = parseInt(localStorage.getItem("progressCount")) + 1
+        localStorage.setItem("progressCount", progressCount.toString())
+        localStorage.setItem(url, progressCount.toString());
+    }
+    var progressCount = parseInt(localStorage.getItem(url))
+    document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
+    
     var button = document.getElementById('next')
     var mediums = [document.getElementsByName('Neutral'), document.getElementsByName('Formal'), document.getElementsByName('Confident'), document.getElementsByName('Joyful'), document.getElementsByName('Optimistic'), document.getElementsByName('Friendly'), document.getElementsByName('Urgent'), document.getElementsByName('Analytical'), document.getElementsByName('Respectful'), document.getElementsByName('Knowledgeable')]
     var promises = []
