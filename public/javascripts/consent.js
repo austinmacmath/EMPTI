@@ -11,3 +11,12 @@ window.onload = function () {
         })
     }
 }
+
+var url = window.location.href
+var firstTime = localStorage.getItem(url);
+localStorage.setItem("progressCount", "0")
+if(!firstTime) {
+    localStorage.setItem(url, "1");
+}
+
+console.log("Progress Count: " + localStorage.getItem("progressCount"))
