@@ -42,6 +42,7 @@ div.message-body {
   border-width: 5px;
   border-color: red;
   width: 900px;
+  margin: auto;
 }
 
 pre {
@@ -57,6 +58,7 @@ div.response-body {
   border-width: 5px;
   border-color: blue;
   width: 900px;
+  margin: auto;
 }
 
 span.left-justify {
