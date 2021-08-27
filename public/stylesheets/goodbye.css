@@ -28,6 +28,7 @@ div.pbar {
 
 div.completed {
     background-color: #6ed6ff;
+    width: 920px;
     height: 25px;
     border-radius: 15px;
 }
