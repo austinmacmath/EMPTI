@@ -1,7 +1,7 @@
 async function enable() {
     var start_tutorial = document.getElementById('start-tutorial');
     var loader = document.getElementById('loader');
-    await new Promise(r => setTimeout(r, 5000));
+    await new Promise(r => setTimeout(r, 10000));
     loader.style.borderColor = 'white';
     start_tutorial.disabled = false;
 }
