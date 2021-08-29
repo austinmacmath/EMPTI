@@ -85,3 +85,19 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * center surveys
 * implement different algorithm corpus
 * add timer to break page
+
+## Aug 26 Meeting Notes
+* welcome 1
+    * add checkbox "Please check the box if you understand these instructions"
+        * if box is not checked, do not allow to progress
+* survey and questionniare
+    * popup to check for missing responses
+    * center questions but left justify them
+    * add total time spent per page on survey
+* questionniare
+    * dont need to randomize questinniare items
+* randomize survey items
+* sublease email
+    * next year . => next year.
+* double check correctness of rest of email prompts
+* use new corpus
