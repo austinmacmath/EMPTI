@@ -9,6 +9,23 @@ if (window.history && history.pushState) {
 }
 
 window.onload = function () {
+    var table = document.getElementById('table')
+    var rows = [
+        '<td>Incompetent</td><td> <input type="radio" name="competent" value="1"></td><td> <input type="radio" name="competent" value="2"></td><td> <input type="radio" name="competent" value="3"></td><td> <input type="radio" name="competent" value="4"></td><td> <input type="radio" name="competent" value="5"></td><td> <input type="radio" name="competent" value="6"></td><td> <input type="radio" name="competent" value="7"></td><td>Competent</td>',
+        '<td>Nonexpert </td><td> <input type="radio" name="expert" value="1"></td><td> <input type="radio" name="expert" value="2"></td><td> <input type="radio" name="expert" value="3"></td><td> <input type="radio" name="expert" value="4"></td><td> <input type="radio" name="expert" value="5"></td><td> <input type="radio" name="expert" value="6"></td><td> <input type="radio" name="expert" value="7"></td><td>Expert</td>',
+        '<td>Untrustworthy </td><td> <input type="radio" name="trustworthy" value="1"></td><td> <input type="radio" name="trustworthy" value="2"></td><td> <input type="radio" name="trustworthy" value="3"></td><td> <input type="radio" name="trustworthy" value="4"></td><td> <input type="radio" name="trustworthy" value="5"></td><td> <input type="radio" name="trustworthy" value="6"></td><td> <input type="radio" name="trustworthy" value="7"></td><td>Trustworthy</td>',
+        '<td>Non-transparent </td><td> <input type="radio" name="transparent" value="1"></td><td> <input type="radio" name="transparent" value="2"></td><td> <input type="radio" name="transparent" value="3"></td><td> <input type="radio" name="transparent" value="4"></td><td> <input type="radio" name="transparent" value="5"></td><td> <input type="radio" name="transparent" value="6"></td><td> <input type="radio" name="transparent" value="7"></td><td>Transparent </td>',
+        '<td>Unfair </td><td> <input type="radio" name="fair" value="1"></td><td> <input type="radio" name="fair" value="2"></td><td> <input type="radio" name="fair" value="3"></td><td> <input type="radio" name="fair" value="4"></td><td> <input type="radio" name="fair" value="5"></td><td> <input type="radio" name="fair" value="6"></td><td> <input type="radio" name="fair" value="7"></td><td>Fair</td>',
+        '<td>Malevolent </td><td> <input type="radio" name="benevolent" value="1"></td><td> <input type="radio" name="benevolent" value="2"></td><td> <input type="radio" name="benevolent" value="3"></td><td> <input type="radio" name="benevolent" value="4"></td><td> <input type="radio" name="benevolent" value="5"></td><td> <input type="radio" name="benevolent" value="6"></td><td> <input type="radio" name="benevolent" value="7"></td><td>Benevolent</td>',
+        '<td>Non-credible </td><td> <input type="radio" name="credible" value="1"></td><td> <input type="radio" name="credible" value="2"></td><td> <input type="radio" name="credible" value="3"></td><td> <input type="radio" name="credible" value="4"></td><td> <input type="radio" name="credible" value="5"></td><td> <input type="radio" name="credible" value="6"></td><td> <input type="radio" name="credible" value="7"></td><td>Credible</td>',
+        '<td>Unbiased</td><td> <input type="radio" name="biased" value="7"></td><td> <input type="radio" name="biased" value="6"></td><td> <input type="radio" name="biased" value="5"></td><td> <input type="radio" name="biased" value="4"></td><td> <input type="radio" name="biased" value="3"></td><td> <input type="radio" name="biased" value="2"></td><td> <input type="radio" name="biased" value="1"></td><td>Biased</td>'
+    ]
+    rows = shuffle(rows)
+    for (var i = 0; i < 8; i++) {
+        var row = table.insertRow(0)
+        row.innerHTML = rows[i]
+    }
+
     var url = window.location.href
     var firstTime = localStorage.getItem(url);
     var secondTime = localStorage.getItem(url+"2")
@@ -71,3 +88,23 @@ window.onload = function () {
         window.location = '/' + id + '/s1-2';
     })
 }
+
+function shuffle(array) {
+    var currentIndex = array.length,
+      temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
