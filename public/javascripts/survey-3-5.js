@@ -36,6 +36,14 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
+        var checkCount = 0;
+        for (var i = 0; i < mediums.length; i++) {
+            for (var j = 0, length = mediums[i].length; j < length; j++) { 
+                if (mediums[i][j].checked) {
+                    checkCount += 1;
+                }
+            }
+        }
         if (checkCount != mediums.length && document.getElementById("age").value == "") {
             if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
                 promises.push(
