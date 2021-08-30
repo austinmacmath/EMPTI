@@ -37,8 +37,8 @@ window.onload = function () {
             str.lastIndexOf("/")
         );
         var checkCount = 0;
-        console.log(mediums.nodeName)
         for (var i = 0; i < mediums.length; i++) {
+            console.log(mediums.tagName)
             for (var j = 0, length = mediums[i].length; j < length; j++) { 
                 if (mediums[i][j].checked) {
                     checkCount += 1;
