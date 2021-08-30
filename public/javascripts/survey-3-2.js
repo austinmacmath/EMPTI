@@ -16,7 +16,7 @@ window.onload = function () {
         '<td class="header">Compared with humans, algorithms have no bias.</td><td> <input type="radio" name="bias" value="1"></td><td> <input type="radio" name="bias" value="2"></td><td> <input type="radio" name="bias" value="3"></td><td> <input type="radio" name="bias" value="4"></td><td> <input type="radio" name="bias" value="5"></td><td> <input type="radio" name="bias" value="6"></td><td> <input type="radio" name="bias" value="7"></td><td></td>'
     ]
     rows = shuffle(rows)
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 3; i++) {
         var row = table.insertRow(0)
         row.innerHTML = rows[i]
     }
