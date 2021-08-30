@@ -36,48 +36,106 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
+        var checkCount = 0;
         for (var i = 0; i < mediums.length; i++) {
-            for (var j = 0, length = mediums[i].length; j < length; j++) {
+            for (var j = 0, length = mediums[i].length; j < length; j++) { 
                 if (mediums[i][j].checked) {
-                    promises.push(
-                        fetch('/s1-6_submit', {
+                    checkCount += 1;
+                }
+            }
+        }
+        if (checkCount != mediums.length) {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                for (var i = 0; i < mediums.length; i++) {
+                    for (var j = 0, length = mediums[i].length; j < length; j++) {
+                        if (mediums[i][j].checked) {
+                            promises.push(
+                                fetch('/s1-6_submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        uid: id,
+                                        medium: mediums[i][j].name,
+                                        frequency: mediums[i][j].value
+                                    })
+                                })
+                            )
+                            break;
+                        }
+                    }
+                }
+                Promise.all(promises)
+                    .then(result => {
+                        return fetch('/tutorial_complete', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
-                                uid: id,
-                                medium: mediums[i][j].name,
-                                frequency: mediums[i][j].value
+                                uid: id
                             })
                         })
-                    )
-                    break;
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.t0_complete && result.t1_complete) {
+                            window.location = '/' + id + '/s3'
+                        } else {
+                            window.location = '/' + id + '/break'
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    }) 
+            } else {
+                return
+            }
+        } else {
+            for (var i = 0; i < mediums.length; i++) {
+                for (var j = 0, length = mediums[i].length; j < length; j++) {
+                    if (mediums[i][j].checked) {
+                        promises.push(
+                            fetch('/s1-6_submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    uid: id,
+                                    medium: mediums[i][j].name,
+                                    frequency: mediums[i][j].value
+                                })
+                            })
+                        )
+                        break;
+                    }
                 }
             }
-        }
-        Promise.all(promises)
-            .then(result => {
-                return fetch('/tutorial_complete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        uid: id
+            Promise.all(promises)
+                .then(result => {
+                    return fetch('/tutorial_complete', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            uid: id
+                        })
                     })
                 })
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.t0_complete && result.t1_complete) {
-                    window.location = '/' + id + '/s3'
-                } else {
-                    window.location = '/' + id + '/break'
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.t0_complete && result.t1_complete) {
+                        window.location = '/' + id + '/s3'
+                    } else {
+                        window.location = '/' + id + '/break'
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
     })
 }
