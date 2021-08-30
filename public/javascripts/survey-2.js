@@ -20,6 +20,7 @@ window.onload = function () {
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
     var button = document.getElementById('next')
+    var understand = document.getElementById('understand');
     button.addEventListener('click', function (event) {
         if (!understand.checked) {
             alert("Please check the box to show you understand the instructions.");
