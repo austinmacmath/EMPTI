@@ -22,25 +22,52 @@ window.onload = function () {
     var button = document.getElementById('next')
     var count = document.getElementById("count")
     button.addEventListener('click', function (event) {
-        var str = window.location.pathname;
-        var id = str.substring(
-            str.indexOf("/") + 1,
-            str.lastIndexOf("/")
-        );
-        fetch('/s3-4_submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    uid: id,
-                    devices: count.value
+        if(count.value == "") {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                var str = window.location.pathname;
+                var id = str.substring(
+                    str.indexOf("/") + 1,
+                    str.lastIndexOf("/")
+                );
+                fetch('/s3-4_submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            uid: id,
+                            devices: count.value
+                        })
+                    })
+                    .then(result => {})
+                    .catch(error => {
+                        console.log(error)
+                    })
+                window.location = '/' + id + '/s3-5'; 
+            } else {
+                return
+            }
+        } else {
+            var str = window.location.pathname;
+            var id = str.substring(
+                str.indexOf("/") + 1,
+                str.lastIndexOf("/")
+            );
+            fetch('/s3-4_submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        uid: id,
+                        devices: count.value
+                    })
                 })
-            })
-            .then(result => {})
-            .catch(error => {
-                console.log(error)
-            })
-        window.location = '/' + id + '/s3-5';
+                .then(result => {})
+                .catch(error => {
+                    console.log(error)
+                })
+            window.location = '/' + id + '/s3-5';
+        }
     })
 }
