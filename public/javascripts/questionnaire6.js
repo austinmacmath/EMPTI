@@ -40,31 +40,72 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
-        for (var i = 0; i < skills.length; i++) {
-            for (var j = 0, length = skills[i].length; j < length; j++) {
-                if (skills[i][j].checked) {
-                    promises.push(
-                        fetch('/q6_submit', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                uid: id,
-                                skill: skills[i][j].name,
-                                ability: skills[i][j].value
-                            })
-                        })
-                    )
-                    break;
+        var checkCount = 0;
+        for (var i = 0; i < mediums.length; i++) {
+            for (var j = 0, length = mediums[i].length; j < length; j++) { 
+                if (mediums[i][j].checked) {
+                    checkCount += 1;
                 }
             }
         }
-        Promise.all(promises)
-            .then(result => {})
-            .catch(error => {
-                console.log(error)
-            })
-        window.location = '/' + id + '/loading';
+        if (checkCount != mediums.length - 1) {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                for (var i = 0; i < skills.length; i++) {
+                    for (var j = 0, length = skills[i].length; j < length; j++) {
+                        if (skills[i][j].checked) {
+                            promises.push(
+                                fetch('/q6_submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        uid: id,
+                                        skill: skills[i][j].name,
+                                        ability: skills[i][j].value
+                                    })
+                                })
+                            )
+                            break;
+                        }
+                    }
+                }
+                Promise.all(promises)
+                    .then(result => {})
+                    .catch(error => {
+                        console.log(error)
+                    })
+                window.location = '/' + id + '/loading';
+            } else {
+                return
+            }
+        } else {
+            for (var i = 0; i < skills.length; i++) {
+                for (var j = 0, length = skills[i].length; j < length; j++) {
+                    if (skills[i][j].checked) {
+                        promises.push(
+                            fetch('/q6_submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    uid: id,
+                                    skill: skills[i][j].name,
+                                    ability: skills[i][j].value
+                                })
+                            })
+                        )
+                        break;
+                    }
+                }
+            }
+            Promise.all(promises)
+                .then(result => {})
+                .catch(error => {
+                    console.log(error)
+                })
+            window.location = '/' + id + '/loading';
+        }
     })
 }

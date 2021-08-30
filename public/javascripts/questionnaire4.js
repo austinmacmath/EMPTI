@@ -29,30 +29,70 @@ window.onload = function () {
             str.lastIndexOf("/")
         );
         for (var i = 0; i < mediums.length; i++) {
-            for (var j = 0, length = mediums[i].length; j < length; j++) {
+            for (var j = 0, length = mediums[i].length; j < length; j++) { 
                 if (mediums[i][j].checked) {
-                    promises.push(
-                        fetch('/q4_submit', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                uid: id,
-                                medium: mediums[i][j].name,
-                                frequency: mediums[i][j].value
-                            })
-                        })
-                    )
-                    break;
+                    checkCount += 1;
                 }
             }
         }
-        Promise.all(promises)
-            .then(result => {})
-            .catch(error => {
-                console.log(error)
-            })
-        window.location = '/' + id + '/questionnaire5';
+        if (checkCount != mediums.length - 1) {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                for (var i = 0; i < mediums.length; i++) {
+                    for (var j = 0, length = mediums[i].length; j < length; j++) {
+                        if (mediums[i][j].checked) {
+                            promises.push(
+                                fetch('/q4_submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        uid: id,
+                                        medium: mediums[i][j].name,
+                                        frequency: mediums[i][j].value
+                                    })
+                                })
+                            )
+                            break;
+                        }
+                    }
+                }
+                Promise.all(promises)
+                    .then(result => {})
+                    .catch(error => {
+                        console.log(error)
+                    })
+                window.location = '/' + id + '/questionnaire5';
+            } else {
+                return
+            }
+        } else {
+            for (var i = 0; i < mediums.length; i++) {
+                for (var j = 0, length = mediums[i].length; j < length; j++) {
+                    if (mediums[i][j].checked) {
+                        promises.push(
+                            fetch('/q4_submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    uid: id,
+                                    medium: mediums[i][j].name,
+                                    frequency: mediums[i][j].value
+                                })
+                            })
+                        )
+                        break;
+                    }
+                }
+            }
+            Promise.all(promises)
+                .then(result => {})
+                .catch(error => {
+                    console.log(error)
+                })
+            window.location = '/' + id + '/questionnaire5';
+        }
     })
 }
