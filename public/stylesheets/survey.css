@@ -18,7 +18,9 @@ div.completed {
 }
 
 div.question {
-    text-align: center;
+    text-align: left;
+    width: 800px;
+    margin: auto;
 }
 
 div.answers {
@@ -29,7 +31,7 @@ div.answers {
 
 table {
     table-layout: fixed;
-    margin: auto;
+    text-align: center;
 }
 
 td {
