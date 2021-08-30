@@ -67,6 +67,33 @@ window.onload = function () {
             } else {
                 return
             }
+        } else {
+            for (var i = 0; i < mediums.length; i++) {
+                for (var j = 0, length = mediums[i].length; j < length; j++) {
+                    if (mediums[i][j].checked) {
+                        promises.push(
+                            fetch('/q1_submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    uid: id,
+                                    medium: mediums[i][j].name,
+                                    frequency: mediums[i][j].value
+                                })
+                            })
+                        )
+                        break;
+                    }
+                }
+            }
+            Promise.all(promises)
+                .then(result => {})
+                .catch(error => {
+                    console.log(error)
+                })
+            window.location = '/' + id + '/questionnaire2'; 
         }
     })
 }
