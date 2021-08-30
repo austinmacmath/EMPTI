@@ -44,7 +44,7 @@ window.onload = function () {
                 }
             }
         }
-        if (checkCount < mediums.length - 1 && document.getElementById("age").value == "") {
+        if (checkCount < mediums.length - 1 || document.getElementById("age").value == "") {
             if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
                 promises.push(
                     fetch('/s3-5_submit', {
