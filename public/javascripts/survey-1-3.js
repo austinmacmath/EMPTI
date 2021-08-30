@@ -10,7 +10,7 @@ if (window.history && history.pushState) {
 
 window.onload = function () {
     var table = document.getElementById('table')
-    var algorithm = document.getElementById('algorithm')
+    var algorithm = document.getElementById('algorithm').innerHTML
     var rows = [
         '<td class="header"><strong>' + algorithm + '</strong> reflected who I am. </td><td> <input type="radio" name="reflect" value="1"></td><td> <input type="radio" name="reflect" value="2"></td><td> <input type="radio" name="reflect" value="3"></td><td> <input type="radio" name="reflect" value="4"></td><td> <input type="radio" name="reflect" value="5"></td><td> <input type="radio" name="reflect" value="6"></td><td> <input type="radio" name="reflect" value="7"></td><td></td>',
         '<td class="header">I could identify with <strong>' + algorithm + '</strong>. </td><td> <input type="radio" name="identify" value="1"></td><td> <input type="radio" name="identify" value="2"></td><td> <input type="radio" name="identify" value="3"></td><td> <input type="radio" name="identify" value="4"></td><td> <input type="radio" name="identify" value="5"></td><td> <input type="radio" name="identify" value="6"></td><td> <input type="radio" name="identify" value="7"></td><td></td>',
