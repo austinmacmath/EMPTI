@@ -38,7 +38,7 @@ window.onload = function () {
         );
         var checkCount = 0;
         for (var i = 0; i < mediums.length; i++) {
-            console.log(mediums[i].item(0))
+            console.log(mediums[i].item(0).nodeName)
             for (var j = 0, length = mediums[i].length; j < length; j++) { 
                 if (mediums[i][j].checked) {
                     checkCount += 1;
