@@ -10,7 +10,12 @@ window.onload = function () {
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
     var next = document.getElementById('next');
+    var understand = document.getElementById('understand');
     if (next != null) {
+        if (!understand.checked) {
+            alert("Please check the box to show you understand the instructions.");
+            return
+        }
         next.addEventListener('click', function (event) {
             var str = window.location.pathname;
             var id = str.substring(
