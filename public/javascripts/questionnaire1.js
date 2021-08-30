@@ -37,7 +37,8 @@ window.onload = function () {
             }
         }
         if (checkCount != mediums.length) {
-            alert("You haven't answered all of the question. Please click NEXT to continue or continue answering the questions."); 
+            alert("You haven't answered all of the questions. Please continue answering the questions or click the NEXT button to submit a partial answer and continue."); 
+            return
         }
         for (var i = 0; i < mediums.length; i++) {
             for (var j = 0, length = mediums[i].length; j < length; j++) {
