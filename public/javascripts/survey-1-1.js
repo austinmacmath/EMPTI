@@ -14,10 +14,10 @@ window.onload = function () {
         '<td>Incompetent</td><td> <input type="radio" name="competent" value="1"></td><td> <input type="radio" name="competent" value="2"></td><td> <input type="radio" name="competent" value="3"></td><td> <input type="radio" name="competent" value="4"></td><td> <input type="radio" name="competent" value="5"></td><td> <input type="radio" name="competent" value="6"></td><td> <input type="radio" name="competent" value="7"></td><td>Competent</td>',
         '<td>Nonexpert </td><td> <input type="radio" name="expert" value="1"></td><td> <input type="radio" name="expert" value="2"></td><td> <input type="radio" name="expert" value="3"></td><td> <input type="radio" name="expert" value="4"></td><td> <input type="radio" name="expert" value="5"></td><td> <input type="radio" name="expert" value="6"></td><td> <input type="radio" name="expert" value="7"></td><td>Expert</td>',
         '<td>Untrustworthy </td><td> <input type="radio" name="trustworthy" value="1"></td><td> <input type="radio" name="trustworthy" value="2"></td><td> <input type="radio" name="trustworthy" value="3"></td><td> <input type="radio" name="trustworthy" value="4"></td><td> <input type="radio" name="trustworthy" value="5"></td><td> <input type="radio" name="trustworthy" value="6"></td><td> <input type="radio" name="trustworthy" value="7"></td><td>Trustworthy</td>',
-        '<td>Non-transparent </td><td> <input type="radio" name="transparent" value="1"></td><td> <input type="radio" name="transparent" value="2"></td><td> <input type="radio" name="transparent" value="3"></td><td> <input type="radio" name="transparent" value="4"></td><td> <input type="radio" name="transparent" value="5"></td><td> <input type="radio" name="transparent" value="6"></td><td> <input type="radio" name="transparent" value="7"></td><td>Transparent </td>',
+        '<td>Nontransparent </td><td> <input type="radio" name="transparent" value="1"></td><td> <input type="radio" name="transparent" value="2"></td><td> <input type="radio" name="transparent" value="3"></td><td> <input type="radio" name="transparent" value="4"></td><td> <input type="radio" name="transparent" value="5"></td><td> <input type="radio" name="transparent" value="6"></td><td> <input type="radio" name="transparent" value="7"></td><td>Transparent </td>',
         '<td>Unfair </td><td> <input type="radio" name="fair" value="1"></td><td> <input type="radio" name="fair" value="2"></td><td> <input type="radio" name="fair" value="3"></td><td> <input type="radio" name="fair" value="4"></td><td> <input type="radio" name="fair" value="5"></td><td> <input type="radio" name="fair" value="6"></td><td> <input type="radio" name="fair" value="7"></td><td>Fair</td>',
         '<td>Malevolent </td><td> <input type="radio" name="benevolent" value="1"></td><td> <input type="radio" name="benevolent" value="2"></td><td> <input type="radio" name="benevolent" value="3"></td><td> <input type="radio" name="benevolent" value="4"></td><td> <input type="radio" name="benevolent" value="5"></td><td> <input type="radio" name="benevolent" value="6"></td><td> <input type="radio" name="benevolent" value="7"></td><td>Benevolent</td>',
-        '<td>Non-credible </td><td> <input type="radio" name="credible" value="1"></td><td> <input type="radio" name="credible" value="2"></td><td> <input type="radio" name="credible" value="3"></td><td> <input type="radio" name="credible" value="4"></td><td> <input type="radio" name="credible" value="5"></td><td> <input type="radio" name="credible" value="6"></td><td> <input type="radio" name="credible" value="7"></td><td>Credible</td>',
+        '<td>Noncredible </td><td> <input type="radio" name="credible" value="1"></td><td> <input type="radio" name="credible" value="2"></td><td> <input type="radio" name="credible" value="3"></td><td> <input type="radio" name="credible" value="4"></td><td> <input type="radio" name="credible" value="5"></td><td> <input type="radio" name="credible" value="6"></td><td> <input type="radio" name="credible" value="7"></td><td>Credible</td>',
         '<td>Unbiased</td><td> <input type="radio" name="biased" value="7"></td><td> <input type="radio" name="biased" value="6"></td><td> <input type="radio" name="biased" value="5"></td><td> <input type="radio" name="biased" value="4"></td><td> <input type="radio" name="biased" value="3"></td><td> <input type="radio" name="biased" value="2"></td><td> <input type="radio" name="biased" value="1"></td><td>Biased</td>'
     ]
     rows = shuffle(rows)
@@ -60,32 +60,73 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
+        var checkCount = 0;
         for (var i = 0; i < mediums.length; i++) {
-            for (var j = 0, length = mediums[i].length; j < length; j++) {
+            for (var j = 0, length = mediums[i].length; j < length; j++) { 
                 if (mediums[i][j].checked) {
-                    promises.push(
-                        fetch('/s1-1_submit', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                uid: id,
-                                medium: mediums[i][j].name,
-                                frequency: mediums[i][j].value
-                            })
-                        })
-                    )
-                    break;
+                    checkCount += 1;
                 }
             }
         }
-        Promise.all(promises)
-            .then(result => {})
-            .catch(error => {
-                console.log(error)
-            })
-        window.location = '/' + id + '/s1-2';
+        if (checkCount != mediums.length) {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                for (var i = 0; i < mediums.length; i++) {
+                    for (var j = 0, length = mediums[i].length; j < length; j++) {
+                        if (mediums[i][j].checked) {
+                            promises.push(
+                                fetch('/s1-1_submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        uid: id,
+                                        medium: mediums[i][j].name,
+                                        frequency: mediums[i][j].value
+                                    })
+                                })
+                            )
+                            break;
+                        }
+                    }
+                }
+                Promise.all(promises)
+                    .then(result => {})
+                    .catch(error => {
+                        console.log(error)
+                    })
+                window.location = '/' + id + '/s1-2'; 
+            } else {
+                return
+            }
+        } else {
+            for (var i = 0; i < mediums.length; i++) {
+                for (var j = 0, length = mediums[i].length; j < length; j++) {
+                    if (mediums[i][j].checked) {
+                        promises.push(
+                            fetch('/s1-1_submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    uid: id,
+                                    medium: mediums[i][j].name,
+                                    frequency: mediums[i][j].value
+                                })
+                            })
+                        )
+                        break;
+                    }
+                }
+            }
+            Promise.all(promises)
+                .then(result => {})
+                .catch(error => {
+                    console.log(error)
+                })
+            window.location = '/' + id + '/s1-2';
+        }
     })
 }
 
