@@ -36,8 +36,6 @@ window.onload = function () {
                 }
             }
         }
-        console.log("checkCount: ", checkCount)
-        console.log("mediums.length: ", mediums.length)
         if (checkCount != mediums.length) {
             if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
                 for (var i = 0; i < mediums.length; i++) {

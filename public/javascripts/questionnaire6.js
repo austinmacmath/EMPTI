@@ -41,9 +41,9 @@ window.onload = function () {
             str.lastIndexOf("/")
         );
         var checkCount = 0;
-        for (var i = 0; i < mediums.length; i++) {
-            for (var j = 0, length = mediums[i].length; j < length; j++) { 
-                if (mediums[i][j].checked) {
+        for (var i = 0; i < skills.length; i++) {
+            for (var j = 0, length = skills[i].length; j < length; j++) { 
+                if (skills[i][j].checked) {
                     checkCount += 1;
                 }
             }
