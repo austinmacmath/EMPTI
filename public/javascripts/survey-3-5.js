@@ -36,51 +36,104 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
-        promises.push(
-            fetch('/s3-5_submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    uid: id,
-                    medium: "age",
-                    frequency: document.getElementById("age").value
-                })
-            })
-        )
-        for (var i = 0; i < mediums.length; i++) {
-            for (var j = 0, length = mediums[i].length; j < length; j++) {
-                if (mediums[i][j].checked) {
-                    var value
-                    if (mediums[i][j].id == "Other1") {
-                        value = document.getElementById("Other1Text").value
-                    } else if (mediums[i][j].id == "Other2") {
-                        value = document.getElementById("Other2Text").value
-                    } else {
-                        value = mediums[i][j].value
-                    }
-                    promises.push(
-                        fetch('/s3-5_submit', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                uid: id,
-                                medium: mediums[i][j].name,
-                                frequency: value
-                            })
+        if (checkCount != mediums.length && document.getElementById("age").value == "") {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                promises.push(
+                    fetch('/s3-5_submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            uid: id,
+                            medium: "age",
+                            frequency: document.getElementById("age").value
                         })
-                    )
+                    })
+                )
+                for (var i = 0; i < mediums.length; i++) {
+                    for (var j = 0, length = mediums[i].length; j < length; j++) {
+                        if (mediums[i][j].checked) {
+                            var value
+                            if (mediums[i][j].id == "Other1") {
+                                value = document.getElementById("Other1Text").value
+                            } else if (mediums[i][j].id == "Other2") {
+                                value = document.getElementById("Other2Text").value
+                            } else {
+                                value = mediums[i][j].value
+                            }
+                            promises.push(
+                                fetch('/s3-5_submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        uid: id,
+                                        medium: mediums[i][j].name,
+                                        frequency: value
+                                    })
+                                })
+                            )
+                        }
+                    }
+                }
+                Promise.all(promises)
+                    .then(result => {})
+                    .catch(error => {
+                        console.log(error)
+                    })
+                window.location = '/goodbye'; 
+            } else {
+                return
+            }
+        } else {
+            promises.push(
+                fetch('/s3-5_submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        uid: id,
+                        medium: "age",
+                        frequency: document.getElementById("age").value
+                    })
+                })
+            )
+            for (var i = 0; i < mediums.length; i++) {
+                for (var j = 0, length = mediums[i].length; j < length; j++) {
+                    if (mediums[i][j].checked) {
+                        var value
+                        if (mediums[i][j].id == "Other1") {
+                            value = document.getElementById("Other1Text").value
+                        } else if (mediums[i][j].id == "Other2") {
+                            value = document.getElementById("Other2Text").value
+                        } else {
+                            value = mediums[i][j].value
+                        }
+                        promises.push(
+                            fetch('/s3-5_submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    uid: id,
+                                    medium: mediums[i][j].name,
+                                    frequency: value
+                                })
+                            })
+                        )
+                    }
                 }
             }
+            Promise.all(promises)
+                .then(result => {})
+                .catch(error => {
+                    console.log(error)
+                })
+            window.location = '/goodbye';
         }
-        Promise.all(promises)
-            .then(result => {})
-            .catch(error => {
-                console.log(error)
-            })
-        window.location = '/goodbye';
     })
 }
