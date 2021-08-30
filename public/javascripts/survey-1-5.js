@@ -9,6 +9,24 @@ if (window.history && history.pushState) {
 }
 
 window.onload = function () {
+    var table = document.getElementById('table')
+    var algorithm = document.getElementById('algorithm').innerHTML
+    var rows = [
+        '<td class="header">Using <strong>' + algorithm + '</strong> enhanced my effectiveness in composing sentences and responding to emails.</td><td> <input type="radio" name="effectiveness" value="1"></td><td> <input type="radio" name="effectiveness" value="2"></td><td><input type="radio" name="effectiveness" value="3"></td><td> <input type="radio" name="effectiveness" value="4"></td><td> <input type="radio" name="effectiveness" value="5"></td><td> <input type="radio" name="effectiveness" value="6"></td><td> <input type="radio" name="effectiveness" value="7"></td><td> </td>',
+        '<td class="header">Using <strong>' + algorithm + '</strong> made it easier for me to compose sentences and respond to emails.</td><td> <input type="radio" name="easier" value="1"></td><td> <input type="radio" name="easier" value="2"></td><td><input type="radio" name="easier" value="3"></td><td> <input type="radio" name="easier" value="4"></td><td> <input type="radio" name="easier" value="5"></td><td> <input type="radio" name="easier" value="6"></td><td> <input type="radio" name="easier" value="7"></td><td> </td>',
+        '<td class="header">Using <strong>' + algorithm + '</strong> enabled me to compose sentences and respond to emails more quickly.</td><td> <input type="radio" name="compose" value="1"></td><td> <input type="radio" name="compose" value="2"></td><td><input type="radio" name="compose" value="3"></td><td> <input type="radio" name="compose" value="4"></td><td> <input type="radio" name="compose" value="5"></td><td> <input type="radio" name="compose" value="6"></td><td> <input type="radio" name="compose" value="7"></td><td> </td>',
+        '<td class="header">Using <strong>' + algorithm + '</strong> increased my productivity of composing sentences and responding to emails. </td><td> <input type="radio" name="productivity" value="1"></td><td> <input type="radio" name="productivity" value="2"></td><td><input type="radio" name="productivity" value="3"></td><td> <input type="radio" name="productivity" value="4"></td><td> <input type="radio" name="productivity" value="5"></td><td> <input type="radio" name="productivity" value="6"></td><td> <input type="radio" name="productivity" value="7"></td><td> </td>',
+        '<td class="header">Using <strong>' + algorithm + '</strong> improved my performance of composing sentences and responding to emails. </td><td> <input type="radio" name="performance" value="1"></td><td> <input type="radio" name="performance" value="2"></td><td><input type="radio" name="performance" value="3"></td><td> <input type="radio" name="performance" value="4"></td><td> <input type="radio" name="performance" value="5"></td><td> <input type="radio" name="performance" value="6"></td><td> <input type="radio" name="performance" value="7"></td><td> </td>',
+        '<td class="header">Overall, <strong>' + algorithm + '</strong> was useful for me to compose sentences and respond to emails.</td><td> <input type="radio" name="useful" value="1"></td><td> <input type="radio" name="useful" value="2"></td><td><input type="radio" name="useful" value="3"></td><td> <input type="radio" name="useful" value="4"></td><td> <input type="radio" name="useful" value="5"></td><td> <input type="radio" name="useful" value="6"></td><td> <input type="radio" name="useful" value="7"></td><td> </td>'
+    ]
+    rows = shuffle(rows)
+    for (var i = 0; i < 6; i++) {
+        var row = table.insertRow(0)
+        row.innerHTML = rows[i]
+    }
+    var row = table.insertRow(0)
+    row.innerHTML =  '<td></td><td>Strongly disagree</td><td>Disagree</td><td>Somewhat agree</td><td>Neither disagree nor agree</td><td>Somewhat agree</td><td>Agree</td><td>Strongly agree</td>'
+
     var url = window.location.href
     var firstTime = localStorage.getItem(url);
     var secondTime = localStorage.getItem(url+"2")
@@ -69,3 +87,23 @@ window.onload = function () {
         window.location = '/' + id + '/s1-6';
     })
 }
+
+function shuffle(array) {
+    var currentIndex = array.length,
+      temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }

@@ -28,7 +28,6 @@ window.onload = function () {
     var row = table.insertRow(0)
     row.innerHTML =  '<td></td><td>Not at all</td><td></td><td></td><td>Neutral</td><td></td><td></td><td>Extremely well</td>'
 
-
     var url = window.location.href
     var firstTime = localStorage.getItem(url);
     var secondTime = localStorage.getItem(url+"2")
