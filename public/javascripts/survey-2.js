@@ -21,6 +21,10 @@ window.onload = function () {
     
     var button = document.getElementById('next')
     button.addEventListener('click', function (event) {
+        if (!understand.checked) {
+            alert("Please check the box to show you understand the instructions.");
+            return
+        }
         var str = window.location.pathname;
         var id = str.substring(
             str.indexOf("/") + 1,
