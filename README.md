@@ -96,7 +96,6 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
     * add total time spent per page on survey
 * questionniare
     * dont need to randomize questinniare items
-* randomize survey items
 * sublease email
     * next year . => next year.
 * double check correctness of rest of email prompts
