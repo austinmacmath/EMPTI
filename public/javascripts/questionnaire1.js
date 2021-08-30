@@ -28,6 +28,17 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
+        var checkCount = 0;
+        for (var i = 0; i < mediums.length; i++) {
+            for (var j = 0, length = mediums[i].length; j < length; j++) { 
+                if (mediums[i][j].checked) {
+                    checkCount += 1;
+                }
+            }
+        }
+        if (checkCount != mediums.length) {
+            alert("You haven't answered all of the question. Please click NEXT to continue or continue answering the questions."); 
+        }
         for (var i = 0; i < mediums.length; i++) {
             for (var j = 0, length = mediums[i].length; j < length; j++) {
                 if (mediums[i][j].checked) {
