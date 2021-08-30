@@ -48,7 +48,7 @@ window.onload = function () {
                 }
             }
         }
-        if (checkCount != mediums.length - 1) {
+        if (checkCount != skills.length) {
             if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
                 for (var i = 0; i < skills.length; i++) {
                     for (var j = 0, length = skills[i].length; j < length; j++) {

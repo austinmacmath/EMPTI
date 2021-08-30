@@ -36,7 +36,7 @@ window.onload = function () {
                 }
             }
         }
-        if (checkCount != mediums.length - 1) {
+        if (checkCount != mediums.length) {
             if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
                 for (var i = 0; i < mediums.length; i++) {
                     for (var j = 0, length = mediums[i].length; j < length; j++) {
