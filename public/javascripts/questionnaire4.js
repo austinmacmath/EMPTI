@@ -28,6 +28,7 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
+        var checkCount = 0;
         for (var i = 0; i < mediums.length; i++) {
             for (var j = 0, length = mediums[i].length; j < length; j++) { 
                 if (mediums[i][j].checked) {
