@@ -36,35 +36,37 @@ window.onload = function () {
                 }
             }
         }
-        if (checkCount != mediums.length) {
-            alert("You haven't answered all of the questions. Please continue answering the questions or click the NEXT button to submit a partial answer and continue."); 
-            return
-        }
-        for (var i = 0; i < mediums.length; i++) {
-            for (var j = 0, length = mediums[i].length; j < length; j++) {
-                if (mediums[i][j].checked) {
-                    promises.push(
-                        fetch('/q1_submit', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                uid: id,
-                                medium: mediums[i][j].name,
-                                frequency: mediums[i][j].value
-                            })
-                        })
-                    )
-                    break;
+        if (checkCount != mediums.length - 1) {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                for (var i = 0; i < mediums.length; i++) {
+                    for (var j = 0, length = mediums[i].length; j < length; j++) {
+                        if (mediums[i][j].checked) {
+                            promises.push(
+                                fetch('/q1_submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        uid: id,
+                                        medium: mediums[i][j].name,
+                                        frequency: mediums[i][j].value
+                                    })
+                                })
+                            )
+                            break;
+                        }
+                    }
                 }
+                Promise.all(promises)
+                    .then(result => {})
+                    .catch(error => {
+                        console.log(error)
+                    })
+                window.location = '/' + id + '/questionnaire2';
+            } else {
+                return
             }
         }
-        Promise.all(promises)
-            .then(result => {})
-            .catch(error => {
-                console.log(error)
-            })
-        window.location = '/' + id + '/questionnaire2';
     })
 }
