@@ -22,7 +22,7 @@ window.onload = function () {
         '<td class="header"><strong>' + algorithm + '</strong> did not at all encourage users to talk back.</td><td> <input type="radio" name="encourage" value="7"></td><td> <input type="radio" name="encourage" value="6"></td><td> <input type="radio" name="encourage" value="5"></td><td> <input type="radio" name="encourage" value="4"></td><td> <input type="radio" name="encourage" value="3"></td><td> <input type="radio" name="encourage" value="2"></td><td> <input type="radio" name="encourage" value="1"></td><td></td>',
         '<td class="header"><strong>' + algorithm + '</strong> gave users the opportunity to talk back.</td><td> <input type="radio" name="opportunity" value="1"></td><td> <input type="radio" name="opportunity" value="2"></td><td> <input type="radio" name="opportunity" value="3"></td><td> <input type="radio" name="opportunity" value="4"></td><td> <input type="radio" name="opportunity" value="5"></td><td> <input type="radio" name="opportunity" value="6"></td><td> <input type="radio" name="opportunity" value="7"></td><td></td>',
         '<td class="header"><strong>' + algorithm + '</strong> processed my input very quickly.</td><td> <input type="radio" name="processed" value="1"></td><td> <input type="radio" name="processed" value="2"></td><td> <input type="radio" name="processed" value="3"></td><td> <input type="radio" name="processed" value="4"></td><td> <input type="radio" name="processed" value="5"></td><td> <input type="radio" name="processed" value="6"></td><td> <input type="radio" name="processed" value="7"></td><td></td>',
-        '<td class="header">Getting suggestions from <strong>' + algorithm + '</strong> was very fast.</td><td> <input type="radio" name="fast" value="1"></td><td> <input type="radio" name="fast" value="2"></td><td> <input type="radio" name="fast" value="3"></td><td> <input type="radio" name="fast" value="4"></td><td> <input type="radio" name="fast" value="5"></td><td> <input type="radio" name="fast" value="6"></td><td> <input type="radio" name="fast" value="7"></td><td></td>',
+       '<td class="header">Getting suggestions from <strong>' + algorithm + '</strong> was very fast.</td><td> <input type="radio" name="fast" value="1"></td><td> <input type="radio" name="fast" value="2"></td><td> <input type="radio" name="fast" value="3"></td><td> <input type="radio" name="fast" value="4"></td><td> <input type="radio" name="fast" value="5"></td><td> <input type="radio" name="fast" value="6"></td><td> <input type="radio" name="fast" value="7"></td><td></td>',
         '<td class="header">I was able to obtain the suggestions I wanted without any delay.</td><td> <input type="radio" name="without any delay" value="1"></td><td> <input type="radio" name="without any delay" value="2"></td><td> <input type="radio" name="without any delay" value="3"></td><td> <input type="radio" name="without any delay" value="4"></td><td> <input type="radio" name="without any delay" value="5"></td><td> <input type="radio" name="without any delay" value="6"></td><td> <input type="radio" name="without any delay" value="7"></td><td></td>',
         '<td class="header">When I used <strong>' + algorithm + '</strong>, I felt I was getting instantaneous information.</td><td> <input type="radio" name="instantaneous" value="1"></td><td> <input type="radio" name="instantaneous" value="2"></td><td> <input type="radio" name="instantaneous" value="3"></td><td> <input type="radio" name="instantaneous" value="4"></td><td> <input type="radio" name="instantaneous" value="5"></td><td> <input type="radio" name="instantaneous" value="6"></td><td> <input type="radio" name="instantaneous" value="7"></td><td></td>',
         '<td class="header"><strong>' + algorithm + '</strong> was very slow in responding to my requests.</td><td> <input type="radio" name="slow" value="7"></td><td> <input type="radio" name="slow" value="6"></td><td> <input type="radio" name="slow" value="5"></td><td> <input type="radio" name="slow" value="4"></td><td> <input type="radio" name="slow" value="3"></td><td> <input type="radio" name="slow" value="2"></td><td> <input type="radio" name="slow" value="1"></td><td></td>'
@@ -75,32 +75,75 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
+        var checkCount = 0;
         for (var i = 0; i < mediums.length; i++) {
-            for (var j = 0, length = mediums[i].length; j < length; j++) {
+            for (var j = 0, length = mediums[i].length; j < length; j++) { 
                 if (mediums[i][j].checked) {
-                    promises.push(
-                        fetch('/s1-4_submit', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                uid: id,
-                                medium: mediums[i][j].name,
-                                frequency: mediums[i][j].value
-                            })
-                        })
-                    )
-                    break;
+                    checkCount += 1;
                 }
             }
         }
-        Promise.all(promises)
-            .then(result => {})
-            .catch(error => {
-                console.log(error)
-            })
+        if (checkCount != mediums.length) {
+            if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
+                for (var i = 0; i < mediums.length; i++) {
+                    for (var j = 0, length = mediums[i].length; j < length; j++) {
+                        if (mediums[i][j].checked) {
+                            promises.push(
+                                fetch('/s1-4_submit', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        uid: id,
+                                        medium: mediums[i][j].name,
+                                        frequency: mediums[i][j].value
+                                    })
+                                })
+                            )
+                            break;
+                        }
+                    }
+                }
+                Promise.all(promises)
+                    .then(result => {})
+                    .catch(error => {
+                        console.log(error)
+                    })
+                window.location = '/' + id + '/s1-5'; 
         window.location = '/' + id + '/s1-5';
+                window.location = '/' + id + '/s1-5'; 
+            } else {
+                return
+            }
+        } else {
+            for (var i = 0; i < mediums.length; i++) {
+                for (var j = 0, length = mediums[i].length; j < length; j++) {
+                    if (mediums[i][j].checked) {
+                        promises.push(
+                            fetch('/s1-4_submit', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    uid: id,
+                                    medium: mediums[i][j].name,
+                                    frequency: mediums[i][j].value
+                                })
+                            })
+                        )
+                        break;
+                    }
+                }
+            }
+            Promise.all(promises)
+                .then(result => {})
+                .catch(error => {
+                    console.log(error)
+                })
+            window.location = '/' + id + '/s1-5';
+        }
     })
 }
 
