@@ -9,6 +9,26 @@ if (window.history && history.pushState) {
 }
 
 window.onload = function () {
+    var table = document.getElementById('table')
+    var algorithm = document.getElementById('algorithm')
+    var rows = [
+        '<td class="header"><strong>' + algorithm + '</strong> reflected who I am. </td><td> <input type="radio" name="reflect" value="1"></td><td> <input type="radio" name="reflect" value="2"></td><td> <input type="radio" name="reflect" value="3"></td><td> <input type="radio" name="reflect" value="4"></td><td> <input type="radio" name="reflect" value="5"></td><td> <input type="radio" name="reflect" value="6"></td><td> <input type="radio" name="reflect" value="7"></td><td></td>',
+        '<td class="header">I could identify with <strong>' + algorithm + '</strong>. </td><td> <input type="radio" name="identify" value="1"></td><td> <input type="radio" name="identify" value="2"></td><td> <input type="radio" name="identify" value="3"></td><td> <input type="radio" name="identify" value="4"></td><td> <input type="radio" name="identify" value="5"></td><td> <input type="radio" name="identify" value="6"></td><td> <input type="radio" name="identify" value="7"></td><td></td>',
+        '<td class="header">I felt a personal connection to <strong>' + algorithm + '</strong>. </td><td> <input type="radio" name="connect" value="1"></td><td> <input type="radio" name="connect" value="2"></td><td> <input type="radio" name="connect" value="3"></td><td> <input type="radio" name="connect" value="4"></td><td> <input type="radio" name="connect" value="5"></td><td> <input type="radio" name="connect" value="6"></td><td> <input type="radio" name="connect" value="7"></td><td></td>',
+        '<td class="header">I could use <strong>' + algorithm + '</strong> to communicate who I am to other people. </td><td> <input type="radio" name="communicate" value="1"></td><td> <input type="radio" name="communicate" value="2"></td><td> <input type="radio" name="communicate" value="3"></td><td> <input type="radio" name="communicate" value="4"></td><td> <input type="radio" name="communicate" value="5"></td><td> <input type="radio" name="communicate" value="6"></td><td> <input type="radio" name="communicate" value="7"></td><td></td>',
+        '<td class="header">I think <strong>' + algorithm + '</strong> helped me become the type of person I wanted to be. </td><td> <input type="radio" name="become" value="1"></td><td> <input type="radio" name="become" value="2"></td><td> <input type="radio" name="become" value="3"></td><td> <input type="radio" name="become" value="4"></td><td> <input type="radio" name="become" value="5"></td><td> <input type="radio" name="become" value="6"></td><td> <input type="radio" name="become" value="7"></td><td></td>',
+        '<td class="header">I considered <strong>' + algorithm + '</strong> to be "me" (it reflected who i consider myself to be or the way that I wanted to present myself to others).</td><td> <input type="radio" name="me" value="1"></td><td> <input type="radio" name="me" value="2"></td><td> <input type="radio" name="me" value="3"></td><td> <input type="radio" name="me" value="4"></td><td> <input type="radio" name="me" value="5"></td><td> <input type="radio" name="me" value="6"></td><td> <input type="radio" name="me" value="7"></td><td></td>',
+        '<td class="header"><strong>' + algorithm + '</strong> suited me well. </td><td> <input type="radio" name="suit" value="1"></td><td> <input type="radio" name="suit" value="2"></td><td> <input type="radio" name="suit" value="3"></td><td> <input type="radio" name="suit" value="4"></td><td> <input type="radio" name="suit" value="5"></td><td> <input type="radio" name="suit" value="6"></td><td> <input type="radio" name="suit" value="7"></td><td></td>'
+    ]
+    rows = shuffle(rows)
+    for (var i = 0; i < 7; i++) {
+        var row = table.insertRow(0)
+        row.innerHTML = rows[i]
+    }
+    var row = table.insertRow(0)
+    row.innerHTML =  '<td></td><td>Not at all</td><td></td><td></td><td>Neutral</td><td></td><td></td><td>Extremely well</td>'
+
+
     var url = window.location.href
     var firstTime = localStorage.getItem(url);
     var secondTime = localStorage.getItem(url+"2")
@@ -70,3 +90,23 @@ window.onload = function () {
         window.location = '/' + id + '/s1-4';
     })
 }
+
+function shuffle(array) {
+    var currentIndex = array.length,
+      temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
