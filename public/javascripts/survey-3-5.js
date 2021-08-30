@@ -39,12 +39,13 @@ window.onload = function () {
         var checkCount = 0;
         for (var i = 0; i < mediums.length; i++) {
             for (var j = 0, length = mediums[i].length; j < length; j++) { 
+                console.log(mediums[i].nodeName)
                 if (mediums[i][j].checked) {
                     checkCount += 1;
                 }
             }
         }
-        if (checkCount != mediums.length && document.getElementById("age").value == "") {
+        if (checkCount < mediums.length - 1 && document.getElementById("age").value == "") {
             if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
                 promises.push(
                     fetch('/s3-5_submit', {
