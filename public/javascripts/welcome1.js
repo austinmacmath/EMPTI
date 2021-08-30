@@ -12,11 +12,11 @@ window.onload = function () {
     var next = document.getElementById('next');
     var understand = document.getElementById('understand');
     if (next != null) {
-        if (!understand.checked) {
-            alert("Please check the box to show you understand the instructions.");
-            return
-        }
         next.addEventListener('click', function (event) {
+            if (!understand.checked) {
+                alert("Please check the box to show you understand the instructions.");
+                return
+            }
             var str = window.location.pathname;
             var id = str.substring(
                 str.indexOf("/") + 1,
