@@ -1173,7 +1173,7 @@ router.post('/s3-4-5_submit', function (req, res) {
       } else {
         algorithm = "Smart Predictor"
       }
-      return db.one('INSERT INTO survey_3_4_5(uid, submission_time, devices) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
+      return db.one('INSERT INTO survey_3_4_5(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
     })
     .then(uid => {
       ("INSERT SUCCESS: ", uid)
