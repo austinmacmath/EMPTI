@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey-3-4-5.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.question
+            | When responding to the emails, did you at any time use any browser extensions or add-ons (e.g., Grammarly) to assist you while you were typing? It is important for our research that you answer this question honestly and so please know that your response has no impact on your participation credit.
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='extension' value=1)
+                    td 
+                        input(type='radio' name='extension' value=2)
+                    td 
+                tr
+                    td Yes
+                    td No
+                    td 
+            br
+            br
+            button(id='next') Next

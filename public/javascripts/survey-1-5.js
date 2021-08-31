@@ -25,7 +25,7 @@ window.onload = function () {
         row.innerHTML = rows[i]
     }
     var row = table.insertRow(0)
-    row.innerHTML =  '<td></td><td>Strongly disagree</td><td>Disagree</td><td>Somewhat agree</td><td>Neither disagree nor agree</td><td>Somewhat agree</td><td>Agree</td><td>Strongly agree</td>'
+    row.innerHTML =  '<td></td><td>Strongly disagree</td><td>Disagree</td><td>Somewhat disagree</td><td>Neither disagree nor agree</td><td>Somewhat agree</td><td>Agree</td><td>Strongly agree</td>'
 
     var url = window.location.href
     var firstTime = localStorage.getItem(url);

@@ -43,7 +43,7 @@ window.onload = function () {
                     .catch(error => {
                         console.log(error)
                     })
-                window.location = '/' + id + '/s3-5'; 
+                window.location = '/' + id + '/s3-4-5'; 
             } else {
                 return
             }
@@ -67,7 +67,7 @@ window.onload = function () {
                 .catch(error => {
                     console.log(error)
                 })
-            window.location = '/' + id + '/s3-5';
+            window.location = '/' + id + '/s3-4-5';
         }
     })
 }

@@ -1144,6 +1144,29 @@ router.post('/s3-4_submit', function (req, res) {
   res.sendStatus(200);
 })
 
+// submit survey-3-4-5
+router.post('/s3-4-5_submit', function (req, res) {
+  var algorithm
+  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
+    .then(function (data) {
+      if (data.synergy_first && data.t0_complete && data.t1_complete) {
+        algorithm = "CS Predictor"
+      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
+        algorithm = "CS Predictor"
+      } else {
+        algorithm = "Smart Predictor"
+      }
+      return db.one('INSERT INTO survey_3_4_5(uid, submission_time, devices) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
+    })
+    .then(uid => {
+      ("INSERT SUCCESS: ", uid)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  res.sendStatus(200);
+})
+
 // submit survey-3-5
 router.post('/s3-5_submit', function (req, res) {
   var algorithm
