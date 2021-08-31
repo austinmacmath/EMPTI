@@ -632,6 +632,23 @@ router.get('/:uid/s3-4', function (req, res) {
     })
 })
 
+// survey-3-4-5
+router.get('/:uid/s3-4-5', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('survey-3-4-5')
+      } else if (data.id == req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
 // survey-3-5
 router.get('/:uid/s3-5', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
