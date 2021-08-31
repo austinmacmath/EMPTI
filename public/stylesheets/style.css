@@ -86,7 +86,8 @@ span.right-justify {
 }
 
 div.reply-body {
-  height: 510px;
+  /* height: 510px; */
+  height: 410px;
   width: 100;
   border-style: solid;
   border-width: 1px;
@@ -111,7 +112,8 @@ span.to {
 .predictions,
 textarea {
   width: 850px;
-  height: 400px;
+  /* height: 400px; */
+  height: 300px;
   overflow: auto;
 }
 
