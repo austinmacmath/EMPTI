@@ -12,7 +12,10 @@ window.onload = function () {
             .then(result => {
                 console.log(result)
                 window.location = '/' + result.uid + '/welcome1'
-            }) 
+            })
+            .catch(error => {
+                console.log(error)
+            })
         })
     }
 }
