@@ -1,11 +1,16 @@
 var express = require('express');
 var pgp = require('pg-promise')();
-var db = pgp(process.env.DATABASE_URL)
-// var db = pgp('postgres://postgres:password@localhost:5432/synergy');
+// var db = pgp(process.env.DATABASE_URL)
+var db = pgp('postgres://postgres:password@localhost:5432/synergy');
 var router = express.Router();
 
 // catch the favicon request for now
 router.get('/favicon.ico', (req, res) => res.status(204));
+
+// home
+router.get('/', function (req, res) {
+  res.render('consent');
+})
 
 // for testing and development
 router.get('/test', function (req, res) {
@@ -786,6 +791,41 @@ router.get('/:uid/:promptId', function (req, res) {
     })
 });
 
+// generate new uid
+router.post('/new_uid', function (req, res) {
+  var is_unique = false;
+  var id = make_id(20);
+  var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+  var bias0 = [0, 0, 1, 1];
+  var bias1 = [0, 0, 1, 1];
+  shuffle(arr);
+  shuffle(bias0);
+  shuffle(bias1);
+  while (!is_unique) {
+    db.one("SELECT COUNT(*) FROM participants WHERE id = $1", id)
+    .then(function (data) {
+      if (data.count == 1) {
+        id = make_id(20);
+      } else {
+        db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], bias0[0], bias0[1], bias0[2], bias0[3], bias1[0], bias1[1], bias1[2], bias1[3], 0, Math.floor(Math.random() * 2), 0, 0, 0])
+        .then(value => {
+          res.send({
+            "uid": id 
+          }); 
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
+        is_unique = true;
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+    return
+  }
+})
+
 // send button click
 router.post('/send', function (req, res, next) {
   // for a specified user, needs to increment count and get count
@@ -1311,3 +1351,26 @@ router.post('/tutorial_complete', function (req, res) {
 })
 
 module.exports = router;
+
+function make_id(length) {
+  var result = [];
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+  }
+  return result.join('');
+}
+
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
