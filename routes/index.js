@@ -1,7 +1,7 @@
 var express = require('express');
 var pgp = require('pg-promise')();
-// var db = pgp(process.env.DATABASE_URL)
-var db = pgp('postgres://postgres:password@localhost:5432/synergy');
+var db = pgp(process.env.DATABASE_URL)
+// var db = pgp('postgres://postgres:password@localhost:5432/synergy');
 var router = express.Router();
 
 // catch the favicon request for now
