@@ -20,7 +20,18 @@ window.onload = function () {
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
     var button = document.getElementById('next')
-    var mediums = [document.getElementsByName('Neutral'), document.getElementsByName('Formal'), document.getElementsByName('Confident'), document.getElementsByName('Joyful'), document.getElementsByName('Optimistic'), document.getElementsByName('Friendly'), document.getElementsByName('Urgent'), document.getElementsByName('Analytical'), document.getElementsByName('Respectful'), document.getElementsByName('Knowledgeable')]
+    var mediums = [
+        document.getElementsByName('Neutral'), 
+        document.getElementsByName('Formal'), 
+        document.getElementsByName('Confident'), 
+        document.getElementsByName('Joyful'), 
+        document.getElementsByName('Optimistic'), 
+        document.getElementsByName('Friendly'), 
+        document.getElementsByName('Urgent'), 
+        document.getElementsByName('Analytical'), 
+        document.getElementsByName('Respectful'), 
+        document.getElementsByName('Knowledgeable')
+    ]
     var promises = []
     button.addEventListener('click', function (event) {
         var str = window.location.pathname;
