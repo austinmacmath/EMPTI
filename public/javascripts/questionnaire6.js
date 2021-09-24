@@ -80,7 +80,6 @@ window.onload = function () {
                 return
             }
         } else {
-            console.log("skills.length: ", skills.length)
             for (var i = 0; i < skills.length; i++) {
                 for (var j = 0, length = skills[i].length; j < length; j++) {
                     if (skills[i][j].checked) {
@@ -102,11 +101,12 @@ window.onload = function () {
                 }
             }
             Promise.all(promises)
-                .then(result => {})
+                .then(result => {
+                    window.location = '/' + id + '/loading';
+                })
                 .catch(error => {
                     console.log(error)
                 })
-            // window.location = '/' + id + '/loading';
         }
     })
 }
