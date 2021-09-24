@@ -70,11 +70,12 @@ window.onload = function () {
                     }
                 }
                 Promise.all(promises)
-                    .then(result => {})
+                    .then(result => {
+                        window.location = '/' + id + '/questionnaire5';
+                    })
                     .catch(error => {
                         console.log(error)
                     })
-                window.location = '/' + id + '/questionnaire5';
             } else {
                 return
             }
@@ -100,11 +101,12 @@ window.onload = function () {
                 }
             }
             Promise.all(promises)
-                .then(result => {})
+                .then(result => {
+                    window.location = '/' + id + '/questionnaire5';
+                })
                 .catch(error => {
                     console.log(error)
                 })
-            window.location = '/' + id + '/questionnaire5';
         }
     })
 }
