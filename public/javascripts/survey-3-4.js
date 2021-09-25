@@ -39,11 +39,12 @@ window.onload = function () {
                             devices: count.value
                         })
                     })
-                    .then(result => {})
+                    .then(result => {
+                        window.location = '/' + id + '/s3-4-5'; 
+                    })
                     .catch(error => {
                         console.log(error)
                     })
-                window.location = '/' + id + '/s3-4-5'; 
             } else {
                 return
             }
@@ -63,11 +64,12 @@ window.onload = function () {
                         devices: count.value
                     })
                 })
-                .then(result => {})
+                .then(result => {
+                    window.location = '/' + id + '/s3-4-5';
+                })
                 .catch(error => {
                     console.log(error)
                 })
-            window.location = '/' + id + '/s3-4-5';
         }
     })
 }

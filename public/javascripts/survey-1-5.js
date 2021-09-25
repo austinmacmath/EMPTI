@@ -90,11 +90,12 @@ window.onload = function () {
                     }
                 }
                 Promise.all(promises)
-                    .then(result => {})
+                    .then(result => {
+                        window.location = '/' + id + '/s1-6'; 
+                    })
                     .catch(error => {
                         console.log(error)
                     })
-                window.location = '/' + id + '/s1-6'; 
             } else {
                 return
             }
@@ -120,11 +121,12 @@ window.onload = function () {
                 }
             }
             Promise.all(promises)
-                .then(result => {})
+                .then(result => {
+                    window.location = '/' + id + '/s1-6';
+                })
                 .catch(error => {
                     console.log(error)
                 })
-            window.location = '/' + id + '/s1-6';
         }
     })
 }

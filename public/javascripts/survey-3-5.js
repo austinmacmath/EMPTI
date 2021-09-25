@@ -87,11 +87,12 @@ window.onload = function () {
                     }
                 }
                 Promise.all(promises)
-                    .then(result => {})
+                    .then(result => {
+                        window.location = '/goodbye'; 
+                    })
                     .catch(error => {
                         console.log(error)
                     })
-                window.location = '/goodbye'; 
             } else {
                 return
             }
@@ -137,11 +138,12 @@ window.onload = function () {
                 }
             }
             Promise.all(promises)
-                .then(result => {})
+                .then(result => {
+                    window.location = '/goodbye';
+                })
                 .catch(error => {
                     console.log(error)
                 })
-            window.location = '/goodbye';
         }
     })
 }

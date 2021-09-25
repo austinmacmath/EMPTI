@@ -61,11 +61,12 @@ window.onload = function () {
                     }
                 }
                 Promise.all(promises)
-                    .then(result => {})
+                    .then(result => {
+                        window.location = '/' + id + '/s3-4'; 
+                    })
                     .catch(error => {
                         console.log(error)
                     })
-                window.location = '/' + id + '/s3-4'; 
             } else {
                 return
             }
@@ -91,11 +92,12 @@ window.onload = function () {
                 }
             }
             Promise.all(promises)
-                .then(result => {})
+                .then(result => {
+                    window.location = '/' + id + '/s3-4';
+                })
                 .catch(error => {
                     console.log(error)
                 })
-            window.location = '/' + id + '/s3-4';
         }
     })
 }
