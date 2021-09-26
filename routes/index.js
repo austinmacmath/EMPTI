@@ -868,8 +868,6 @@ router.post('/send', function (req, res, next) {
       console.log(error)
     })
 
-
-
   for (var i = 0; i < req.body.dprime.length; i++) {
     db.one('INSERT INTO dprime(uid, submission_time, email_id, code, suggestion, suggestion_time, root, tab_time) VALUES ($1, current_timestamp, $2, $3, $4, $5, $6, $7) RETURNING UID', [req.body.uid, req.body.email_id, req.body.dprime[i].code, req.body.dprime[i].suggestion, req.body.dprime[i].suggestionTime, req.body.dprime[i].root, req.body.dprime[i].tabTime])
       .then(uid => {
@@ -884,73 +882,80 @@ router.post('/send', function (req, res, next) {
 // tab key press
 router.post('/tab', function (req, res) {
   db.one('INSERT INTO tabs(uid, email_id, predictive_text, tab_time, hit_time, miss_time, false_alarm_time) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING uid', [req.body.uid, req.body.email_id, req.body.predictive_text, req.body.tab_time, req.body.hit_time, req.body.miss_time, req.body.false_alarm_time])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       res.send({
         "error": error
       })
     })
-  res.sendStatus(200);
 })
 
 // submit questionnaire 1
 router.post('/q1_submit', function (req, res) {
   db.one('INSERT INTO questionnaire_1(uid, submission_time, medium, frequency) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit questionnaire 2
 router.post('/q2_submit', function (req, res) {
   db.one('INSERT INTO questionnaire_2(uid, submission_time, medium, frequency) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit questionnaire 3
 router.post('/q3_submit', function (req, res) {
   db.one('INSERT INTO questionnaire_3(uid, submission_time, medium, frequency) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit questionnaire 4
 router.post('/q4_submit', function (req, res) {
   db.one('INSERT INTO questionnaire_4(uid, submission_time, medium, frequency) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit questionnaire 5
 router.post('/q5_submit', function (req, res) {
   db.one('INSERT INTO questionnaire_5(uid, submission_time, perspective, checked) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.perspective, req.body.checked])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit questionnaire 6
 router.post('/q6_submit', function (req, res) {
   db.one('INSERT INTO questionnaire_6(uid, submission_time, ability, skill) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.ability, req.body.skill])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit manipulation check 1
@@ -982,11 +987,12 @@ router.post('/m1_submit', function (req, res) {
 // submit manipulation check 2
 router.post('/m2_submit', function (req, res) {
   db.one('INSERT INTO manipulation_check_2(uid, submission_time, answer) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.answer])
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-1-1
@@ -1003,11 +1009,12 @@ router.post('/s1-1_submit', function (req, res) {
       }
       return db.one('INSERT INTO survey_1(uid, submission_time, algorithm, measure, value) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
     })
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-1-2
@@ -1024,11 +1031,12 @@ router.post('/s1-2_submit', function (req, res) {
       }
       return db.one('INSERT INTO survey_2(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
     })
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-1-3
@@ -1045,11 +1053,12 @@ router.post('/s1-3_submit', function (req, res) {
       }
       return db.one('INSERT INTO survey_3(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
     })
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-1-4
@@ -1066,11 +1075,12 @@ router.post('/s1-4_submit', function (req, res) {
       }
       return db.one('INSERT INTO survey_4(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
     })
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-1-5
@@ -1087,11 +1097,12 @@ router.post('/s1-5_submit', function (req, res) {
       }
       return db.one('INSERT INTO survey_5(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
     })
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-1-6
@@ -1108,11 +1119,12 @@ router.post('/s1-6_submit', function (req, res) {
       }
       return db.one('INSERT INTO survey_6(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
     })
-    .then(uid => {})
+    .then(uid => {
+      res.sendStatus(200);
+    })
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-3-1
