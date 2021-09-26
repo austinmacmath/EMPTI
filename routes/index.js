@@ -18,8 +18,14 @@ router.get('/test', function (req, res) {
 })
 
 // goodbye
-router.get('/goodbye', function (req, res) {
-  res.render('goodbye');
+router.get('/:uid/goodbye', function (req, res) {
+  db.one("UPDATE participants SET completed = 1 WHERE id = '" + req.params.uid + "' RETURNING id")
+    .then(data => {
+      res.render('goodbye');
+    })
+    .catch(function (error) {
+      console.log(error)
+    }) 
 });
 
 // consent
@@ -803,25 +809,25 @@ router.post('/new_uid', function (req, res) {
   shuffle(bias1);
   while (!is_unique) {
     db.one("SELECT COUNT(*) FROM participants WHERE id = $1", id)
-    .then(function (data) {
-      if (data.count == 1) {
-        id = make_id(20);
-      } else {
-        db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], bias0[0], bias0[1], bias0[2], bias0[3], bias1[0], bias1[1], bias1[2], bias1[3], 0, Math.floor(Math.random() * 2), 0, 0, 0])
-        .then(value => {
-          res.send({
-            "uid": id 
-          }); 
-        })
-        .catch(function (error) {
-          console.log(error)
-        });
-        is_unique = true;
-      }
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+      .then(function (data) {
+        if (data.count == 1) {
+          id = make_id(20);
+        } else {
+          db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], bias0[0], bias0[1], bias0[2], bias0[3], bias1[0], bias1[1], bias1[2], bias1[3], 0, Math.floor(Math.random() * 2), 0, 0, 0])
+            .then(value => {
+              res.send({
+                "uid": id
+              });
+            })
+            .catch(function (error) {
+              console.log(error)
+            });
+          is_unique = true;
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
     return
   }
 })

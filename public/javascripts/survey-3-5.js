@@ -139,7 +139,7 @@ window.onload = function () {
             }
             Promise.all(promises)
                 .then(result => {
-                    window.location = '/goodbye';
+                    window.location = '/' + id + '/goodbye';
                 })
                 .catch(error => {
                     console.log(error)
