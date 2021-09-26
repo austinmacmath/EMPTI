@@ -1139,23 +1139,13 @@ router.post('/s3-2_submit', function (req, res) {
 
 // submit survey-3-3
 router.post('/s3-3_submit', function (req, res) {
-  var algorithm
-  db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
-    .then(function (data) {
-      if (data.synergy_first && data.t0_complete && data.t1_complete) {
-        algorithm = "CS Predictor"
-      } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
-        algorithm = "CS Predictor"
-      } else {
-        algorithm = "Smart Predictor"
-      }
-      return db.one('INSERT INTO survey_3_3(uid, submission_time, algorithm, question, answer) VALUES ($1, current_timestamp, $2, $3, $4) RETURNING uid', [req.body.uid, algorithm, req.body.medium, req.body.frequency])
+  db.one('INSERT INTO survey_3_3(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+    .then(uid => {
+      res.sendStatus(200);
     })
-    .then(uid => {})
     .catch(function (error) {
       console.log(error)
     })
-  res.sendStatus(200);
 })
 
 // submit survey-3-4
