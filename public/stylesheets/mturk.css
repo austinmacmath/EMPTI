@@ -2,3 +2,17 @@ body {
     padding: 30px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+div.pbar {
+    width: 980px;
+    height: 25px;
+    background-color: #dbdbdb;
+    border-radius: 15px;
+    margin: auto;
+}
+
+div.completed {
+    background-color: #6ed6ff;
+    height: 25px;
+    border-radius: 15px;
+}
