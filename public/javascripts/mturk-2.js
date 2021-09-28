@@ -16,6 +16,6 @@ window.onload = function () {
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
-        window.location = '/goodbye';
+        window.location = '/' + id + '/goodbye';
     })
 }
