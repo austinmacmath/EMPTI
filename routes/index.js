@@ -1207,7 +1207,7 @@ router.post('/s3-4-5_submit', function (req, res) {
 
 // submit survey-3-4-5-6
 router.post('/s3-4-5-6_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_4_5_6(uid, submission_time, devices) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
+  db.one('INSERT INTO survey_3_4_5_6(uid, submission_time, clarification) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
     .then(uid => {
       res.sendStatus(200);
     })
