@@ -42,3 +42,9 @@ td {
 td.header {
     width: 200px;
 }
+
+input.clarification {
+    width: 600px;
+    height: 300px;
+    resize: none;
+}

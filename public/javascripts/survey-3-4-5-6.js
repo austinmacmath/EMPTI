@@ -54,7 +54,7 @@ window.onload = function () {
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            fetch('/s3-4_submit', {
+            fetch('/s3-4-5-6_submit', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
