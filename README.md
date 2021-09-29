@@ -83,3 +83,9 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * set completed flag
 * transition back to mturk version
 * check to see if progress bar math is correct on deployed version
+
+## 9/29 Meeting
+* in cscw manuscript, include the fact that the predictive text doens't work if you write in middle of existing text
+* add page after loading page
+    * new page with the following language: Regardless of how frequently you use predictive text algorithms in your daily life, for this demo, we would like you to try to use the predictive text algorithms as much as possible.
+

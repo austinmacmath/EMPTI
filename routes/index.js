@@ -215,6 +215,23 @@ router.get('/:uid/loading', function (req, res) {
     })
 })
 
+//  welcome 4
+router.get('/:uid/welcome4', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('welcome4')
+      } else if (data.id == req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
 // tutorial transition 0
 router.get('/:uid/tt0', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
