@@ -18,6 +18,7 @@ window.onload = function () {
     }
     var progressCount = parseInt(localStorage.getItem(url))
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
+    var str = window.location.pathname;
     var id = str.substring(
         str.indexOf("/") + 1,
         str.lastIndexOf("/")
@@ -26,7 +27,6 @@ window.onload = function () {
     
     var button = document.getElementById('next')
     button.addEventListener('click', function (event) {
-        var str = window.location.pathname;
         window.location = '/' + id + '/goodbye';
     })
 }
