@@ -660,6 +660,23 @@ router.get('/:uid/s3-4-5', function (req, res) {
     })
 })
 
+// survey-3-4-5-6
+router.get('/:uid/s3-4-5-6', function (req, res) {
+  db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
+    .then(function (data) {
+      if (data.id == req.params.uid && data.completed == 0) {
+        res.render('survey-3-4-5-6')
+      } else if (data.id == req.params.uid && data.completed == 1) {
+        res.render('goodbye')
+      } else {
+        res.render('wrong_uid')
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
 // survey-3-5
 router.get('/:uid/s3-5', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
@@ -1180,6 +1197,17 @@ router.post('/s3-4_submit', function (req, res) {
 // submit survey-3-4-5
 router.post('/s3-4-5_submit', function (req, res) {
   db.one('INSERT INTO survey_3_4_5(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+    .then(uid => {
+      res.sendStatus(200);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
+
+// submit survey-3-4-5-6
+router.post('/s3-4-5-6_submit', function (req, res) {
+  db.one('INSERT INTO survey_3_4_5_6(uid, submission_time, devices) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
     .then(uid => {
       res.sendStatus(200);
     })

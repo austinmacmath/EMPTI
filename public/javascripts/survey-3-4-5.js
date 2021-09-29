@@ -63,7 +63,7 @@ window.onload = function () {
                 }
                 Promise.all(promises)
                     .then(result => {
-                        window.location = '/' + id + '/s3-5'; 
+                        window.location = '/' + id + '/s3-4-5-6'; 
                     })
                     .catch(error => {
                         console.log(error)
@@ -94,7 +94,7 @@ window.onload = function () {
             }
             Promise.all(promises)
                 .then(result => {
-                    window.location = '/' + id + '/s3-5';
+                    window.location = '/' + id + '/s3-4-5-6';
                 })
                 .catch(error => {
                     console.log(error)

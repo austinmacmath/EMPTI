@@ -61,42 +61,25 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 ## 8/16 meeting (for pretest thingy)
 * questionnaire*
     * log when radios are not clicked also or force them to click
-* survey
-    * randomize items not pages
 * for email pages
     * record page load time
     * record d' actions in db table
-* progress bar
-* remove algorithm column from survey_3_* db tables along with references to algorithm in index.js
-* deploy application
-
-## Completed
-* place 1st manipulation check after first tutorial transition
-    * add retry text popup
-* page m1: s/did/willj
-* consent 
-    * remove mturk references
-    * remove cost/payments section
-    * remove confidentiality section
-    * s/Professor/Dr.
-* replace ringgo with cs predictor
-* change green color of typing indicator
-* center questionnaire
-* center surveys
-* implement different algorithm corpus
-* add timer to break page
 
 ## Aug 26 Meeting Notes
-* welcome 1
-    * add checkbox "Please check the box if you understand these instructions"
-        * if box is not checked, do not allow to progress
 * survey and questionniare
-    * popup to check for missing responses
-    * center questions but left justify them
     * add total time spent per page on survey
 * questionniare
     * dont need to randomize questinniare items
-* sublease email
-    * next year . => next year.
-* double check correctness of rest of email prompts
-* use new corpus
+* in our request response pop-up window that asks participants if they want to continue without answering the question, the two options are “cancel” and “ok”. Can we change “ok” to “continue”?
+5. I am not really sure how and why this happened, but when I was testing the algorithms, sometimes I directly copies and pasted some texts to the answer box, and then deleted them and tried to type something else. Sometimes I got no suggestions afterwards. I don’t think this will happen a lot as long as participants follow our instructions. But just something to think about.
+
+## Sept 15 meeting
+* priority: transition to mturk
+* find out new deadlines for cscw
+* make sure window.location is inside promise then for survey pages
+
+## Updates
+* fix data collection in database (all answers were not being collected)
+* set completed flag
+* transition back to mturk version
+* check to see if progress bar math is correct on deployed version
