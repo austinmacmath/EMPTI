@@ -1,5 +1,5 @@
 async function enable() {
-    var start_tutorial = document.getElementById('start-tutorial');
+    var start_tutorial = document.getElementById('next');
     var loader = document.getElementById('loader');
     await new Promise(r => setTimeout(r, 10000));
     loader.style.borderColor = 'white';
@@ -18,28 +18,29 @@ window.onload = function () {
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
     enable()
-    var tutorialButton = document.getElementById('start-tutorial');
+    var tutorialButton = document.getElementById('next');
     tutorialButton.addEventListener('click', function (event) {
         var str = window.location.pathname;
         var id = str.substring(
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
-        fetch('/start', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    uid: id
-                })
-            })
-            .then(response => response.json())
-            .then(result => {
-                window.location = '/' + id + '/' + result.email;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        // fetch('/start', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             uid: id
+        //         })
+        //     })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         window.location = '/' + id + '/' + result.email;
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+        window.location = '/' + id + '/welcome4'
     })
 }
