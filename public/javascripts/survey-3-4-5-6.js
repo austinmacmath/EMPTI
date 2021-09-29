@@ -20,9 +20,9 @@ window.onload = function () {
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
     var button = document.getElementById('next')
-    var count = document.getElementById("count")
+    var clarification = document.getElementById("clarification")
     button.addEventListener('click', function (event) {
-        if(count.value == "") {
+        if(clarification.value == "") {
             if(confirm("You haven't answered all of the questions. Would you like to continue anyway?")) {
                 var str = window.location.pathname;
                 var id = str.substring(
@@ -36,7 +36,7 @@ window.onload = function () {
                         },
                         body: JSON.stringify({
                             uid: id,
-                            devices: count.value
+                            devices: clarification.value
                         })
                     })
                     .then(result => {
@@ -61,7 +61,7 @@ window.onload = function () {
                     },
                     body: JSON.stringify({
                         uid: id,
-                        devices: count.value
+                        devices: clarification.value
                     })
                 })
                 .then(result => {
