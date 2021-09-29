@@ -21,7 +21,8 @@ window.onload = function () {
     
     var button = document.getElementById('next')
     var mediums = [
-        document.getElementsByName('extension')
+        document.getElementsByName('extension'),
+        document.getElementsByName('break')
     ]
     var promises = []
     button.addEventListener('click', function (event) {
