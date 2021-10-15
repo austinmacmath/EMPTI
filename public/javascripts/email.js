@@ -617,6 +617,14 @@ window.onload = function () {
                     root: lastWord,
                     tabTime: tabTime
                 })
+            } else {
+                dPrime.push({
+                    code: "hit",
+                    suggestion: suggestions[0],
+                    suggestionTime: predictionDisplayTime,
+                    root: lastWord,
+                    tabTime: tabTime
+                }) 
             }
         }
 
@@ -689,6 +697,14 @@ window.onload = function () {
                             root: lastWord,
                             tabTime: currentTime
                         })
+                    } else {
+                        dPrime.push({
+                            code: "miss",
+                            suggestion: suggestions[0],
+                            suggestionTime: predictionDisplayTime,
+                            root: lastWord,
+                            tabTime: currentTime
+                        }) 
                     }
                 }
             }
