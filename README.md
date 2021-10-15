@@ -98,3 +98,11 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * pay for database upgrade
 * 
 
+## 10/13
+* numbers to get:
+* try adding captcha
+* number of unbiased suggestions
+* number of biased suggestions
+* calculate 8 values from mturk data cleaning
+* do this by saturday
+* add payment criteria page (from kylie) to after consent page 

@@ -1,0 +1,511 @@
+SELECT 
+	ct.id, 
+	"NSB Hit", 
+	"NSB Miss", 
+	"NSB False Alarm", 
+	"NSB Correct Rejection", 
+	"NSUB Hit", 
+	"NSUB Miss", 
+	"NSUB False Alarm", 
+	"NSUB Correct Rejection", 
+	"SB Hit", 
+	"SB Miss", 
+	"SB False Alarm", 
+	"SB Correct Rejection", 
+	"SUB Hit", 
+	"SUB Miss", 
+	"SUB False Alarm", 
+	"SUB Correct Rejection",
+	mc1.answer AS "Manipulation Check 1",
+	mc2.answer AS "Manipulation Check 2",
+	"Smart Predictor transparent",
+	"Smart Predictor credible",
+	"Smart Predictor fair",
+	"Smart Predictor competent",
+	"Smart Predictor expert",
+	"Smart Predictor benevolent",
+	"Smart Predictor trustworthy",
+	"Smart Predictor biased",
+	"CS Predictor transparent",
+	"CS Predictor credible",
+	"CS Predictor fair",
+	"CS Predictor competent",
+	"CS Predictor expert",
+	"CS Predictor benevolent",
+	"CS Predictor trustworthy",
+	"Smart Predictor biased",
+	"Smart Predictor understand",
+	"Smart Predictor comfort", 
+	"Smart Predictor confident",
+	"CS Predictor understand", 
+	"CS Predictor comfort",
+	"CS Predictor confident",
+	"Smart Predictor reflect",
+	"Smart Predictor connect",
+	"Smart Predictor identify",
+	"Smart Predictor suit",
+	"Smart Predictor me",
+	"Smart Predictor become",
+	"Smart Predictor communicate",
+	"CS Predictor reflect",
+	"CS Predictor connect",
+	"CS Predictor identify",
+	"CS Predictor suit",
+	"CS Predictor me",
+	"CS Predictor become",
+	"CS Predictor communicate",
+	"Smart Predictor control", 
+"Smart Predictor difficult", 
+"Smart Predictor encourage", 
+"Smart Predictor experiences", 
+"Smart Predictor fast", 
+"Smart Predictor feedback", 
+"Smart Predictor instantaneous", 
+"Smart Predictor listen", 
+"Smart Predictor no control", 
+"Smart Predictor opportunity", 
+"Smart Predictor processed", 
+"Smart Predictor slow", 
+"Smart Predictor two-way", 
+"Smart Predictor without any delay", 
+"CS Predictor control", 
+"CS Predictor difficult", 
+"CS Predictor encourage", 
+"CS Predictor experiences", 
+"CS Predictor fast", 
+"CS Predictor feedback", 
+"CS Predictor instantaneous", 
+"CS Predictor listen", 
+"CS Predictor no control", 
+"CS Predictor opportunity", 
+"CS Predictor processed", 
+"CS Predictor slow", 
+"CS Predictor two-way", 
+"CS Predictor without any delay",
+"Smart Predictor compose", 
+"Smart Predictor easier", 
+"Smart Predictor effectiveness", 
+"Smart Predictor performance", 
+"Smart Predictor productivity", 
+"Smart Predictor useful", 
+"CS Predictor compose", 
+"CS Predictor easier", 
+"CS Predictor effectiveness", 
+"CS Predictor performance", 
+"CS Predictor productivity", 
+"CS Predictor useful",
+"Smart Predictor adopt",
+"CS Predictor adopt",
+"consequence", 
+"automated", 
+"human", 
+"prioritize", 
+"online", 
+"data", 
+"prejudice", 
+"platform", 
+"show", 
+"suggest", 
+"tailor",
+"transparent", 
+"recommend",
+s3_2."bias",
+"objective",
+"intention",
+"frequently",
+"devices",
+"extension",
+"break",
+"clarification",
+"gender", 
+"check", 
+"education", 
+"age", 
+"SpanishHispanicLatino", 
+"income", 
+"political", 
+"ethnicity"
+FROM crosstab('
+		SELECT 
+			  id, 
+			  synergy, 
+			  bias, 
+			  synergy::text || '' '' || bias::text || '' '' || code AS conditional_dprime, 
+			  COUNT(synergy::text || '' '' || bias::text || '' '' || code) 
+		FROM 
+			(SELECT participants.id, e0 AS email_id, b0 AS bias, s0 AS synergy FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id
+				UNION ALL 
+			SELECT participants.id, e1, b1, s1 FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id
+				UNION ALL
+			SELECT participants.id, e2, b2, s2 FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id
+				UNION ALL
+			SELECT participants.id, e3, b3, s3 FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id
+				UNION ALL
+			SELECT participants.id, e4, b4, s4 FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id
+				UNION ALL
+			SELECT participants.id, e5, b5, s5 FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id
+				UNION ALL
+			SELECT participants.id, e6, b6, s6 FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id
+				UNION ALL
+			SELECT participants.id, e7, b7, s7 FROM participants INNER JOIN synergy_condition ON participants.id = synergy_condition.id) AS temp
+				RIGHT JOIN 
+			dprime ON temp.email_id = dprime.email_id::INTEGER AND temp.id = dprime.uid
+	GROUP BY 1,2,3,4 ORDER BY 1,2,3,4', 
+	$$VALUES ('0 1 hit'), ('0 1 miss'), ('0 1 false alarm'), ('0 1 correct rejection'), ('0 0 hit'), ('0 0 miss'), ('0 0 false alarm'), ('0 0 correct rejection'), ('1 1 hit'), ('1 1 miss'), ('1 1 false alarm'), ('1 1 correct rejection'), ('1 0 hit'), ('1 0 miss'), ('1 0 false alarm'), ('1 0 correct rejection')$$)
+	AS ct ("id" text, "bias" int, "synergy" int, "NSB Hit" int, "NSB Miss" int, "NSB False Alarm" int, "NSB Correct Rejection" int, "NSUB Hit" int, "NSUB Miss" int, "NSUB False Alarm" int, "NSUB Correct Rejection" int, "SB Hit" int, "SB Miss" int, "SB False Alarm" int, "SB Correct Rejection" int, "SUB Hit" int, "SUB Miss" int, "SUB False Alarm" int, "SUB Correct Rejection" int)
+	LEFT JOIN (SELECT mc1.uid, answer FROM manipulation_check_1 AS mc1 INNER JOIN (
+SELECT uid, MAX(submission_time) AS submission_time FROM manipulation_check_1 GROUP BY uid
+) AS mctemp ON mc1.uid = mctemp.uid AND mc1.submission_time = mctemp.submission_time) AS mc1 ON id = mc1.uid
+	LEFT JOIN manipulation_check_2 AS mc2 ON id = mc2.uid
+LEFT JOIN(
+SELECT 
+	id,
+	MAX("Smart Predictor transparent") AS "Smart Predictor transparent",
+	MAX("Smart Predictor credible") AS "Smart Predictor credible",
+	MAX("Smart Predictor fair") AS "Smart Predictor fair",
+	MAX("Smart Predictor competent") AS "Smart Predictor competent",
+	MAX("Smart Predictor expert") AS "Smart Predictor expert",
+	MAX("Smart Predictor benevolent") AS "Smart Predictor benevolent",
+	MAX("Smart Predictor trustworthy") AS "Smart Predictor trustworthy",
+	MAX("Smart Predictor biased") AS "Smart Predictor biased",
+	MAX("CS Predictor transparent") AS "CS Predictor transparent",
+	MAX("CS Predictor credible") AS "CS Predictor credible",
+	MAX("CS Predictor fair") AS "CS Predictor fair",
+	MAX("CS Predictor competent") AS "CS Predictor competent",
+	MAX("CS Predictor expert") AS "CS Predictor expert",
+	MAX("CS Predictor benevolent") AS "CS Predictor benevolent",
+	MAX("CS Predictor trustworthy") AS "CS Predictor trustworthy",
+	MAX("CS Predictor biased") AS "CS Predictor biased"
+	FROM crosstab('SELECT uid, algorithm || '' '' || measure AS algorithm_measure, value FROM survey_1', 
+	   $$VALUES 
+		('Smart Predictor transparent'), 
+		('Smart Predictor credible'),
+		('Smart Predictor fair'), 
+		('Smart Predictor competent'), 
+		('Smart Predictor expert'), 
+		('Smart Predictor benevolent'), 
+		('Smart Predictor trustworthy'), 
+		('Smart Predictor biased'),
+		('CS Predictor transparent'), 
+		('CS Predictor credible'),
+		('CS Predictor fair'), 
+		('CS Predictor competent'), 
+		('CS Predictor expert'), 
+		('CS Predictor benevolent'), 
+		('CS Predictor trustworthy'), 
+		('CS Predictor biased')$$)
+	   AS ct ("id" text, "Smart Predictor transparent" text, "Smart Predictor credible" text, "Smart Predictor fair" text, "Smart Predictor competent" text, "Smart Predictor expert" text, "Smart Predictor benevolent" text, "Smart Predictor trustworthy" text, "Smart Predictor biased" text, "CS Predictor transparent" text, "CS Predictor credible" text, "CS Predictor fair" text, "CS Predictor competent" text, "CS Predictor expert" text, "CS Predictor benevolent" text, "CS Predictor trustworthy" text, "CS Predictor biased" text)
+	  GROUP BY id
+) AS s1 ON ct.id = s1.id
+LEFT JOIN(SELECT 
+	id,
+	MAX("Smart Predictor understand") AS "Smart Predictor understand",
+	MAX("Smart Predictor comfort") AS "Smart Predictor comfort",
+	MAX("Smart Predictor confident") AS "Smart Predictor confident",
+	MAX("CS Predictor understand") AS "CS Predictor understand",
+	MAX("CS Predictor comfort") AS "CS Predictor comfort",
+	MAX("CS Predictor confident") AS "CS Predictor confident"
+	FROM crosstab('SELECT uid, algorithm || '' '' || question AS algorithm_question, answer FROM survey_2', 
+					   $$VALUES 
+						('Smart Predictor understand'), 
+						('Smart Predictor comfort'),
+						('Smart Predictor confident'), 
+						('CS Predictor understand'), 
+						('CS Predictor comfort'),
+						('CS Predictor confident')$$)
+					   AS ct ("id" text, "Smart Predictor understand" text, "Smart Predictor comfort" text, "Smart Predictor confident" text, "CS Predictor understand" text, "CS Predictor comfort" text, "CS Predictor confident" text) GROUP BY id)
+	AS s2 ON ct.id = s2.id
+LEFT JOIN(
+SELECT 
+	id,
+	MAX("Smart Predictor reflect") AS "Smart Predictor reflect",
+	MAX("Smart Predictor connect") AS "Smart Predictor connect",
+	MAX("Smart Predictor identify") AS "Smart Predictor identify",
+	MAX("Smart Predictor suit") AS "Smart Predictor suit",
+	MAX("Smart Predictor me") AS "Smart Predictor me",
+	MAX("Smart Predictor become") AS "Smart Predictor become",
+	MAX("Smart Predictor communicate") AS "Smart Predictor communicate",
+	MAX("CS Predictor reflect") AS "CS Predictor reflect",
+	MAX("CS Predictor connect") AS "CS Predictor connect",
+	MAX("CS Predictor identify") AS "CS Predictor identify",
+	MAX("CS Predictor suit") AS "CS Predictor suit",
+	MAX("CS Predictor me") AS "CS Predictor me",
+	MAX("CS Predictor become") AS "CS Predictor become",
+	MAX("CS Predictor communicate") AS "CS Predictor communicate"
+	FROM crosstab('SELECT uid, algorithm || '' '' || question AS algorithm_question, answer FROM survey_3', 
+					   $$VALUES 
+						('Smart Predictor reflect'), 
+						('Smart Predictor connect'),
+						('Smart Predictor identify'), 
+				  		('Smart Predictor suit'), 
+				  		('Smart Predictor me'), 
+				  		('Smart Predictor become'),
+				  		('Smart Predictor communicate'),
+				  		('CS Predictor reflect'), 
+						('CS Predictor connect'),
+						('CS Predictor identify'), 
+				  		('CS Predictor suit'), 
+				  		('CS Predictor me'), 
+				  		('CS Predictor become'),
+				  		('CS Predictor communicate')$$)
+					   AS ct ("id" text, "Smart Predictor reflect" text, "Smart Predictor connect" text, "Smart Predictor identify" text, "Smart Predictor suit" text, "Smart Predictor me" text, "Smart Predictor become" text, "Smart Predictor communicate" text, "CS Predictor reflect" text, "CS Predictor connect" text, "CS Predictor identify" text, "CS Predictor suit" text, "CS Predictor me" text, "CS Predictor become" text, "CS Predictor communicate" text) GROUP BY id
+) AS s3 ON ct.id = s3.id
+LEFT JOIN(SELECT 
+	id,
+	MAX("Smart Predictor control") AS "Smart Predictor control",
+	MAX("Smart Predictor difficult") AS "Smart Predictor difficult",
+	MAX("Smart Predictor encourage") AS "Smart Predictor encourage",
+	MAX("Smart Predictor experiences") AS "Smart Predictor experiences",
+	MAX("Smart Predictor fast") AS "Smart Predictor fast",
+	MAX("Smart Predictor feedback") AS "Smart Predictor feedback",
+	MAX("Smart Predictor instantaneous") AS "Smart Predictor instantaneous",
+	MAX("Smart Predictor listen") AS "Smart Predictor listen",
+    MAX("Smart Predictor no control") AS "Smart Predictor no control",
+    MAX("Smart Predictor opportunity") AS "Smart Predictor opportunity",
+    MAX("Smart Predictor processed") AS "Smart Predictor processed",
+    MAX("Smart Predictor slow") AS "Smart Predictor slow",
+    MAX("Smart Predictor two-way") AS "Smart Predictor two-way",
+    MAX("Smart Predictor without any delay") AS "Smart Predictor without any delay", 
+    MAX("CS Predictor control") AS "CS Predictor control",
+	MAX("CS Predictor difficult") AS "CS Predictor difficult",
+	MAX("CS Predictor encourage") AS "CS Predictor encourage",
+	MAX("CS Predictor experiences") AS "CS Predictor experiences",
+	MAX("CS Predictor fast") AS "CS Predictor fast",
+	MAX("CS Predictor feedback") AS "CS Predictor feedback",
+	MAX("CS Predictor instantaneous") AS "CS Predictor instantaneous",
+	MAX("CS Predictor listen") AS "CS Predictor listen",
+    MAX("CS Predictor no control") AS "CS Predictor no control",
+    MAX("CS Predictor opportunity") AS "CS Predictor opportunity",
+    MAX("CS Predictor processed") AS "CS Predictor processed",
+    MAX("CS Predictor slow") AS "CS Predictor slow",
+    MAX("CS Predictor two-way") AS "CS Predictor two-way",
+    MAX("CS Predictor without any delay") AS "CS Predictor without any delay" 
+	FROM crosstab('SELECT uid, algorithm || '' '' || question AS algorithm_question, answer FROM survey_4', 
+					   $$VALUES 
+						('Smart Predictor control'), 
+						('Smart Predictor difficult'),
+						('Smart Predictor encourage'), 
+				  		('Smart Predictor experiences'), 
+				  		('Smart Predictor fast'), 
+				  		('Smart Predictor feedback'),
+				  		('Smart Predictor instantaneous'),
+				  		('Smart Predictor listen'), 
+                        ('Smart Predictor no control'),
+                        ('Smart Predictor opportunity'),
+                        ('Smart Predictor processed'),
+                        ('Smart Predictor slow'),
+                        ('Smart Predictor two-way'),
+                        ('Smart Predictor without any delay'),
+						('CS Predictor control'), 
+						('CS Predictor difficult'),
+						('CS Predictor encourage'), 
+				  		('CS Predictor experiences'), 
+				  		('CS Predictor fast'), 
+				  		('CS Predictor feedback'),
+				  		('CS Predictor instantaneous'),
+				  		('CS Predictor listen'), 
+                        ('CS Predictor no control'),
+                        ('CS Predictor opportunity'),
+                        ('CS Predictor processed'),
+                        ('CS Predictor slow'),
+                        ('CS Predictor two-way'),
+                        ('CS Predictor without any delay')$$)
+					   AS ct (
+                           "id" text, 
+                            "Smart Predictor control" text, 
+                            "Smart Predictor difficult" text, 
+                            "Smart Predictor encourage" text, 
+                            "Smart Predictor experiences" text, 
+                            "Smart Predictor fast" text, 
+                            "Smart Predictor feedback" text, 
+                            "Smart Predictor instantaneous" text, 
+                            "Smart Predictor listen" text, 
+                            "Smart Predictor no control" text, 
+                            "Smart Predictor opportunity" text, 
+                            "Smart Predictor processed" text, 
+                            "Smart Predictor slow" text, 
+                            "Smart Predictor two-way" text, 
+                            "Smart Predictor without any delay" text, 
+                            "CS Predictor control" text, 
+                            "CS Predictor difficult" text, 
+                            "CS Predictor encourage" text, 
+                            "CS Predictor experiences" text, 
+                            "CS Predictor fast" text, 
+                            "CS Predictor feedback" text, 
+                            "CS Predictor instantaneous" text, 
+                            "CS Predictor listen" text, 
+                            "CS Predictor no control" text, 
+                            "CS Predictor opportunity" text, 
+                            "CS Predictor processed" text, 
+                            "CS Predictor slow" text, 
+                            "CS Predictor two-way" text, 
+                            "CS Predictor without any delay" text) GROUP BY id)
+    AS s4 ON ct.id = s4.id
+LEFT JOIN(SELECT 
+	id,
+	MAX("Smart Predictor compose") AS "Smart Predictor compose",
+	MAX("Smart Predictor easier") AS "Smart Predictor easier",
+	MAX("Smart Predictor effectiveness") AS "Smart Predictor effectiveness",
+	MAX("Smart Predictor performance") AS "Smart Predictor performance",
+	MAX("Smart Predictor productivity") AS "Smart Predictor productivity",
+	MAX("Smart Predictor useful") AS "Smart Predictor useful",
+    MAX("CS Predictor compose") AS "CS Predictor compose",
+	MAX("CS Predictor easier") AS "CS Predictor easier",
+	MAX("CS Predictor effectiveness") AS "CS Predictor effectiveness",
+	MAX("CS Predictor performance") AS "CS Predictor performance",
+	MAX("CS Predictor productivity") AS "CS Predictor productivity",
+	MAX("CS Predictor useful") AS "CS Predictor useful"
+	FROM crosstab('SELECT uid, algorithm || '' '' || question AS algorithm_question, answer FROM survey_5', 
+					   $$VALUES 
+						('Smart Predictor compose'), 
+						('Smart Predictor easier'),
+						('Smart Predictor effectiveness'), 
+				  		('Smart Predictor performance'), 
+				  		('Smart Predictor productivity'), 
+				  		('Smart Predictor useful'),
+				  		('CS Predictor compose'), 
+						('CS Predictor easier'),
+						('CS Predictor effectiveness'), 
+				  		('CS Predictor performance'), 
+				  		('CS Predictor productivity'), 
+				  		('CS Predictor useful')$$)
+					   AS ct (
+                           "id" text, 
+                            "Smart Predictor compose" text, 
+                            "Smart Predictor easier" text, 
+                            "Smart Predictor effectiveness" text, 
+                            "Smart Predictor performance" text, 
+                            "Smart Predictor productivity" text, 
+                            "Smart Predictor useful" text, 
+                            "CS Predictor compose" text, 
+                            "CS Predictor easier" text, 
+                            "CS Predictor effectiveness" text, 
+                            "CS Predictor performance" text, 
+                            "CS Predictor productivity" text, 
+                            "CS Predictor useful" text) GROUP BY id)
+AS s5 ON ct.id = s5.id
+LEFT JOIN(
+SELECT 
+	id,
+	MAX("Smart Predictor adopt") AS "Smart Predictor adopt",
+	MAX("CS Predictor adopt") AS "CS Predictor adopt"
+	FROM crosstab('SELECT uid, algorithm || '' '' || question AS algorithm_question, answer FROM survey_6', 
+					   $$VALUES 
+						('Smart Predictor adopt'), 
+						('CS Predictor adopt')$$)
+					   AS ct (
+                           "id" text, 
+                            "Smart Predictor adopt" text, 
+                            "CS Predictor adopt" text) GROUP BY id)
+AS s6 ON ct.id = s6.id
+LEFT JOIN(
+SELECT 
+	id,
+	MAX("consequence") AS "consequence",
+	MAX("automated") AS "automated",
+	MAX("human") AS "human",
+	MAX("prioritize") AS "prioritize",
+	MAX("online") AS "online",
+    MAX("data") AS "data",
+	MAX("prejudice") AS "prejudice",
+	MAX("platform") AS "platform",
+	MAX("show") AS "show",
+	MAX("suggest") AS "suggest",
+	MAX("tailor") AS "tailor",
+	MAX("transparent") AS "transparent",
+	MAX("recommend") AS "recommend"
+	FROM crosstab('SELECT uid, question, answer FROM survey_3_1', 
+					   $$VALUES 
+						('consequence'), 
+						('automated'),
+						('human'), 
+				  		('prioritize'), 
+				  		('online'),
+				  		('data'), 
+						('prejudice'),
+						('platform'), 
+				  		('show'), 
+				  		('suggest'), 
+				  		('tailor'),
+                        ('transparent'),
+                        ('recommend')$$)
+					   AS ct (
+                           "id" text, 
+                            "consequence" text, 
+                            "automated" text, 
+                            "human" text, 
+                            "prioritize" text, 
+                            "online" text, 
+                            "data" text, 
+                            "prejudice" text, 
+                            "platform" text, 
+                            "show" text, 
+                            "suggest" text, 
+                            "tailor" text,
+                            "transparent" text, 
+                            "recommend" text) GROUP BY id)
+AS s3_1 ON ct.id = s3_1.id
+LEFT JOIN(SELECT 
+	id,
+	MAX("bias") AS "bias",
+	MAX("objective") AS "objective",
+	MAX("intention") AS "intention"
+	FROM crosstab('SELECT uid, question, answer FROM survey_3_2', 
+					   $$VALUES 
+						('bias'), 
+						('objective'),
+						('intention')$$)
+					   AS ct (
+                           "id" text, 
+                            "bias" text, 
+                            "objective" text, 
+                            "intention" text) GROUP BY id)
+AS s3_2 ON ct.id = s3_2.id
+LEFT JOIN(SELECT uid, answer AS frequently FROM survey_3_3
+) AS s3_3 ON ct.id = s3_3.uid
+LEFT JOIN(SELECT uid, MAX(devices) AS devices FROM survey_3_4 GROUP BY uid) AS s3_4 ON ct.id = s3_4.uid
+LEFT JOIN(SELECT 
+	id,
+	MAX("extension") AS "extension",
+	MAX("break") AS "break"
+	FROM crosstab('SELECT uid, question, answer FROM survey_3_4_5', 
+					   $$VALUES 
+						('extension'), 
+						('break')$$)
+					   AS ct (
+                           "id" text, 
+                            "extension" text, 
+                            "break" text) GROUP BY id) AS s3_4_5 ON ct.id = s3_4_5.id
+LEFT JOIN(SELECT uid, MAX(clarification) AS clarification FROM survey_3_4_5_6 GROUP BY uid) AS s3_4_5_6 ON ct.id = s3_4_5_6.uid
+LEFT JOIN(SELECT 
+	id,
+	MAX("gender") AS "gender",
+	MAX("check") AS "check",
+	MAX("education") AS "education",
+	MAX("age") AS "age",
+	MAX("SpanishHispanicLatino") AS "SpanishHispanicLatino",
+    MAX("income") AS "income",
+	MAX("political") AS "political",
+	MAX("ethnicity") AS "ethnicity"
+	FROM crosstab('SELECT uid, question, answer FROM survey_3_5', 
+					   $$VALUES 
+						('gender'), 
+						('check'),
+						('education'), 
+				  		('age'), 
+				  		('SpanishHispanicLatino'),
+				  		('income'), 
+						('political'),
+						('ethnicity')$$)
+					   AS ct (
+                           "id" text, 
+                            "gender" text, 
+                            "check" text, 
+                            "education" text, 
+                            "age" text, 
+                            "SpanishHispanicLatino" text, 
+                            "income" text, 
+                            "political" text, 
+                            "ethnicity" text) GROUP BY id)
+		AS s3_5 ON ct.id = s3_5.id
+ORDER BY id;
