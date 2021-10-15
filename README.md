@@ -89,3 +89,12 @@ Run `node make_id.js`. This will create a new random 20 digit string for a user.
 * add page after loading page
     * new page with the following language: Regardless of how frequently you use predictive text algorithms in your daily life, for this demo, we would like you to try to use the predictive text algorithms as much as possible.
 
+## 10/6
+* write sql to join all tables on a UID so that there is one gigantic table with all data
+    * combine all existing data for now into one set
+    * aggregate reaction time per email id per user 
+    * dprime counts per smart predictor and per cs predictor
+    * for excel, chunk all cs predictor data together, chunk all smart predictor data together
+* pay for database upgrade
+* 
+
