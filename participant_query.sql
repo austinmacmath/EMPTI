@@ -1,5 +1,9 @@
 SELECT 
 	ct.id, 
+	"SUB Hit" / (coalesce("SUB Hit",0) + coalesce("SUB Miss",0) + coalesce("SB Hit",0) + coalesce("SB Miss",0))::decimal AS "Synergy Hit Rate",
+	"SB False Alarm" / (coalesce("SB False Alarm",0) + coalesce("SB Correct Rejection",0))::decimal AS "Synergy False Alarm Rate",
+	"NSUB Hit" / (coalesce("NSUB Hit",0) + coalesce("NSUB Miss",0) + coalesce("NSB Hit",0) + coalesce("NSB Miss",0))::decimal AS "Non Synergy Hit Rate",
+	"NSB False Alarm" / (coalesce("NSB False Alarm",0) + coalesce("NSB Correct Rejection",0))::decimal AS "Non Synergy False Alarm Rate",
 	"NSB Hit", 
 	"NSB Miss", 
 	"NSB False Alarm", 
@@ -124,7 +128,8 @@ SELECT
 	"SpanishHispanicLatino", 
 	"income", 
 	"political", 
-	"ethnicity"
+	"ethnicity",
+	finish - start AS "total_time"
 FROM crosstab('
 		SELECT 
 			  id, 
@@ -508,4 +513,5 @@ LEFT JOIN(SELECT
                             "political" text, 
                             "ethnicity" text) GROUP BY id)
 		AS s3_5 ON ct.id = s3_5.id
+LEFT JOIN participants ON ct.id = participants.id
 ORDER BY id;
