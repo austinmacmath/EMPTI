@@ -847,7 +847,7 @@ router.post('/new_uid', function (req, res) {
         if (data.count == 1) {
           id = make_id(20);
         } else {
-          db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], bias0[0], bias0[1], bias0[2], bias0[3], bias1[0], bias1[1], bias1[2], bias1[3], 0, Math.floor(Math.random() * 2), 0, 0, 0])
+          db.one('INSERT INTO participants VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, current_timestamp, current_timestamp) RETURNING id', [id, arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], bias0[0], bias0[1], bias0[2], bias0[3], bias1[0], bias1[1], bias1[2], bias1[3], 0, Math.floor(Math.random() * 2), 0, 0, 0])
             .then(value => {
               res.send({
                 "uid": id
