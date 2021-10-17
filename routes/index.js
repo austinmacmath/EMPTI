@@ -19,7 +19,7 @@ router.get('/test', function (req, res) {
 
 // goodbye
 router.get('/:uid/goodbye', function (req, res) {
-  db.one("UPDATE participants SET completed = 1 WHERE id = '" + req.params.uid + "' RETURNING id")
+  db.one("UPDATE participants SET completed = 1, finish = current_timestamp WHERE id = '" + req.params.uid + "' RETURNING id")
     .then(data => {
       res.render('goodbye');
     })
