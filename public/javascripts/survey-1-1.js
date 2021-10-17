@@ -18,7 +18,7 @@ window.onload = function () {
         '<td>Unfair </td><td> <input type="radio" name="fair" value="1"></td><td> <input type="radio" name="fair" value="2"></td><td> <input type="radio" name="fair" value="3"></td><td> <input type="radio" name="fair" value="4"></td><td> <input type="radio" name="fair" value="5"></td><td> <input type="radio" name="fair" value="6"></td><td> <input type="radio" name="fair" value="7"></td><td>Fair</td>',
         '<td>Malevolent </td><td> <input type="radio" name="benevolent" value="1"></td><td> <input type="radio" name="benevolent" value="2"></td><td> <input type="radio" name="benevolent" value="3"></td><td> <input type="radio" name="benevolent" value="4"></td><td> <input type="radio" name="benevolent" value="5"></td><td> <input type="radio" name="benevolent" value="6"></td><td> <input type="radio" name="benevolent" value="7"></td><td>Benevolent</td>',
         '<td>Noncredible </td><td> <input type="radio" name="credible" value="1"></td><td> <input type="radio" name="credible" value="2"></td><td> <input type="radio" name="credible" value="3"></td><td> <input type="radio" name="credible" value="4"></td><td> <input type="radio" name="credible" value="5"></td><td> <input type="radio" name="credible" value="6"></td><td> <input type="radio" name="credible" value="7"></td><td>Credible</td>',
-        '<td>Biased</td><td> <input type="radio" name="biased" value="1"></td><td> <input type="radio" name="biased" value="2"></td><td> <input type="radio" name="biased" value="3"></td><td> <input type="radio" name="biased" value="4"></td><td> <input type="radio" name="biased" value="5"></td><td> <input type="radio" name="biased" value="6"></td><td> <input type="radio" name="biased" value="7"></td><td>Unbiased</td>'
+        '<td>Biased</td><td> <input type="radio" name="unbiased" value="1"></td><td> <input type="radio" name="unbiased" value="2"></td><td> <input type="radio" name="unbiased" value="3"></td><td> <input type="radio" name="unbiased" value="4"></td><td> <input type="radio" name="unbiased" value="5"></td><td> <input type="radio" name="unbiased" value="6"></td><td> <input type="radio" name="unbiased" value="7"></td><td>Unbiased</td>'
     ]
     rows = shuffle(rows)
     for (var i = 0; i < 8; i++) {
@@ -51,7 +51,7 @@ window.onload = function () {
         document.getElementsByName('fair'),
         document.getElementsByName('benevolent'),
         document.getElementsByName('credible'),
-        document.getElementsByName('biased')
+        document.getElementsByName('unbiased')
     ]
     var promises = []
     button.addEventListener('click', function (event) {
