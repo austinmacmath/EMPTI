@@ -12,6 +12,11 @@ router.get('/', function (req, res) {
   res.render('consent');
 })
 
+// credit
+router.get('/credit', function(req, res) {
+  res.render('credit');
+})
+
 // for testing and development
 router.get('/test', function (req, res) {
   res.render('test');
