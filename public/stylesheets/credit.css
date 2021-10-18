@@ -6,3 +6,8 @@ body {
 div.title {
     text-align: center;
 }
+
+div.instructions {
+    text-align: left;
+    width: 800px;
+}
