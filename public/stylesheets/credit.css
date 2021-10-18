@@ -8,6 +8,7 @@ div.title {
 }
 
 div.instructions {
+    margin: auto;
     text-align: left;
     width: 800px;
 }
