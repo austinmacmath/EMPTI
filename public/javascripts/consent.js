@@ -1,22 +1,23 @@
 window.onload = function () {
     var next = document.getElementById('next');
     if (next != null) {
-        next.addEventListener('click', function (event) {
-            fetch('/new_uid', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result)
-                window.location = '/' + result.uid + '/welcome1'
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        })
+        // next.addEventListener('click', function (event) {
+        //     fetch('/new_uid', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+        //     })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         console.log(result)
+        //         window.location = '/' + result.uid + '/welcome1'
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
+        // })
+        window.location = '/credit'
     }
 }
 
