@@ -20,15 +20,15 @@ window.onload = function () {
     var progressCount = parseInt(localStorage.getItem(url))
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
-    var tutorialSend1 = document.getElementById('tt1');
-    if (tutorialSend1 != null) {
-        tutorialSend1.addEventListener('click', function (event) {
+    var tutorialSend0 = document.getElementById('tutorial_transition_0');
+    if (tutorialSend0 != null) {
+        tutorialSend0.addEventListener('click', function (event) {
             var str = window.location.pathname;
             var id = str.substring(
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            fetch('/t1_complete', {
+            fetch('/t0_complete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ window.onload = function () {
                     if(result.t0_complete && result.t1_complete) {
                         window.location = '/' + id + '/' + result.email_id;
                     } else {
-                        window.location = '/' + id + '/m1'
+                        window.location = '/' + id + '/manipulation_check_1';
                     }
                 })
                 .catch(error => {

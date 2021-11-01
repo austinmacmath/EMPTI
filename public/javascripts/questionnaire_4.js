@@ -20,7 +20,18 @@ window.onload = function () {
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
     var button = document.getElementById('next')
-    var mediums = [document.getElementsByName('Neutral'), document.getElementsByName('Formal'), document.getElementsByName('Confident'), document.getElementsByName('Joyful'), document.getElementsByName('Optimistic'), document.getElementsByName('Friendly'), document.getElementsByName('Urgent'), document.getElementsByName('Analytical'), document.getElementsByName('Respectful'), document.getElementsByName('Knowledgeable')]
+    var mediums = [
+        document.getElementsByName('Neutral'), 
+        document.getElementsByName('Formal'), 
+        document.getElementsByName('Confident'), 
+        document.getElementsByName('Joyful'), 
+        document.getElementsByName('Optimistic'), 
+        document.getElementsByName('Friendly'), 
+        document.getElementsByName('Urgent'), 
+        document.getElementsByName('Analytical'), 
+        document.getElementsByName('Respectful'), 
+        document.getElementsByName('Knowledgeable')
+    ]
     var promises = []
     button.addEventListener('click', function (event) {
         var str = window.location.pathname;
@@ -42,7 +53,7 @@ window.onload = function () {
                     for (var j = 0, length = mediums[i].length; j < length; j++) {
                         if (mediums[i][j].checked) {
                             promises.push(
-                                fetch('/q2_submit', {
+                                fetch('/q4_submit', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -60,7 +71,7 @@ window.onload = function () {
                 }
                 Promise.all(promises)
                     .then(result => {
-                        window.location = '/' + id + '/questionnaire3';
+                        window.location = '/' + id + '/questionnaire_5';
                     })
                     .catch(error => {
                         console.log(error)
@@ -73,7 +84,7 @@ window.onload = function () {
                 for (var j = 0, length = mediums[i].length; j < length; j++) {
                     if (mediums[i][j].checked) {
                         promises.push(
-                            fetch('/q2_submit', {
+                            fetch('/q4_submit', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -91,7 +102,7 @@ window.onload = function () {
             }
             Promise.all(promises)
                 .then(result => {
-                    window.location = '/' + id + '/questionnaire3';
+                    window.location = '/' + id + '/questionnaire_5';
                 })
                 .catch(error => {
                     console.log(error)

@@ -31,7 +31,7 @@ window.onload = function () {
         );
         for (var i = 0; i < radios.length; i++) {
             if (radios[i].checked) {
-                fetch('/m1_submit', {
+                fetch('/manipulation_check_1_submit', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -60,9 +60,9 @@ window.onload = function () {
                                 } else {
                                     alert("Please try again.");
                                     if (result.t0_complete) {
-                                        window.location = '/' + id + '/tt0'
+                                        window.location = '/' + id + '/tutorial_transition_0'
                                     } else {
-                                        window.location = '/' + id + '/tt1'
+                                        window.location = '/' + id + '/tutorial_transition_1'
                                     }
                                 }
                             })

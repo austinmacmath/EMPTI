@@ -9,7 +9,7 @@ window.onload = function () {
     var progressCount = parseInt(localStorage.getItem(url))
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
 
-    var next = document.getElementById('next');
+    var next = document.getElementById('start-tutorial');
     var understand = document.getElementById('understand');
     if (next != null) {
         next.addEventListener('click', function (event) {
@@ -22,7 +22,23 @@ window.onload = function () {
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            window.location = '/' + id + '/questionnaire1'
+            // window.location = '/' + id + '/questionnaire_1'
+            fetch('/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        uid: id
+                    })
+                })
+                .then(response => response.json())
+                .then(result => {
+                    window.location = '/' + id + '/' + result.email;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         })
     }
 }

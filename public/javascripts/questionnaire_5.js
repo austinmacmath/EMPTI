@@ -56,7 +56,7 @@ window.onload = function () {
         }
         Promise.all(promises)
             .then(result => {
-                window.location = '/' + id + '/questionnaire6';
+                window.location = '/' + id + '/questionnaire_6';
             })
             .catch(error => {
                 console.log(error)

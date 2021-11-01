@@ -11,7 +11,7 @@ window.onload = function () {
             .then(response => response.json())
             .then(result => {
                 console.log(result)
-                window.location = '/' + result.uid + '/welcome1'
+                window.location = '/' + result.uid + '/welcome_1'
             })
             .catch(error => {
                 console.log(error)

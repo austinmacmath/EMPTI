@@ -780,7 +780,7 @@ window.onload = function () {
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            window.location = '/' + id + '/tt0';
+            window.location = '/' + id + '/tutorial_transition_0';
         })
     }
 
@@ -793,7 +793,7 @@ window.onload = function () {
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            window.location = '/' + id + '/tt1';
+            window.location = '/' + id + '/tutorial_transition_1';
         })
     }
 

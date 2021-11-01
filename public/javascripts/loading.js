@@ -41,6 +41,6 @@ window.onload = function () {
         //     .catch(error => {
         //         console.error('Error:', error);
         //     });
-        window.location = '/' + id + '/welcome4'
+        window.location = '/' + id + '/welcome_4'
     })
 }

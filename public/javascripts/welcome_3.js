@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function () {        
     var url = window.location.href
     var firstTime = localStorage.getItem(url);
     if(!firstTime) {
@@ -8,7 +8,7 @@ window.onload = function () {
     }
     var progressCount = parseInt(localStorage.getItem(url))
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
-    
+
     var next = document.getElementById('next');
     var understand = document.getElementById('understand');
     if (next != null) {
@@ -22,7 +22,7 @@ window.onload = function () {
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            window.location = '/' + id + '/welcome2'
+            window.location = '/' + id + '/questionnaire_1'
         })
     }
 }
