@@ -292,10 +292,10 @@ CREATE TABLE public.survey_3 (
 
 --
 -- TOC entry 217 (class 1259 OID 9808591)
--- Name: survey_3_1; Type: TABLE; Schema: public; Owner: -
+-- Name: survey_gen_1; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_1 (
+CREATE TABLE public.survey_gen_1 (
     uid text,
     submission_time timestamp without time zone,
     question text,
@@ -305,10 +305,10 @@ CREATE TABLE public.survey_3_1 (
 
 --
 -- TOC entry 218 (class 1259 OID 9808597)
--- Name: survey_3_2; Type: TABLE; Schema: public; Owner: -
+-- Name: survey_gen_2; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_2 (
+CREATE TABLE public.survey_gen_2 (
     uid text,
     submission_time timestamp without time zone,
     question text,
@@ -318,10 +318,10 @@ CREATE TABLE public.survey_3_2 (
 
 --
 -- TOC entry 219 (class 1259 OID 9808603)
--- Name: survey_3_3; Type: TABLE; Schema: public; Owner: -
+-- Name: survey_gen_3; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_3 (
+CREATE TABLE public.survey_gen_3 (
     uid text,
     submission_time timestamp without time zone,
     question text,
@@ -331,10 +331,10 @@ CREATE TABLE public.survey_3_3 (
 
 --
 -- TOC entry 220 (class 1259 OID 9808609)
--- Name: survey_3_4; Type: TABLE; Schema: public; Owner: -
+-- Name: survey_gen_4; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_4 (
+CREATE TABLE public.survey_gen_4 (
     uid text,
     submission_time timestamp without time zone,
     devices text
@@ -343,10 +343,10 @@ CREATE TABLE public.survey_3_4 (
 
 --
 -- TOC entry 221 (class 1259 OID 9808615)
--- Name: survey_3_4_5; Type: TABLE; Schema: public; Owner: -
+-- Name: survey_gen_5; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_4_5 (
+CREATE TABLE public.survey_gen_5 (
     uid text,
     submission_time timestamp without time zone,
     question text,
@@ -356,10 +356,10 @@ CREATE TABLE public.survey_3_4_5 (
 
 --
 -- TOC entry 222 (class 1259 OID 9808621)
--- Name: survey_3_4_5_6; Type: TABLE; Schema: public; Owner: -
+-- Name: survey_gen_6; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_4_5_6 (
+CREATE TABLE public.survey_gen_6 (
     uid text,
     submission_time timestamp without time zone,
     clarification text
@@ -368,10 +368,10 @@ CREATE TABLE public.survey_3_4_5_6 (
 
 --
 -- TOC entry 223 (class 1259 OID 9808627)
--- Name: survey_3_5; Type: TABLE; Schema: public; Owner: -
+-- Name: survey_gen_7; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_5 (
+CREATE TABLE public.survey_gen_7 (
     uid text,
     submission_time timestamp without time zone,
     question text,

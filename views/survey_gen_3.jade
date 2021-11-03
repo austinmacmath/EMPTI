@@ -1,0 +1,34 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey_gen_3.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.question
+            | How frequently do you use predictive text suggestions services or technology, such as Gmail’s Smart Compose or Apple’s iMessage predictive keyboard?
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='intention' value=1)
+                    td 
+                        input(type='radio' name='intention' value=2)
+                    td 
+                        input(type='radio' name='intention' value=3)
+                    td 
+                        input(type='radio' name='intention' value=4)
+                    td 
+                        input(type='radio' name='intention' value=5)
+                tr
+                    td Never 
+                    td Rarely 
+                    td Sometimes 
+                    td Often 
+                    td Very often 
+            br
+            br
+            button(id='next') Next

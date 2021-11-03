@@ -1,4 +1,3 @@
-// prevent backpaging
 if (window.history && history.pushState) {
     addEventListener('load', function () {
         history.pushState(null, null, null); // creates new history entry with same URL
@@ -21,28 +20,17 @@ window.onload = function () {
     document.getElementById('completed').style.width = (progressCount * 20).toString() + "px"
     
     var button = document.getElementById('next')
-    var radios = document.getElementsByName('algorithm') 
+    var understand = document.getElementById('understand');
     button.addEventListener('click', function (event) {
+        if (!understand.checked) {
+            alert("Please check the box to show you understand the instructions.");
+            return
+        }
         var str = window.location.pathname;
         var id = str.substring(
             str.indexOf("/") + 1,
             str.lastIndexOf("/")
         );
-        for (var i = 0; i < radios.length; i++) {
-            if (radios[i].checked) {
-                fetch('/m2_submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        uid: id,
-                        answer: radios[i].value
-                    })
-                })
-                break
-            }
-        }
-        window.location = '/' + id + '/pre_survey_2';
+        window.location = '/' + id + '/survey_1';
     })
 }

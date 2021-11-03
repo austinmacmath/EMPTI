@@ -292,7 +292,7 @@ router.get('/:uid/tutorial_transition_0', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('tutorial-transition-0');
+        res.render('tutorial_transition_0');
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -339,7 +339,7 @@ router.get('/:uid/manipulation_check_1', function (req, res) {
 })
 
 // manipulation check 2
-router.get('/:uid/m2', function (req, res) {
+router.get('/:uid/manipulation_check_2', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
@@ -355,17 +355,17 @@ router.get('/:uid/m2', function (req, res) {
     })
 })
 
-// survey-1
-router.get('/:uid/s1', function (req, res) {
+// pre_survey_1
+router.get('/:uid/pre_survey_1', function (req, res) {
   db.one("SELECT id, completed, synergy_first FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first) {
-          res.render('survey-1', {
+          res.render('pre_survey_1', {
             algorithm: "Smart Predictor"
           })
         } else {
-          res.render('survey-1', {
+          res.render('pre_survey_1', {
             algorithm: "CS Predictor"
           })
         }
@@ -380,21 +380,21 @@ router.get('/:uid/s1', function (req, res) {
     })
 })
 
-// survey-1-1
-router.get('/:uid/s1-1', function (req, res) {
+// survey_1
+router.get('/:uid/survey_1', function (req, res) {
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first && data.t0_complete && data.t1_complete) {
-          res.render('survey-1-1', {
+          res.render('survey_1', {
             algorithm: "CS Predictor"
           })
         } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
-          res.render('survey-1-1', {
+          res.render('survey_1', {
             algorithm: "CS Predictor"
           })
         } else {
-          res.render('survey-1-1', {
+          res.render('survey_1', {
             algorithm: "Smart Predictor"
           })
         }
@@ -409,21 +409,21 @@ router.get('/:uid/s1-1', function (req, res) {
     })
 })
 
-// survey-1-2
-router.get('/:uid/s1-2', function (req, res) {
+// survey_2
+router.get('/:uid/survey_2', function (req, res) {
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first && data.t0_complete && data.t1_complete) {
-          res.render('survey-1-2', {
+          res.render('survey_2', {
             algorithm: "CS Predictor"
           })
         } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
-          res.render('survey-1-2', {
+          res.render('survey_2', {
             algorithm: "CS Predictor"
           })
         } else {
-          res.render('survey-1-2', {
+          res.render('survey_2', {
             algorithm: "Smart Predictor"
           })
         }
@@ -438,21 +438,21 @@ router.get('/:uid/s1-2', function (req, res) {
     })
 })
 
-// survey-1-3
-router.get('/:uid/s1-3', function (req, res) {
+// survey_3
+router.get('/:uid/survey_3', function (req, res) {
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first && data.t0_complete && data.t1_complete) {
-          res.render('survey-1-3', {
+          res.render('survey_3', {
             algorithm: "CS Predictor"
           })
         } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
-          res.render('survey-1-3', {
+          res.render('survey_3', {
             algorithm: "CS Predictor"
           })
         } else {
-          res.render('survey-1-3', {
+          res.render('survey_3', {
             algorithm: "Smart Predictor"
           })
         }
@@ -467,21 +467,21 @@ router.get('/:uid/s1-3', function (req, res) {
     })
 })
 
-// survey-1-4
-router.get('/:uid/s1-4', function (req, res) {
+// survey_4
+router.get('/:uid/survey_4', function (req, res) {
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first && data.t0_complete && data.t1_complete) {
-          res.render('survey-1-4', {
+          res.render('survey_4', {
             algorithm: "CS Predictor"
           })
         } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
-          res.render('survey-1-4', {
+          res.render('survey_4', {
             algorithm: "CS Predictor"
           })
         } else {
-          res.render('survey-1-4', {
+          res.render('survey_4', {
             algorithm: "Smart Predictor"
           })
         }
@@ -496,21 +496,21 @@ router.get('/:uid/s1-4', function (req, res) {
     })
 })
 
-// survey-1-5
-router.get('/:uid/s1-5', function (req, res) {
+// survey_5
+router.get('/:uid/survey_5', function (req, res) {
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first && data.t0_complete && data.t1_complete) {
-          res.render('survey-1-5', {
+          res.render('survey_5', {
             algorithm: "CS Predictor"
           })
         } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
-          res.render('survey-1-5', {
+          res.render('survey_5', {
             algorithm: "CS Predictor"
           })
         } else {
-          res.render('survey-1-5', {
+          res.render('survey_5', {
             algorithm: "Smart Predictor"
           })
         }
@@ -525,21 +525,21 @@ router.get('/:uid/s1-5', function (req, res) {
     })
 })
 
-// survey-1-6
-router.get('/:uid/s1-6', function (req, res) {
+// survey_6
+router.get('/:uid/survey_6', function (req, res) {
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first && data.t0_complete && data.t1_complete) {
-          res.render('survey-1-6', {
+          res.render('survey_6', {
             algorithm: "CS Predictor"
           })
         } else if (!data.synergy_first && (!data.t0_complete || !data.t1_complete)) {
-          res.render('survey-1-6', {
+          res.render('survey_6', {
             algorithm: "CS Predictor"
           })
         } else {
-          res.render('survey-1-6', {
+          res.render('survey_6', {
             algorithm: "Smart Predictor"
           })
         }
@@ -554,17 +554,17 @@ router.get('/:uid/s1-6', function (req, res) {
     })
 })
 
-// survey-2
-router.get('/:uid/s2', function (req, res) {
+// pre_survey_2
+router.get('/:uid/pre_survey_2', function (req, res) {
   db.one("SELECT id, completed, synergy_first FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
         if (data.synergy_first) {
-          res.render('survey-2', {
+          res.render('pre_survey_2', {
             algorithm: "CS Predictor"
           })
         } else {
-          res.render('survey-2', {
+          res.render('pre_survey_2', {
             algorithm: "Smart Predictor"
           })
         }
@@ -579,12 +579,12 @@ router.get('/:uid/s2', function (req, res) {
     })
 })
 
-// survey-3
-router.get('/:uid/s3', function (req, res) {
+// pre_survey_3
+router.get('/:uid/pre_survey_3', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3')
+        res.render('pre_survey_3')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -596,12 +596,12 @@ router.get('/:uid/s3', function (req, res) {
     })
 })
 
-// survey-3-1
-router.get('/:uid/s3-1', function (req, res) {
+// survey_gen_1
+router.get('/:uid/survey_gen_1', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3-1')
+        res.render('survey_gen_1')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -613,12 +613,12 @@ router.get('/:uid/s3-1', function (req, res) {
     })
 })
 
-// survey-3-2
-router.get('/:uid/s3-2', function (req, res) {
+// survey_gen_2
+router.get('/:uid/survey_gen_2', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3-2')
+        res.render('survey_gen_2')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -630,12 +630,12 @@ router.get('/:uid/s3-2', function (req, res) {
     })
 })
 
-// survey-3-3
-router.get('/:uid/s3-3', function (req, res) {
+// survey_gen_3
+router.get('/:uid/survey_gen_3', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3-3')
+        res.render('survey_gen_3')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -647,12 +647,12 @@ router.get('/:uid/s3-3', function (req, res) {
     })
 })
 
-// survey-3-4
-router.get('/:uid/s3-4', function (req, res) {
+// survey_gen_4
+router.get('/:uid/survey_gen_4', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3-4')
+        res.render('survey_gen_4')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -664,12 +664,12 @@ router.get('/:uid/s3-4', function (req, res) {
     })
 })
 
-// survey-3-4-5
-router.get('/:uid/s3-4-5', function (req, res) {
+// survey_gen_5
+router.get('/:uid/survey_gen_5', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3-4-5')
+        res.render('survey_gen_5')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -681,12 +681,12 @@ router.get('/:uid/s3-4-5', function (req, res) {
     })
 })
 
-// survey-3-4-5-6
-router.get('/:uid/s3-4-5-6', function (req, res) {
+// survey_gen_6
+router.get('/:uid/survey_gen_6', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3-4-5-6')
+        res.render('survey_gen_6')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -698,12 +698,12 @@ router.get('/:uid/s3-4-5-6', function (req, res) {
     })
 })
 
-// survey-3-5
-router.get('/:uid/s3-5', function (req, res) {
+// survey_gen_7
+router.get('/:uid/survey_gen_7', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('survey-3-5')
+        res.render('survey_gen_7')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -716,11 +716,11 @@ router.get('/:uid/s3-5', function (req, res) {
 })
 
 // Mechanical Turk 1
-router.get('/:uid/mt1', function (req, res) {
+router.get('/:uid/mturk_1', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('mturk-1')
+        res.render('mturk_1')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -733,11 +733,11 @@ router.get('/:uid/mt1', function (req, res) {
 })
 
 // Mechanical Turk 2
-router.get('/:uid/mt2', function (req, res) {
+router.get('/:uid/mturk_2', function (req, res) {
   db.one("SELECT id, completed FROM participants WHERE id = $1", [req.params.uid])
     .then(function (data) {
       if (data.id == req.params.uid && data.completed == 0) {
-        res.render('mturk-2')
+        res.render('mturk_2')
       } else if (data.id == req.params.uid && data.completed == 1) {
         res.render('goodbye')
       } else {
@@ -799,7 +799,7 @@ router.get('/:uid/:promptId', function (req, res) {
               if ((prompt_count < 4 && synergy_first == 1 && t1_complete == 0) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 0)) {
                 res.redirect('/' + req.params.uid + '/tutorial_1')
               } else if ((prompt_count < 4 && synergy_first == 1 && t1_complete == 1) || (prompt_count >= 4 && synergy_first == 0 && t1_complete == 1)) {
-                res.render('email1', {
+                res.render('email_1', {
                   subject: data.description,
                   sender: data.sender,
                   salutation: data.salutation,
@@ -811,7 +811,7 @@ router.get('/:uid/:promptId', function (req, res) {
               } else if ((prompt_count < 4 && synergy_first == 0 && t0_complete == 0) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 0)) {
                 res.redirect('/' + req.params.uid + '/tutorial_0')
               } else if ((prompt_count < 4 && synergy_first == 0 && t0_complete == 1) || (prompt_count >= 4 && synergy_first == 1 && t0_complete == 1)) {
-                res.render('email0', {
+                res.render('email_0', {
                   subject: data.description,
                   sender: data.sender,
                   salutation: data.salutation,
@@ -1039,7 +1039,7 @@ router.post('/m2_submit', function (req, res) {
     })
 })
 
-// submit survey-1-1
+// submit survey_1
 router.post('/s1-1_submit', function (req, res) {
   var algorithm
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
@@ -1061,7 +1061,7 @@ router.post('/s1-1_submit', function (req, res) {
     })
 })
 
-// submit survey-1-2
+// submit survey_2
 router.post('/s1-2_submit', function (req, res) {
   var algorithm
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
@@ -1083,7 +1083,7 @@ router.post('/s1-2_submit', function (req, res) {
     })
 })
 
-// submit survey-1-3
+// submit survey_3
 router.post('/s1-3_submit', function (req, res) {
   var algorithm
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
@@ -1105,7 +1105,7 @@ router.post('/s1-3_submit', function (req, res) {
     })
 })
 
-// submit survey-1-4
+// submit survey_4
 router.post('/s1-4_submit', function (req, res) {
   var algorithm
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
@@ -1127,7 +1127,7 @@ router.post('/s1-4_submit', function (req, res) {
     })
 })
 
-// submit survey-1-5
+// submit survey_5
 router.post('/s1-5_submit', function (req, res) {
   var algorithm
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
@@ -1149,7 +1149,7 @@ router.post('/s1-5_submit', function (req, res) {
     })
 })
 
-// submit survey-1-6
+// submit survey_6
 router.post('/s1-6_submit', function (req, res) {
   var algorithm
   db.one("SELECT id, completed, synergy_first, t0_complete, t1_complete FROM participants WHERE id = $1", [req.body.uid])
@@ -1171,9 +1171,9 @@ router.post('/s1-6_submit', function (req, res) {
     })
 })
 
-// submit survey-3-1
+// submit survey_gen_1
 router.post('/s3-1_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_1(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+  db.one('INSERT INTO survey_gen_1(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
     .then(uid => {
       res.sendStatus(200);
     })
@@ -1182,9 +1182,9 @@ router.post('/s3-1_submit', function (req, res) {
     })
 })
 
-// submit survey-3-2
+// submit survey_gen_2
 router.post('/s3-2_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_2(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+  db.one('INSERT INTO survey_gen_2(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
     .then(uid => {
       res.sendStatus(200);
     })
@@ -1193,9 +1193,9 @@ router.post('/s3-2_submit', function (req, res) {
     })
 })
 
-// submit survey-3-3
+// submit survey_gen_3
 router.post('/s3-3_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_3(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+  db.one('INSERT INTO survey_gen_3(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
     .then(uid => {
       res.sendStatus(200);
     })
@@ -1204,9 +1204,9 @@ router.post('/s3-3_submit', function (req, res) {
     })
 })
 
-// submit survey-3-4
+// submit survey_gen_4
 router.post('/s3-4_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_4(uid, submission_time, devices) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
+  db.one('INSERT INTO survey_gen_4(uid, submission_time, devices) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
     .then(uid => {
       res.sendStatus(200);
     })
@@ -1215,9 +1215,9 @@ router.post('/s3-4_submit', function (req, res) {
     })
 })
 
-// submit survey-3-4-5
+// submit survey_gen_5
 router.post('/s3-4-5_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_4_5(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+  db.one('INSERT INTO survey_gen_5(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
     .then(uid => {
       res.sendStatus(200);
     })
@@ -1226,9 +1226,9 @@ router.post('/s3-4-5_submit', function (req, res) {
     })
 })
 
-// submit survey-3-4-5-6
+// submit survey_gen_6
 router.post('/s3-4-5-6_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_4_5_6(uid, submission_time, clarification) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
+  db.one('INSERT INTO survey_gen_6(uid, submission_time, clarification) VALUES ($1, current_timestamp, $2) RETURNING uid', [req.body.uid, req.body.devices])
     .then(uid => {
       res.sendStatus(200);
     })
@@ -1237,9 +1237,9 @@ router.post('/s3-4-5-6_submit', function (req, res) {
     })
 })
 
-// submit survey-3-5
+// submit survey_gen_7
 router.post('/s3-5_submit', function (req, res) {
-  db.one('INSERT INTO survey_3_5(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
+  db.one('INSERT INTO survey_gen_7(uid, submission_time, question, answer) VALUES ($1, current_timestamp, $2, $3) RETURNING uid', [req.body.uid, req.body.medium, req.body.frequency])
     .then(uid => {
       res.sendStatus(200);
     })

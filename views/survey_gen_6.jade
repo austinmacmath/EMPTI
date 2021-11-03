@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey_gen_6.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.question
+            | At any point during the study, is there anything that does not make sense to you or needs more clarification?
+            br
+            textarea(name="clarification" id="clarification" class="clarification")
+            br
+            br
+            button(id='next') Next
