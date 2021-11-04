@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS tablefunc;
+
 SELECT 
 	ct.id, 
 	"SUB Hit" / (coalesce("SUB Hit",0) + coalesce("SUB Miss",0) + coalesce("SB Hit",0) + coalesce("SB Miss",0))::decimal AS "Synergy Hit Rate",
