@@ -28,3 +28,16 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 * model should work for capital words also
 * in cscw manuscript, include the fact that the predictive text doens't work if you write in middle of existing text
 * resume changing names starting from s1 -> survey_1
+
+
+## 11/3
+* separate filtered rate into synergy and non synergy for each condition
+* outline for what i will put in the github
+    * pose it as a proof of concept
+    * its something that people can change
+    * not something that they can use out of the box
+    * this is what people can do with it
+    * audience: research groups in other labs
+        * what would they need to know to use this for use in a social experiment
+* for later, try to make the algorithm "more helpful" somehow
+* 
