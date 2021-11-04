@@ -40,4 +40,3 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
     * audience: research groups in other labs
         * what would they need to know to use this for use in a social experiment
 * for later, try to make the algorithm "more helpful" somehow
-* 
