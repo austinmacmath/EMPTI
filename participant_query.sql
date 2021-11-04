@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS tablefunc;
+
 SELECT 
 	ct.id, 
 	"SUB Hit" / (coalesce("SUB Hit",0) + coalesce("SUB Miss",0) + coalesce("SB Hit",0) + coalesce("SB Miss",0))::decimal AS "Synergy Hit Rate",
@@ -407,7 +409,7 @@ SELECT
 	MAX("tailor") AS "tailor",
 	MAX("transparent") AS "transparent",
 	MAX("recommend") AS "recommend"
-	FROM crosstab('SELECT uid, question, answer FROM survey_3_1', 
+	FROM crosstab('SELECT uid, question, answer FROM survey_gen_1', 
 					   $$VALUES 
 						('consequence'), 
 						('automated'),
@@ -443,7 +445,7 @@ LEFT JOIN(SELECT
 	MAX("bias") AS "bias",
 	MAX("objective") AS "objective",
 	MAX("intention") AS "intention"
-	FROM crosstab('SELECT uid, question, answer FROM survey_3_2', 
+	FROM crosstab('SELECT uid, question, answer FROM survey_gen_2', 
 					   $$VALUES 
 						('bias'), 
 						('objective'),
@@ -454,14 +456,14 @@ LEFT JOIN(SELECT
                             "objective" text, 
                             "intention" text) GROUP BY id)
 AS s3_2 ON ct.id = s3_2.id
-LEFT JOIN(SELECT uid, answer AS frequently FROM survey_3_3
+LEFT JOIN(SELECT uid, answer AS frequently FROM survey_gen_3
 ) AS s3_3 ON ct.id = s3_3.uid
-LEFT JOIN(SELECT uid, MAX(devices) AS devices FROM survey_3_4 GROUP BY uid) AS s3_4 ON ct.id = s3_4.uid
+LEFT JOIN(SELECT uid, MAX(devices) AS devices FROM survey_gen_4 GROUP BY uid) AS s3_4 ON ct.id = s3_4.uid
 LEFT JOIN(SELECT 
 	id,
 	MAX("extension") AS "extension",
 	MAX("break") AS "break"
-	FROM crosstab('SELECT uid, question, answer FROM survey_3_4_5', 
+	FROM crosstab('SELECT uid, question, answer FROM survey_gen_5', 
 					   $$VALUES 
 						('extension'), 
 						('break')$$)
@@ -469,7 +471,7 @@ LEFT JOIN(SELECT
                            "id" text, 
                             "extension" text, 
                             "break" text) GROUP BY id) AS s3_4_5 ON ct.id = s3_4_5.id
-LEFT JOIN(SELECT uid, MAX(clarification) AS clarification FROM survey_3_4_5_6 GROUP BY uid) AS s3_4_5_6 ON ct.id = s3_4_5_6.uid
+LEFT JOIN(SELECT uid, MAX(clarification) AS clarification FROM survey_gen_6 GROUP BY uid) AS s3_4_5_6 ON ct.id = s3_4_5_6.uid
 LEFT JOIN(SELECT 
 	id,
 	MAX("gender") AS "gender",
@@ -480,7 +482,7 @@ LEFT JOIN(SELECT
     MAX("income") AS "income",
 	MAX("political") AS "political",
 	MAX("ethnicity") AS "ethnicity"
-	FROM crosstab('SELECT uid, question, answer FROM survey_3_5', 
+	FROM crosstab('SELECT uid, question, answer FROM survey_gen_7', 
 					   $$VALUES 
 						('gender'), 
 						('check'),

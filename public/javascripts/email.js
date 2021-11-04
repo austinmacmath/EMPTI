@@ -757,9 +757,9 @@ window.onload = function () {
                         if (result.email_id == -1) {
                             window.location = '/goodbye';
                         } else if (result.prompt_count == 4) {
-                            window.location = '/' + id + '/s1'
+                            window.location = '/' + id + '/pre_survey_1'
                         } else if (result.prompt_count == 8) {
-                            window.location = '/' + id + '/m2'
+                            window.location = '/' + id + '/manipulation_check_2'
                         } else {
                             window.location = '/' + id + '/' + result.email_id;
                         }
@@ -780,7 +780,7 @@ window.onload = function () {
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            window.location = '/' + id + '/tt0';
+            window.location = '/' + id + '/tutorial_transition_0';
         })
     }
 
@@ -793,7 +793,7 @@ window.onload = function () {
                 str.indexOf("/") + 1,
                 str.lastIndexOf("/")
             );
-            window.location = '/' + id + '/tt1';
+            window.location = '/' + id + '/tutorial_transition_1';
         })
     }
 

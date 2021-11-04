@@ -1,0 +1,47 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/questionnaire.css')
+        script(src='/javascripts/questionnaire_5.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.tutorial-body
+            | #[strong Instructions:]
+            br
+            br
+            | In order for #[strong Smart Predictor] to better serve you with your personal writing style, please fill out this writing habit questionnaire so that our algorithm can provide you with tailored suggestions based on your answers.
+        div.question
+            br
+            br
+            | 5. In general, which perspective(s) of writing an email would you need the most help with from us? Check all that apply. 
+            br
+            br
+            div.boxes
+                input(type='checkbox' id='Formal language')
+                label(for='Formal language') Formal language
+                br
+                input(type='checkbox' id='Organization and transition')
+                label(for='Organization and transition') Organization and transition 
+                br
+                input(type='checkbox' id='Spelling and grammar')
+                label(for='Spelling and grammar') Spelling and grammar 
+                br
+                input(type='checkbox' id='Range of vocabulary')
+                label(for='Range of vocabulary') Range of vocabulary 
+                br
+                input(type='checkbox' id='Punctuation and sentence structure')
+                label(for='Punctuation and sentence structure') Punctuation and sentence structure 
+                br
+                input(type='checkbox' id='Styles and tones')
+                label(for='Styles and tones') Styles and tones 
+                br
+                input(type='checkbox' id='Effect of the target audience')
+                label(for='Effect of the target audience') Effect of the target audience 
+                br
+                input(type='checkbox' id='Clarity and conciseness')
+                label(for='Clarity and conciseness') Clarity and conciseness 
+                br
+                br
+            button(id='next') Next 

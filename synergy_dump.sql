@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.4 (Ubuntu 13.4-1.pgdg20.04+1)
+-- Dumped from database version 13.4 (Ubuntu 13.4-4.pgdg20.04+1)
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-10-14 22:59:30 PDT
+-- Started on 2021-10-31 21:56:07 PDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,13 +18,30 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- TOC entry 2 (class 3079 OID 9895443)
+-- Name: tablefunc; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS tablefunc WITH SCHEMA public;
+
+
+--
+-- TOC entry 4134 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION tablefunc; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION tablefunc IS 'functions that manipulate whole tables, including crosstab';
+
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- TOC entry 200 (class 1259 OID 9808497)
--- Name: dprime; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 201 (class 1259 OID 9808497)
+-- Name: dprime; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.dprime (
@@ -39,11 +56,9 @@ CREATE TABLE public.dprime (
 );
 
 
-ALTER TABLE public.dprime OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 202 (class 1259 OID 9808509)
--- Name: email_prompts_id_seq; Type: SEQUENCE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 203 (class 1259 OID 9808509)
+-- Name: email_prompts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.email_prompts_id_seq
@@ -55,11 +70,9 @@ CREATE SEQUENCE public.email_prompts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.email_prompts_id_seq OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 201 (class 1259 OID 9808503)
--- Name: email_prompts; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 202 (class 1259 OID 9808503)
+-- Name: email_prompts; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.email_prompts (
@@ -72,11 +85,9 @@ CREATE TABLE public.email_prompts (
 );
 
 
-ALTER TABLE public.email_prompts OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 203 (class 1259 OID 9808511)
--- Name: manipulation_check_1; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 204 (class 1259 OID 9808511)
+-- Name: manipulation_check_1; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.manipulation_check_1 (
@@ -86,11 +97,9 @@ CREATE TABLE public.manipulation_check_1 (
 );
 
 
-ALTER TABLE public.manipulation_check_1 OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 204 (class 1259 OID 9808517)
--- Name: manipulation_check_2; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 205 (class 1259 OID 9808517)
+-- Name: manipulation_check_2; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.manipulation_check_2 (
@@ -100,11 +109,9 @@ CREATE TABLE public.manipulation_check_2 (
 );
 
 
-ALTER TABLE public.manipulation_check_2 OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 205 (class 1259 OID 9808523)
--- Name: participants; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 232 (class 1259 OID 9895535)
+-- Name: participants; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.participants (
@@ -129,15 +136,15 @@ CREATE TABLE public.participants (
     synergy_first integer,
     completed integer,
     t0_complete integer,
-    t1_complete integer
+    t1_complete integer,
+    start timestamp without time zone,
+    finish timestamp without time zone
 );
 
 
-ALTER TABLE public.participants OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 206 (class 1259 OID 9808529)
--- Name: questionnaire_1; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: questionnaire_1; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.questionnaire_1 (
@@ -148,11 +155,9 @@ CREATE TABLE public.questionnaire_1 (
 );
 
 
-ALTER TABLE public.questionnaire_1 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 207 (class 1259 OID 9808535)
--- Name: questionnaire_2; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: questionnaire_2; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.questionnaire_2 (
@@ -163,11 +168,9 @@ CREATE TABLE public.questionnaire_2 (
 );
 
 
-ALTER TABLE public.questionnaire_2 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 208 (class 1259 OID 9808541)
--- Name: questionnaire_3; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: questionnaire_3; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.questionnaire_3 (
@@ -178,11 +181,9 @@ CREATE TABLE public.questionnaire_3 (
 );
 
 
-ALTER TABLE public.questionnaire_3 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 209 (class 1259 OID 9808547)
--- Name: questionnaire_4; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: questionnaire_4; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.questionnaire_4 (
@@ -193,11 +194,9 @@ CREATE TABLE public.questionnaire_4 (
 );
 
 
-ALTER TABLE public.questionnaire_4 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 210 (class 1259 OID 9808553)
--- Name: questionnaire_5; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: questionnaire_5; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.questionnaire_5 (
@@ -208,11 +207,9 @@ CREATE TABLE public.questionnaire_5 (
 );
 
 
-ALTER TABLE public.questionnaire_5 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 211 (class 1259 OID 9808559)
--- Name: questionnaire_6; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: questionnaire_6; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.questionnaire_6 (
@@ -223,11 +220,9 @@ CREATE TABLE public.questionnaire_6 (
 );
 
 
-ALTER TABLE public.questionnaire_6 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 213 (class 1259 OID 9808571)
--- Name: responses_id_seq; Type: SEQUENCE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: responses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.responses_id_seq
@@ -239,11 +234,9 @@ CREATE SEQUENCE public.responses_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.responses_id_seq OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 212 (class 1259 OID 9808565)
--- Name: responses; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: responses; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.responses (
@@ -255,11 +248,9 @@ CREATE TABLE public.responses (
 );
 
 
-ALTER TABLE public.responses OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 214 (class 1259 OID 9808573)
--- Name: survey_1; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_1; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.survey_1 (
@@ -271,11 +262,9 @@ CREATE TABLE public.survey_1 (
 );
 
 
-ALTER TABLE public.survey_1 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 215 (class 1259 OID 9808579)
--- Name: survey_2; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_2; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.survey_2 (
@@ -287,11 +276,9 @@ CREATE TABLE public.survey_2 (
 );
 
 
-ALTER TABLE public.survey_2 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 216 (class 1259 OID 9808585)
--- Name: survey_3; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_3; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.survey_3 (
@@ -303,44 +290,38 @@ CREATE TABLE public.survey_3 (
 );
 
 
-ALTER TABLE public.survey_3 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 217 (class 1259 OID 9808591)
--- Name: survey_3_1; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_gen_1; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_1 (
+CREATE TABLE public.survey_gen_1 (
     uid text,
     submission_time timestamp without time zone,
     question text,
     answer text
 );
 
-
-ALTER TABLE public.survey_3_1 OWNER TO pdczbyxiumdzxw;
 
 --
 -- TOC entry 218 (class 1259 OID 9808597)
--- Name: survey_3_2; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_gen_2; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_2 (
+CREATE TABLE public.survey_gen_2 (
     uid text,
     submission_time timestamp without time zone,
     question text,
     answer text
 );
 
-
-ALTER TABLE public.survey_3_2 OWNER TO pdczbyxiumdzxw;
 
 --
 -- TOC entry 219 (class 1259 OID 9808603)
--- Name: survey_3_3; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_gen_3; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_3 (
+CREATE TABLE public.survey_gen_3 (
     uid text,
     submission_time timestamp without time zone,
     question text,
@@ -348,28 +329,24 @@ CREATE TABLE public.survey_3_3 (
 );
 
 
-ALTER TABLE public.survey_3_3 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 220 (class 1259 OID 9808609)
--- Name: survey_3_4; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_gen_4; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_4 (
+CREATE TABLE public.survey_gen_4 (
     uid text,
     submission_time timestamp without time zone,
     devices text
 );
 
 
-ALTER TABLE public.survey_3_4 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 221 (class 1259 OID 9808615)
--- Name: survey_3_4_5; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_gen_5; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_4_5 (
+CREATE TABLE public.survey_gen_5 (
     uid text,
     submission_time timestamp without time zone,
     question text,
@@ -377,28 +354,24 @@ CREATE TABLE public.survey_3_4_5 (
 );
 
 
-ALTER TABLE public.survey_3_4_5 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 222 (class 1259 OID 9808621)
--- Name: survey_3_4_5_6; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_gen_6; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_4_5_6 (
+CREATE TABLE public.survey_gen_6 (
     uid text,
     submission_time timestamp without time zone,
     clarification text
 );
 
 
-ALTER TABLE public.survey_3_4_5_6 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 223 (class 1259 OID 9808627)
--- Name: survey_3_5; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_gen_7; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.survey_3_5 (
+CREATE TABLE public.survey_gen_7 (
     uid text,
     submission_time timestamp without time zone,
     question text,
@@ -406,11 +379,9 @@ CREATE TABLE public.survey_3_5 (
 );
 
 
-ALTER TABLE public.survey_3_5 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 224 (class 1259 OID 9808633)
--- Name: survey_4; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_4; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.survey_4 (
@@ -422,11 +393,9 @@ CREATE TABLE public.survey_4 (
 );
 
 
-ALTER TABLE public.survey_4 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 225 (class 1259 OID 9808639)
--- Name: survey_5; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_5; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.survey_5 (
@@ -438,11 +407,9 @@ CREATE TABLE public.survey_5 (
 );
 
 
-ALTER TABLE public.survey_5 OWNER TO pdczbyxiumdzxw;
-
 --
 -- TOC entry 226 (class 1259 OID 9808645)
--- Name: survey_6; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- Name: survey_6; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.survey_6 (
@@ -454,11 +421,9 @@ CREATE TABLE public.survey_6 (
 );
 
 
-ALTER TABLE public.survey_6 OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 227 (class 1259 OID 9808651)
--- Name: synergy_condition; Type: VIEW; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 233 (class 1259 OID 9895547)
+-- Name: synergy_condition; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW public.synergy_condition AS
@@ -474,11 +439,9 @@ CREATE VIEW public.synergy_condition AS
    FROM public.participants;
 
 
-ALTER TABLE public.synergy_condition OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 228 (class 1259 OID 9808655)
--- Name: tabs_id_seq; Type: SEQUENCE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 227 (class 1259 OID 9808655)
+-- Name: tabs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.tabs_id_seq
@@ -489,35 +452,14 @@ CREATE SEQUENCE public.tabs_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.tabs_id_seq OWNER TO pdczbyxiumdzxw;
-
 --
--- TOC entry 229 (class 1259 OID 9808657)
--- Name: test; Type: TABLE; Schema: public; Owner: pdczbyxiumdzxw
+-- TOC entry 228 (class 1259 OID 9808657)
+-- Name: test; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.test (
     id integer
 );
-
-
-ALTER TABLE public.test OWNER TO pdczbyxiumdzxw;
-
---
--- TOC entry 4103 (class 0 OID 9808497)
--- Dependencies: 200
--- Data for Name: dprime; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.dprime (uid, submission_time, email_id, code, suggestion, suggestion_time, root, tab_time) FROM stdin;
-\.
-
-
---
--- TOC entry 4104 (class 0 OID 9808503)
--- Dependencies: 201
--- Data for Name: email_prompts; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
 
 COPY public.email_prompts (id, description, salutation, body, closing, sender) FROM stdin;
 1	Checking in	Hi friend!	I hope all is well. It’s been a while since we’ve caught up so I’m just checking in. How are things? What’s new? How is your family? Since the last time we talked, I’ve reorganized my home workspace about three times, binge-watched too many shows on Netflix, and tried a whole lot of new recipes to escape boredom. So, if you have any show recommendations or food ideas please send them my way. The other day I was reminiscing about our past summer escapades. Have you gotten to go anywhere or do anything cool over summer? If so, let me know! You know I’m always trying to add to my adventure list. Also, I’ll be in town over the holidays. Let me know if you are free at all to grab coffee. Miss you old friend!	Best,\n\nAlex	Alex
@@ -533,303 +475,3 @@ COPY public.email_prompts (id, description, salutation, body, closing, sender) F
 11	Trying to Buy a Used Car	Hello,	Thank you for your response to my Craigslist posting and for your interest in buying my car. The car is a 2018 in relatively good condition. Please let me know if you have any question, and please let me know your availability to do a test drive.	Best,\nBailey Hobbs	Bailey Hobbs
 12	Career Fair	Hello Students,	We are planning UCSB’s quarterly career fair to help students like you learn about a variety of careers, improve your resumes, and equip you with interviewing skills to help you get the jobs you want. But we need your help! Please respond to this email with anything you would like to specifically see at the career fair such as resume workshops, mock interviewing stations, networking opportunities, etc. Additionally, please email in your career interests and any questions you may have for our live panel of UCSB Alumni who have now joined the workforce. We are looking forward to your input.	Kindly,\nCole Albertson\nUndergraduate Career Advisor	Cole Albertson
 \.
-
-
---
--- TOC entry 4106 (class 0 OID 9808511)
--- Dependencies: 203
--- Data for Name: manipulation_check_1; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.manipulation_check_1 (uid, submission_time, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4107 (class 0 OID 9808517)
--- Dependencies: 204
--- Data for Name: manipulation_check_2; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.manipulation_check_2 (uid, submission_time, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4108 (class 0 OID 9808523)
--- Dependencies: 205
--- Data for Name: participants; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.participants (id, e0, e1, e2, e3, e4, e5, e6, e7, b0, b1, b2, b3, b4, b5, b6, b7, prompt_count, synergy_first, completed, t0_complete, t1_complete) FROM stdin;
-na7aFgKPstfrUJQjEsTl	5	1	6	2	7	8	3	4	1	0	1	0	1	0	1	0	0	0	0	0	0
-kLZqWdsoC3QZebQ8P4CH	8	3	7	2	4	1	6	5	0	0	1	1	0	1	1	0	0	1	0	1	1
-LL4NLv2uMvpfbo1RFyBP	8	7	4	1	6	2	3	5	0	0	1	1	0	1	0	1	0	0	0	0	0
-SBEu4umlkFOTZkozm9ER	4	3	1	7	8	6	2	5	0	0	1	1	1	0	0	1	3	1	0	0	1
-\.
-
-
---
--- TOC entry 4109 (class 0 OID 9808529)
--- Dependencies: 206
--- Data for Name: questionnaire_1; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.questionnaire_1 (uid, submission_time, medium, frequency) FROM stdin;
-\.
-
-
---
--- TOC entry 4110 (class 0 OID 9808535)
--- Dependencies: 207
--- Data for Name: questionnaire_2; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.questionnaire_2 (uid, submission_time, medium, frequency) FROM stdin;
-\.
-
-
---
--- TOC entry 4111 (class 0 OID 9808541)
--- Dependencies: 208
--- Data for Name: questionnaire_3; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.questionnaire_3 (uid, submission_time, medium, frequency) FROM stdin;
-\.
-
-
---
--- TOC entry 4112 (class 0 OID 9808547)
--- Dependencies: 209
--- Data for Name: questionnaire_4; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.questionnaire_4 (uid, submission_time, medium, frequency) FROM stdin;
-\.
-
-
---
--- TOC entry 4113 (class 0 OID 9808553)
--- Dependencies: 210
--- Data for Name: questionnaire_5; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.questionnaire_5 (uid, submission_time, perspective, checked) FROM stdin;
-\.
-
-
---
--- TOC entry 4114 (class 0 OID 9808559)
--- Dependencies: 211
--- Data for Name: questionnaire_6; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.questionnaire_6 (uid, submission_time, ability, skill) FROM stdin;
-\.
-
-
---
--- TOC entry 4115 (class 0 OID 9808565)
--- Dependencies: 212
--- Data for Name: responses; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.responses (id, response, submission_time, uid, email_id) FROM stdin;
-\.
-
-
---
--- TOC entry 4117 (class 0 OID 9808573)
--- Dependencies: 214
--- Data for Name: survey_1; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_1 (uid, submission_time, algorithm, measure, value) FROM stdin;
-\.
-
-
---
--- TOC entry 4118 (class 0 OID 9808579)
--- Dependencies: 215
--- Data for Name: survey_2; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_2 (uid, submission_time, algorithm, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4119 (class 0 OID 9808585)
--- Dependencies: 216
--- Data for Name: survey_3; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3 (uid, submission_time, algorithm, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4120 (class 0 OID 9808591)
--- Dependencies: 217
--- Data for Name: survey_3_1; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3_1 (uid, submission_time, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4121 (class 0 OID 9808597)
--- Dependencies: 218
--- Data for Name: survey_3_2; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3_2 (uid, submission_time, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4122 (class 0 OID 9808603)
--- Dependencies: 219
--- Data for Name: survey_3_3; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3_3 (uid, submission_time, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4123 (class 0 OID 9808609)
--- Dependencies: 220
--- Data for Name: survey_3_4; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3_4 (uid, submission_time, devices) FROM stdin;
-\.
-
-
---
--- TOC entry 4124 (class 0 OID 9808615)
--- Dependencies: 221
--- Data for Name: survey_3_4_5; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3_4_5 (uid, submission_time, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4125 (class 0 OID 9808621)
--- Dependencies: 222
--- Data for Name: survey_3_4_5_6; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3_4_5_6 (uid, submission_time, clarification) FROM stdin;
-\.
-
-
---
--- TOC entry 4126 (class 0 OID 9808627)
--- Dependencies: 223
--- Data for Name: survey_3_5; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_3_5 (uid, submission_time, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4127 (class 0 OID 9808633)
--- Dependencies: 224
--- Data for Name: survey_4; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_4 (uid, submission_time, algorithm, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4128 (class 0 OID 9808639)
--- Dependencies: 225
--- Data for Name: survey_5; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_5 (uid, submission_time, algorithm, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4129 (class 0 OID 9808645)
--- Dependencies: 226
--- Data for Name: survey_6; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.survey_6 (uid, submission_time, algorithm, question, answer) FROM stdin;
-\.
-
-
---
--- TOC entry 4131 (class 0 OID 9808657)
--- Dependencies: 229
--- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: pdczbyxiumdzxw
---
-
-COPY public.test (id) FROM stdin;
-\.
-
-
---
--- TOC entry 4139 (class 0 OID 0)
--- Dependencies: 202
--- Name: email_prompts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pdczbyxiumdzxw
---
-
-SELECT pg_catalog.setval('public.email_prompts_id_seq', 1, false);
-
-
---
--- TOC entry 4140 (class 0 OID 0)
--- Dependencies: 213
--- Name: responses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pdczbyxiumdzxw
---
-
-SELECT pg_catalog.setval('public.responses_id_seq', 3, true);
-
-
---
--- TOC entry 4141 (class 0 OID 0)
--- Dependencies: 228
--- Name: tabs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pdczbyxiumdzxw
---
-
-SELECT pg_catalog.setval('public.tabs_id_seq', 1, false);
-
-
---
--- TOC entry 4137 (class 0 OID 0)
--- Dependencies: 5
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pdczbyxiumdzxw
---
-
-REVOKE ALL ON SCHEMA public FROM postgres;
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-GRANT ALL ON SCHEMA public TO pdczbyxiumdzxw;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
---
--- TOC entry 4138 (class 0 OID 0)
--- Dependencies: 761
--- Name: LANGUAGE plpgsql; Type: ACL; Schema: -; Owner: postgres
---
-
-GRANT ALL ON LANGUAGE plpgsql TO pdczbyxiumdzxw;
-
-
--- Completed on 2021-10-14 22:59:48 PDT
-
---
--- PostgreSQL database dump complete
---
-

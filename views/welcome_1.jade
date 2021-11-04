@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    script(src='/javascripts/welcome_1.js')
+    link(rel='stylesheet' href='/stylesheets/welcome.css')
+  body
+    div(class="pbar")
+      div(class="completed" id="completed")
+    br
+    div.instructions
+      | Welcome to our experiment! 
+      br
+      br
+      | In today’s experiment, you will be helping us test the usability of TWO different predictive algorithms -#[strong Smart Predictor] and #[strong CS Predictor]- designed to provide you with typing suggestions while we ask you to respond to a series of emails.       
+      br
+      br
+      | #[strong Smart Predictor] is designed by the Computer Science Department at UC Santa Barbara in collaboration with Google’s Smart Compose Team. It is a highly-personalized algorithm that learns from your typing patterns over time and provides you with typing suggestions that are tailored towards your own writing styles.  
+      br
+      br
+      | #[strong CS Predictor] is developed by a group of Computer Science (CS) junior students at UC Santa Barbara as a final project in their AI Programming course. It provides you with typing suggestions that a majority of users would have typed based on a probability model.  
+      br
+      br
+      | We are assessing how you naturally use these two unique algorithms.
+      br
+      br
+      input(type="checkbox" id="understand")
+      | Please check the box to show you understand the instructions. 
+      br
+      br
+    button(class='next' id='next') Next 

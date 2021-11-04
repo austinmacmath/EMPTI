@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/manipulation_check.css')
+        script(src='/javascripts/manipulation_check_2.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.body
+            | Which algorithm did you work with in the previous session? 
+            br
+            br
+            table
+                tr
+                    td 
+                        input(type='radio' name='algorithm' value='CS Predictor')
+                    td #[strong CS Predictor] (Developed by undergraduates)
+                tr
+                    td 
+                        input(type='radio' name='algorithm' value='Smart Predictor')
+                    td #[strong Smart Predictor] (Developed by Google)
+            br
+            button(id='next') Next

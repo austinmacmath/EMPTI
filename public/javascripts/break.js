@@ -38,9 +38,9 @@ window.onload = function () {
             .then(response => response.json())
             .then(result => {
                 if (result.synergy_first == '1') {
-                    window.location = '/' + id + '/t0'
+                    window.location = '/' + id + '/tutorial_0'
                 } else {
-                    window.location = '/' + id + '/t1'
+                    window.location = '/' + id + '/tutorial_1'
                 }
             })
     })
@@ -67,9 +67,9 @@ function nextPage() {
     .then(response => response.json())
     .then(result => {
         if (result.synergy_first == '1') {
-            window.location = '/' + id + '/t0'
+            window.location = '/' + id + '/tutorial_0'
         } else {
-            window.location = '/' + id + '/t1'
+            window.location = '/' + id + '/tutorial_1'
         }
     }) 
 }

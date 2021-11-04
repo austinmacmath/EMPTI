@@ -1,0 +1,150 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/questionnaire.css')
+        script(src='/javascripts/questionnaire_4.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.tutorial-body
+            | #[strong Instructions:]
+            br
+            br
+            | In order for #[strong Smart Predictor] to better serve you with your personal writing style, please fill out this writing habit questionnaire so that our algorithm can provide you with tailored suggestions based on your answers.
+        div.question
+            br
+            br
+            | 4.  When writing an email for #[strong Casual and/or Personal] purposes, how likely are you to frame the tone of your message as the following?
+            br
+            br
+            table
+                tr
+                    td
+                    td Extremely unlikely 
+                    td Somehow unlikely 
+                    td Neutral 
+                    td Somehow likely 
+                    td Extremely likely 
+                tr
+                    td Neutral 
+                    td 
+                        input(type='radio' name='Neutral' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Neutral' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Neutral' value='Neutral')
+                    td 
+                        input(type='radio' name='Neutral' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Neutral' value='Extremely likely')
+                tr
+                    td Formal 
+                    td 
+                        input(type='radio' name='Formal' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Formal' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Formal' value='Neutral')
+                    td 
+                        input(type='radio' name='Formal' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Formal' value='Extremely likely')
+                tr
+                    td Confident 
+                    td 
+                        input(type='radio' name='Confident' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Confident' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Confident' value='Neutral')
+                    td 
+                        input(type='radio' name='Confident' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Confident' value='Extremely likely')
+                tr
+                    td Joyful 
+                    td 
+                        input(type='radio' name='Joyful' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Joyful' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Joyful' value='Neutral')
+                    td 
+                        input(type='radio' name='Joyful' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Joyful' value='Extremely likely')
+                tr
+                    td Optimistic 
+                    td 
+                        input(type='radio' name='Optimistic' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Optimistic' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Optimistic' value='Neutral')
+                    td 
+                        input(type='radio' name='Optimistic' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Optimistic' value='Extremely likely')
+                tr
+                    td Friendly 
+                    td 
+                        input(type='radio' name='Friendly' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Friendly' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Friendly' value='Neutral')
+                    td 
+                        input(type='radio' name='Friendly' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Friendly' value='Extremely likely')
+                tr
+                    td Urgent 
+                    td 
+                        input(type='radio' name='Urgent' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Urgent' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Urgent' value='Neutral')
+                    td 
+                        input(type='radio' name='Urgent' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Urgent' value='Extremely likely')
+                tr
+                    td Analytical 
+                    td 
+                        input(type='radio' name='Analytical' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Analytical' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Analytical' value='Neutral')
+                    td 
+                        input(type='radio' name='Analytical' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Analytical' value='Extremely likely')
+                tr
+                    td Respectful 
+                    td 
+                        input(type='radio' name='Respectful' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Respectful' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Respectful' value='Neutral')
+                    td 
+                        input(type='radio' name='Respectful' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Respectful' value='Extremely likely')
+                tr
+                    td Knowledgeable 
+                    td 
+                        input(type='radio' name='Knowledgeable' value='Extremely unlikely')
+                    td 
+                        input(type='radio' name='Knowledgeable' value='Somehow unlikely')
+                    td 
+                        input(type='radio' name='Knowledgeable' value='Neutral')
+                    td 
+                        input(type='radio' name='Knowledgeable' value='Somehow likely')
+                    td 
+                        input(type='radio' name='Knowledgeable' value='Extremely likely')
+            br
+            button(id='next') Next 

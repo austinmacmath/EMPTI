@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/mturk.css')
+        script(src='/javascripts/mturk_2.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.body
+            | Your unique completion code is: 
+            br
+            br
+            span(id="CODE")
+            br
+            br
+            | Copy this value to paste into M-Turk.
+            br
+            br
+            | When you have copied this code, please click the "Next" button to submit your responses.
+            br
+            br
+            button(id='next') Next

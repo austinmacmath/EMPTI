@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey_gen_4.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.question
+            | How many internet-accessing devices, if any, do you have reliable access to (e.g., mobile smartphone, tablet, personal computer, etc)?  (insert number only) 
+            br
+            input(type="text" id="count")
+            br
+            br
+            button(id='next') Next

@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='/stylesheets/survey.css')
+        script(src='/javascripts/survey_4.js')
+    body
+        div(class="pbar")
+            div(class="completed" id="completed")
+        br
+        div.question
+            | Please indicate to what extent the following statements describe your experience with 
+            span(id='algorithm') #[strong #{algorithm}]
+            | .
+            br
+            br
+            br
+            table(id='table')
+            br
+            br
+            button(id='next') Next
