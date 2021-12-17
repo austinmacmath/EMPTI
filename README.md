@@ -40,3 +40,24 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
     * audience: research groups in other labs
         * what would they need to know to use this for use in a social experiment
 * for later, try to make the algorithm "more helpful" somehow
+
+## 12/2
+* continue github
+* research new predictive text algorithms 
+    * OpenAI: GPT3 - a language model developed by OpenAI, a research lab in SF started by Elon. Used to generate code.
+        * Advantages:
+            * powerful, used by lots of big names in tech
+                * https://beta.openai.com/playground?model=davinci
+            * lots of funding from microsoft
+        * Disadvantages:
+            * slower because API calls are necessary to predict text; not everything is done client side
+                * demo: https://beta.openai.com/playground?model=davinci
+            * pay as you go model; 
+                * pricing: https://openai.com/api/pricing/
+                * they subsidize research: https://share.hsforms.com/1b-BEAq_qQpKcfFGKwwuhxA4sk30
+            * see if we can introduce biased (mispelled) words into algorithm
+                * idea: check response from GPT3 server, if response includes any words that should be mispelled, replace them    
+    * Google: BERT
+    * Predictionary
+        * suggest text less frequently, play around with predictionary
+
