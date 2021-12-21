@@ -1,12 +1,72 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/stylesheets/temp.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery-3.4.1.min.js')
+    script(src='/javascripts/lz-string.min.js')
+    script(src='/javascripts/predictionary.min.js')
     script(src='/javascripts/test.js')
 
   body
-    input(type='text' placeholder='type here' id='message-input' class='card__input')
-    div(class='typing')
-      span(class='typing__bullet')
-      span(class='typing__bullet')
-      span(class='typing__bullet')
+    div(class="pbar")
+      div(class="completed" id="completed")
+    br
+    div.tutorial-body
+      | #[strong THIS PAGE IS FOR TESTING PURPOSES]
+      br
+      br
+      ol
+        li Welcome to session TEST! In this session you will be working with #[strong GPT-3], a language model developed by OpenAI.
+        li New predictive text is generated as soon as you type a period to end a sentence. 
+        li You may have to wait a bit for the input to be sent to the Heroku server which forwards the request to the OpenAI server. The response returns in the reverse order.
+        li In this demo, no data is written to the database.
+        li I've found that the model excels at generating more creative text.
+        li Please try and break it 😊 .
+    div.message-body
+      img.gmail(src='/images/gmail.png')
+      div.subject Re: Sell car
+      div.metadata 
+        span.left-justify Car Sales Co. Team 
+        span(class='right-justify' id='time') 9:15 AM (#{hours} hours ago)
+        br
+        | to You 
+      div(class='message' id='message')
+        pre(id='message-text')
+          | Hello,
+          br
+          br
+          | Welcome to Car Sales Co., the online used car retailer made to make selling your car simple and easy! We received your message that you are looking to sell your car. Please answer the following questions so we can calculate the worth of your car.
+          br
+          br
+          | 1. What is the make and model of your vehicle?
+          | 2. What year is your vehicle?
+          | 3. Approximately how many miles are on your vehicle?
+          | 4. Has your vehicle been in any accidents?
+          | 5. Are there any damages to your vehicle? If so, please describe the damages (location, severity, etc.)
+          br
+          | We are looking forward to helping you sell your car! 
+          br
+          br
+          | Thanks, 
+          br
+          | The Car Sales Co. Team 
+    div.response-body
+      div.reply-body
+        div.recipient 
+          span(class='to' id='to') To: Car Sales Co. Team 
+          br
+          br
+          div(class='container' id='container')
+            div(class='backdrop' id='backdrop')
+              div(class='predictions' id='predictions')
+            textarea(id='email' name='email' spellcheck='false')
+          br
+          button(class='send' id='send-tutorial-1' tabindex='-1') Send
+          span(class='wordcount' id='wordcount') 0
+          span(class='wc_label') Word Count:&nbsp
+          span(class='wc_error' id='wc_error')
+          p(hidden id='b') 0
+          div(class='typing')
+            span(class='typing__bullet')
+            span(class='typing__bullet')
+            span(class='typing__bullet')

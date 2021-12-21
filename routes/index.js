@@ -1,7 +1,11 @@
 var express = require('express');
 var pgp = require('pg-promise')();
-var db = pgp(process.env.DATABASE_URL)
+var db = pgp('postgres://postgres:password@localhost:5432/synergy')
 var router = express.Router();
+
+const OpenAI = require('openai-api')
+const OPENAI_API_KEY = ''
+const openai = new OpenAI(OPENAI_API_KEY)
 
 // catch the favicon request for now
 router.get('/favicon.ico', (req, res) => res.status(204));
@@ -17,7 +21,7 @@ router.get('/credit', function(req, res) {
 })
 
 // for testing and development
-router.get('/test', function (req, res) {
+router.get('/paDLxuIdmr9lcdFqD7vn/test', function (req, res) {
   res.render('test');
 })
 
@@ -1350,6 +1354,25 @@ router.post('/tutorial_complete', function (req, res) {
         })
       }
     })
+})
+
+router.post('/gpt_predict', async function (req, res) {
+  const gptResponse = await openai.complete({
+    engine: 'davinci',
+    prompt: req.body.prompt,
+    maxTokens: 32,
+    temperature: 0.4,
+    topP: 1,
+    presencePenalty: 0.5,
+    frequencyPenalty: 0.5,
+    bestOf: 1,
+    n: 1,
+    stream: false,
+    stop: ['.']
+  });
+  res.send({
+    "text": gptResponse.data.choices[0].text
+  })
 })
 
 module.exports = router;

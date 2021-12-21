@@ -592,6 +592,48 @@ window.onload = function () {
         }
     }
 
+    async function gpt_predict() {
+        if (input.charAt(input.length-1) == ".") {
+            fetch('/gpt_predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    prompt: input 
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result.text.trimStart())
+                suggestions = [result.text.trimStart()]
+                if (suggestions.length > 0) {
+                    var lastSpace = input.lastIndexOf(' ');
+                    var lastWord = input.substring(lastSpace + 1);
+                    if (lastWord == suggestions[0].substring(0, lastWord.length)) {
+                        predictionDisplayTime = new Date().getTime();
+                        if (suggestions[0] != prevSuggestion) {
+                            prevSuggestion = suggestions[0];
+                        }
+                    }
+                }
+                var suggestion = "";
+                if (suggestions.length > 0) {
+                    suggestion = suggestions[0];
+                }
+                if (lastWord != suggestion.substring(0, lastWord.length)) {
+                    document.getElementById('predictions').innerHTML = input;
+                    suggestions = [];
+                } else {
+                    document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestion.substring(input.length - lastSpace - 1) + '</span>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            }); 
+        }
+    }
+
     function add(suggestion) {
         // encoding for d'
         var tabTime = new Date().getTime();
@@ -647,7 +689,7 @@ window.onload = function () {
                 add(suggestions[0]);
                 var lastSpace = input.lastIndexOf(' ');
                 if (suggestions.length > 0) {
-                    document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestions[0].substring(input.length - lastSpace - 1) + '</span>';
+                    // document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestions[0].substring(input.length - lastSpace - 1) + '</span>';
                 }
             }
         }
@@ -705,19 +747,19 @@ window.onload = function () {
                     }
                 }
             }
-            refreshSuggestions();
+            gpt_predict();
+            // refreshSuggestions();
             select_scroll_1(event);
-        }
-
-        var suggestion = "";
-        if (suggestions.length > 0) {
-            suggestion = suggestions[0];
-        }
-        if (lastWord != suggestion.substring(0, lastWord.length)) {
-            document.getElementById('predictions').innerHTML = input;
-            suggestions = [];
-        } else {
-            document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestion.substring(input.length - lastSpace - 1) + '</span>';
+            var suggestion = "";
+            if (suggestions.length > 0) {
+                suggestion = suggestions[0];
+            }
+            if (lastWord != suggestion.substring(0, lastWord.length)) {
+                document.getElementById('predictions').innerHTML = input;
+                suggestions = [];
+            } else {
+                document.getElementById('predictions').innerHTML = input + '<span style="color:Gray">' + suggestion.substring(input.length - lastSpace - 1) + '</span>';
+            }
         }
     }
 

@@ -61,3 +61,7 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
     * Predictionary
         * suggest text less frequently, play around with predictionary
 
+* Show N Tell
+    * GPT
+        * Very good text prediction capabilities
+        * I've found the flow and thought process works best if the participant is practicing creative writing. It works well if the writer is required to think and pause about what comes next, rather than answering simple questions. For example, pretend you're a college student writing home to grandma or something. Open ended questions are better
