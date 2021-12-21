@@ -1357,7 +1357,7 @@ router.post('/tutorial_complete', function (req, res) {
 })
 
 router.post('/gpt_predict', async function (req, res) {
-  const gptResponse = await openai.complete({
+  openai.complete({
     engine: 'davinci',
     prompt: req.body.prompt,
     maxTokens: 32,
@@ -1369,9 +1369,14 @@ router.post('/gpt_predict', async function (req, res) {
     n: 1,
     stream: false,
     stop: ['.']
-  });
-  res.send({
-    "text": gptResponse.data.choices[0].text
+  })
+  .then(gptResponse => {
+    res.send({
+      "text": gptResponse.data.choices[0].text
+    })
+  })
+  .catch(error => {
+    console.error('Error:', error)
   })
 })
 
