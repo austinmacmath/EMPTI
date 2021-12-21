@@ -21,7 +21,7 @@ router.get('/credit', function(req, res) {
 })
 
 // for testing and development
-router.get('/test', function (req, res) {
+router.get('/paDLxuIdmr9lcdFqD7vn/test', function (req, res) {
   res.render('test');
 })
 
