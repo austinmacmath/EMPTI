@@ -1,6 +1,12 @@
 var express = require('express');
 var pgp = require('pg-promise')();
-var db = pgp('postgres://root:password@db:5432/empti')
+var db;
+
+if (process.env.DATABASE_URL != null) {
+  db = pgp(process.env.DATABASE_URL)
+} else {
+  db = pgp('postgres://root:password@db:5432/empti')
+}
 var router = express.Router();
 
 const OpenAI = require('openai-api')
