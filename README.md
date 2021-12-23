@@ -23,6 +23,14 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 7. Start the application:`DEBUG=synergy-app:* npm start`
 8. Navigate to [localhost:3000](http://localhost:3000) in your browser for the homepage and `localhost:3000/<UID>/<EMAIL ID>` for the different email prompts
 
+## Docker
+### Build
+* See docker-compose.yml
+### Run
+* From the root directory of this repo, run `docker-compose up`
+* Navigate to [localhost:3000](http://localhost:3000)
+* See docker-compose.yml for database access credentials
+
 ## To do 
 * make predictionary work in middle of text
 * model should work for capital words also
@@ -60,4 +68,9 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
     * Google: BERT
     * Predictionary
         * suggest text less frequently, play around with predictionary
+
+
+## To Do
+* Rename occurrences of synergy to empti
+
 

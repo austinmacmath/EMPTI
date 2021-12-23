@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  empti:
+    container_name: empti
+    build: .
+    ports:
+      - 3000:3000
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=empti
+    volumes:
+      - ./db/synergy_dump.sql:/docker-entrypoint-initdb.d/synergy_dump.sql
+    ports:
+      - 5433:5432
