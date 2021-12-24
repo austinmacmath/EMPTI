@@ -71,6 +71,4 @@ This is a Google Smart Compose/email client simulator for the Synergy project. W
 
 
 ## To Do
-* Rename occurrences of synergy to empti
-
-
+* add favicon to all other pages
