@@ -1364,13 +1364,13 @@ router.post('/tutorial_complete', function (req, res) {
 
 router.post('/gpt_predict', async function (req, res) {
   openai.complete({
-    engine: 'ada',
+    engine: 'davinci',
     prompt: req.body.prompt,
     maxTokens: 32,
     temperature: 0.4,
     topP: 1,
-    presencePenalty: 1.5,
-    frequencyPenalty: 1.5,
+    presencePenalty: 1,
+    frequencyPenalty: 1,
     bestOf: 1,
     n: 1,
     stream: false,
