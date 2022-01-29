@@ -1364,7 +1364,7 @@ router.post('/tutorial_complete', function (req, res) {
 
 router.post('/gpt_predict', async function (req, res) {
   openai.complete({
-    engine: 'davinci',
+    engine: 'ada',
     prompt: req.body.prompt,
     maxTokens: 32,
     temperature: 0.4,
